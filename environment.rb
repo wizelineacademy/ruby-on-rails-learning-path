@@ -35,7 +35,7 @@ module Environment
             @missions = {}
         end
 
-        def new_mission (name:, objective:, pack:)
+        def new_mission(name:, objective:, pack:)
             @missions[name] = {
                 :objective => objective,
                 :pack => pack,
