@@ -30,6 +30,7 @@ module Environment
 
     class Control
         attr_accessor :missions
+        MISSION_STATUS = %i(active paused aborted failed accomplished)
 
         def initialize
             @missions = {}
@@ -42,25 +43,15 @@ module Environment
                 :status => :active
             }
 
-            createStatusMethods(name)
+            createStatusMethods
         end
 
         private
-        def createStatusMethods(mission_name)
-            self.class.define_method("#{mission_name.to_s}_mission_paused") do
-                @missions[mission_name][:status] = :paused
-            end
-            
-            self.class.define_method("#{mission_name.to_s}_mission_aborted") do
-                @missions[mission_name][:status] = :aborted
-            end
-
-            self.class.define_method("#{mission_name.to_s}_mission_failed") do
-                @missions[mission_name][:status] = :failed
-            end
-
-            self.class.define_method("#{mission_name.to_s}_mission_accomplished") do
-                @missions[mission_name][:status] = :accomplished
+        def createStatusMethods
+            MISSION_STATUS.each do |status|
+                self.class.define_method("set_mission_to_#{status.to_s}") do |mission_name|
+                    @missions[mission_name][:status] = status
+                end
             end
         end
     end
@@ -110,25 +101,26 @@ module Environment
             method_name.to_s =~ /set_(.*)_data/ || super
         end
 
-        class Worker < Human
-            attr_accessor :standard_shift, :extra_shift
+    end
 
-            def init_shifts
-                @standard_shift = {
-                    :id => self.object_id,
-                    :hours => 8,
-                    :payment => 8,
-                    :facility => String.new,
-                    :status => nil
-                }
-                @extra_shift = {
-                    :id => self.object_id,
-                    :hours => Integer.new,
-                    :payment => Float.new,
-                    :facility => String.new,
-                    :status => nil
-                }
-            end
+    class Worker < Human
+        attr_accessor :standard_shift, :extra_shift
+
+        def init_shifts
+            @standard_shift = {
+                :id => self.object_id,
+                :hours => 8,
+                :payment => 8,
+                :facility => String.new,
+                :status => nil
+            }
+            @extra_shift = {
+                :id => self.object_id,
+                :hours => Integer.new,
+                :payment => Float.new,
+                :facility => String.new,
+                :status => nil
+            }
         end
     end
 

@@ -31,6 +31,6 @@ game.new_mission(name: :alpha, objective: 'Get Alpha to base', pack: :simple_tra
 
 puts game.control.missions[:alpha]
 
-game.control.alpha_mission_accomplished
+game.control.set_mission_to_accomplished :alpha
 
 puts game.control.missions[:alpha]
