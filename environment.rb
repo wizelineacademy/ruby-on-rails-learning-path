@@ -34,6 +34,7 @@ module Environment
 
         def initialize
             @missions = {}
+            createStatusMethods
         end
 
         def new_mission(name:, objective:, pack:)
@@ -42,8 +43,6 @@ module Environment
                 :pack => pack,
                 :status => :active
             }
-
-            createStatusMethods
         end
 
         private
