@@ -60,7 +60,7 @@ module Environment
         attr_reader :id
 
         EXPECTED_PERRONAL_DATA_ARGUMENTS = %i(surname age country language marital_status children)
-        EXPECTED_PROFESSIONAL_DATA_ARGUMENTS = %i(position ocupation skills observations)
+        EXPECTED_PROFESSIONAL_DATA_ARGUMENTS = %i(position occupation skills observations)
 
         def initialize (name:)
             @id = self.object_id
