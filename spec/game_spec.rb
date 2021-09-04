@@ -60,6 +60,69 @@ describe Environment::Human do
     end
 end
 
+describe Environment::Worker do
+    subject {described_class.new(name: "Juan")}
+    let(:personal_data) {subject.personal_data}
+    let(:professional_data) {subject.professional_data}
+
+    it 'can set its personal data' do
+        subject.set_personal_data(
+            surname: 'Silvia',
+            age: 40,
+            country: :mx,
+            language: :es,
+            marital_status: :single 
+        )
+        expect(personal_data[:surname]).to eq('Silvia')
+        expect(personal_data[:age]).to  eq(40)
+        expect(personal_data[:marital_status]).to eq(:single)
+        expect(personal_data[:country]).to eq(:mx)
+        expect(personal_data[:language]).to eq(:es)   
+    end
+
+    it 'can set its professional data' do
+        subject.set_professional_data(
+            position: 'SE',
+            occupation: 'IT',
+            skills: [:ruby, :blender],
+            observations: 'none'
+        )
+        expect(professional_data[:position]).to eq('SE')
+        expect(professional_data[:occupation]).to eq('IT')
+        expect(professional_data[:skills]).to eq([:ruby, :blender])
+        expect(professional_data[:observations]).to eq('none')
+    end
+end
+
+describe Environment::Dictionary do
+    let(:expressions) {subject.expressions}
+
+    it 'has all the translations' do
+        expect(expressions[:hello][:en]).to eq('hello')
+        expect(expressions[:hello][:es]).to eq('hola')
+        expect(expressions[:hello][:cz]).to eq('ahoj')
+
+        expect(expressions[:goodbye][:en]).to eq('goodbye')
+        expect(expressions[:goodbye][:es]).to eq('adios')
+        expect(expressions[:goodbye][:cz]).to eq('nashledanou')
+
+        expect(expressions[:my_name_is][:en]).to eq('my name is')
+        expect(expressions[:my_name_is][:es]).to eq('mi nombre es')
+        expect(expressions[:my_name_is][:cz]).to eq('jmenuju se')
+
+        expect(expressions[:i_come_from][:en]).to eq('i come from')
+        expect(expressions[:i_come_from][:es]).to eq('yo vengo de')
+        expect(expressions[:i_come_from][:cz]).to eq('ja odchazim od')
+    end
+
+    it 'respond to say methods' do
+        expect(subject).to respond_to(:say_hello)
+        expect(subject).to respond_to(:say_goodbye)
+        expect(subject).to respond_to(:say_my_name_is)
+        expect(subject).to respond_to(:say_i_come_from)
+    end
+end
+
 describe Game do
     let(:control) {subject.control}
     let(:board) {subject.board}
