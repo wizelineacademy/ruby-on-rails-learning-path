@@ -42,9 +42,12 @@ module GenericCardGame
     end
 
     # Pokemon TCG API config
-    # TODO: add API Key here
     Pokemon.configure do |config|
-      config.api_key = "XXXXXXXXXX"
+      config.api_key = "XXXXXXXXXXXX"
     end
+
+    # middleware that will allow us to send receive cookies
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
   end
 end

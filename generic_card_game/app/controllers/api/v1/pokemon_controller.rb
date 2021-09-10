@@ -12,7 +12,19 @@ class Api::V1::PokemonController < ApplicationController
     size.times do
       cards << catch_pokemon
     end
+    trainer = get_pokemon_trainer session[:user_id]
+    trainer.pokemon_cards << cards
+    trainer.save
     render json: cards
+  end
+
+  def collection
+    unless session[:user_id]
+      return render json: {status: "error", code: 403, message: "not logged in"}
+    end
+    trainer = get_pokemon_trainer session[:user_id]
+    p "Pokemon trainer cards: #{trainer.pokemon_cards.size}"
+    render json: trainer.pokemon_cards
   end
 
   private
@@ -81,6 +93,18 @@ class Api::V1::PokemonController < ApplicationController
       end
     end
     return true
+  end
+
+  def get_pokemon_trainer(player_id)
+    trainer = PokemonTrainer.find_by_player_id player_id
+    unless trainer
+      trainer = PokemonTrainer.new()
+      trainer.player = Player.find player_id
+      trainer.name = trainer.player.name || trainer.player.email
+      trainer.pokemon_cards = []
+      trainer.save
+    end
+    trainer
   end
 
 end

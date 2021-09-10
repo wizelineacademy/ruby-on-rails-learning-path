@@ -9,13 +9,11 @@ class Room extends React.Component {
     }
 
     onUnload = e => {
-      const token = document.querySelector('meta[name="csrf-token"]').content;
       const leaveRoomURL = "/api/v1/rooms/leave";
 
       fetch(leaveRoomURL, {
           method: "POST",
           headers: {
-          "X-CSRF-Token": token,
           "Content-Type": "application/json"
           },
       })

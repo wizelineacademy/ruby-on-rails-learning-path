@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Login from "./Login_Form";
 
-class PokemonCatch extends React.Component {
+class PokemonCollection extends React.Component {
     constructor(props) {
         super(props);
     
@@ -33,7 +33,7 @@ class PokemonCatch extends React.Component {
 }
 
 function PokemonViewer() {
-    const catchURL = "/api/v1/pokemon/catch";
+    const catchURL = "/api/v1/pokemon/collection";
     const[data, setData] = useState(null);
     useEffect(() => {
 
@@ -61,7 +61,7 @@ function PokemonViewer() {
         }
 
         return <div>
-            <h1 className="display-4">Wild Pokemon Found!</h1>
+            <h1 className="display-4">Your Collection</h1>
             <ul className="horizontal">
                 { data.map(card =>
                     <li key={card.id}>
@@ -73,13 +73,10 @@ function PokemonViewer() {
     }
 
     return <div>
-        <h1 className="display-4">Catching Pokemon</h1>
-        <p className="lead">
-            Searching pokemon in the wild...
-        </p>
+        <h1 className="display-4">Fetching Collection</h1>
     </div>;
 
 }
 
 
-export default PokemonCatch;
+export default PokemonCollection;

@@ -5,7 +5,6 @@ import Button from "react-bootstrap/Button";
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
     function validateForm() {
         return email.length > 0 && password.length > 0;
     }
@@ -27,7 +26,9 @@ export default function Login() {
                 }
                 throw new Error("Network response was not ok.");
             })
-            .then(response => console.log(response))
+            .then(response => {
+                window.location.reload(false);
+            })
             .catch(error => console.log(error.message));
 
         event.preventDefault();

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_09_223504) do
+ActiveRecord::Schema.define(version: 2021_09_10_210620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,19 +47,21 @@ ActiveRecord::Schema.define(version: 2021_09_09_223504) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "pokemon_trainers", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "pokemon_trainers_pokemon_cards", force: :cascade do |t|
+  create_table "pokemon_cards_trainers", force: :cascade do |t|
     t.bigint "pokemon_trainer_id", null: false
     t.bigint "pokemon_card_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["pokemon_card_id"], name: "index_pokemon_trainers_pokemon_cards_on_pokemon_card_id"
-    t.index ["pokemon_trainer_id"], name: "index_pokemon_trainers_pokemon_cards_on_pokemon_trainer_id"
+    t.index ["pokemon_card_id"], name: "index_pokemon_cards_trainers_on_pokemon_card_id"
+    t.index ["pokemon_trainer_id"], name: "index_pokemon_cards_trainers_on_pokemon_trainer_id"
+  end
+
+  create_table "pokemon_trainers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "player_id", null: false
+    t.index ["player_id"], name: "index_pokemon_trainers_on_player_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -68,6 +70,6 @@ ActiveRecord::Schema.define(version: 2021_09_09_223504) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "pokemon_trainers_pokemon_cards", "pokemon_cards"
-  add_foreign_key "pokemon_trainers_pokemon_cards", "pokemon_trainers"
+  add_foreign_key "pokemon_cards_trainers", "pokemon_cards"
+  add_foreign_key "pokemon_cards_trainers", "pokemon_trainers"
 end

@@ -9,14 +9,38 @@ class Api::V1::AccessController < ApplicationController
 
     if authorized_user
       session[:user_id] = authorized_user.id
-      flash[:notice] = "You are now logged in."
+      render json: {
+        logged_in: true,
+        user: authorized_user
+      }
     else
       flash.now[:notice] = "Invalid username/password combination."
+      render json: {
+        logged_in: false,
+        message: 'no such user'
+      }
+    end
+  end
+
+  def is_logged_in?
+    if session[:user_id] && (current_user = Player.find(session[:user_id]))
+      render json: {
+        logged_in: true,
+        user: current_user
+      }
+    else
+      render json: {
+        logged_in: false,
+        message: 'no such user'
+      }
     end
   end
 
   def logout
     session[:user_id] = nil
-    flash[:notice] = 'Logged out'
+    render json: {
+      logged_in: false,
+      message: 'no such user'
+    }
   end
 end

@@ -12,7 +12,9 @@ Rails.application.routes.draw do
       delete '/destroy/:uuid', to: 'rooms#destroy'
 
       get 'pokemon/catch'
+      get 'pokemon/collection'
 
+      get 'access/logged_in', to: 'access#is_logged_in?'
       post 'access/authenticate'
       post 'access/logout'
     end
