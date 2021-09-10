@@ -1,0 +1,49 @@
+@import 'modules/normalize.css';
+@import 'modules/constants.scss';
+@import 'rooms';
+
+.bg_primary-color {
+    background-color: $primary-background-color;
+}
+.primary-color {
+  background-color: $primary-background-color;
+}
+.bg_secondary-color {
+  background-color: $secondary-background-color;
+}
+.secondary-color {
+  color: $secondary-background-color;
+}
+.custom-button.btn {
+  background-color: $secondary-background-color;
+  color: $secondary-color;
+  border: none;
+}
+
+.horizontal {
+  horiz-align: center;
+  margin-left: 0;
+  li {
+    display: inline;
+    padding: 20px;
+  }
+}
+.custom-button.btn:hover {
+  color: $secondary-color !important;
+  border: none;
+}
+.hero {
+  width: 100vw;
+  height: 50vh;
+}
+.hero img {
+  object-fit: cover;
+  object-position: top;
+  height: 100%;
+  width: 100%;
+}
+.overlay {
+  height: 100%;
+  width: 100%;
+  opacity: 0.4;
+}
