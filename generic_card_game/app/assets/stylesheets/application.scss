@@ -22,10 +22,11 @@
 
 .horizontal {
   horiz-align: center;
-  margin-left: 0;
+  margin-top: 10px;
+  padding: 0;
   li {
     display: inline;
-    padding: 20px;
+    padding-right: 20px;
   }
 }
 .custom-button.btn:hover {

@@ -1,79 +1,28 @@
 import React, {useEffect, useState} from "react";
 import Login from "./Login_Form";
+import {UserContext} from "./context/userContext";
 
 class PokemonHome extends React.Component {
 
-    render() {
-        return <PokemonHomeContent />;
+    constructor(props) {
+        super(props);
+        this.viewCollection = this.viewCollection.bind(this);
+        this.catchPokemon = this.catchPokemon.bind(this);
     }
-}
 
-function PokemonHomeContent() {
-        const [login_info, set_login_info] = useState({
-            isLoggedIn: false,
-            user: {}
-        });
+    catchPokemon(){
+        this.props.history.push(`/pokemon/catch`)
+    }
 
-        useEffect(() => {
-            fetch('/api/v1/access/logged_in', {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            })
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw new Error("Network response was not ok.");
-                })
-                .then(response => {
-                    console.log(response)
-                    if (response.logged_in) {
-                        set_login_info({
-                            isLoggedIn: true,
-                            user: response.user
-                        })
-                    } else {
-                        set_login_info({
-                            isLoggedIn: false,
-                            user: {}
-                        })
-                    }
-                })
-                .catch(error => console.log(error.message));
-        }, []);
+    viewCollection(){
+        this.props.history.push(`/pokemon/collection`)
+    }
 
-        let catchPokemon = () =>{window.open(`/pokemon/catch`)}
-        let viewCollection = () =>{window.open(`/pokemon/collection`)}
-
-        let logout = () => {
-            const token = document.querySelector('meta[name="csrf-token"]').content;
-            fetch('/api/v1/access/logout', {
-                method: "POST",
-                headers: {
-                    "X-CSRF-Token": token,
-                    "Content-Type": "application/json"
-                },
-            })
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw new Error("Network response was not ok.");
-                })
-                .then(response => {
-                    console.log(response)
-                })
-                .catch(error => console.log(error.message));
-            set_login_info({
-                isLoggedIn: false,
-                user: {}
-            })
-        }
+    render() {
+        let userInfo = this.context;
 
         let actions;
-        if(!login_info.isLoggedIn) {
+        if(!userInfo.isLoggedIn) {
             actions = <Login />
         } else {
             actions = (
@@ -83,7 +32,7 @@ function PokemonHomeContent() {
                             type="button"
                             className="btn btn-lg custom-button"
                             role="button"
-                            onClick={catchPokemon}
+                            onClick={this.catchPokemon}
                         >
                             Catch Pokemon
                         </button>
@@ -93,7 +42,7 @@ function PokemonHomeContent() {
                             type="button"
                             className="btn btn-lg custom-button"
                             role="button"
-                            onClick={viewCollection}
+                            onClick={this.viewCollection}
                         >
                             View Collection
                         </button>
@@ -113,7 +62,7 @@ function PokemonHomeContent() {
                             type="button"
                             className="btn btn-lg custom-button"
                             role="button"
-                            onClick={logout}
+                            onClick={userInfo.logout}
                         >
                             Log out
                         </button>
@@ -137,6 +86,10 @@ function PokemonHomeContent() {
             </div>
         );
 
+
+    }
 }
+
+PokemonHome.contextType = UserContext;
 
 export default PokemonHome;

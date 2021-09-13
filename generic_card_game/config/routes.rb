@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
       get 'access/logged_in', to: 'access#is_logged_in?'
       post 'access/authenticate'
+      post 'access/new_user'
       post 'access/logout'
     end
   end
