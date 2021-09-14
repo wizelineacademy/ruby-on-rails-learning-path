@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import React from "react";
 import Login from "./Login_Form";
 import {UserContext} from "./context/userContext";
-import PokemonCatch from "./Pokemon_Catch";
+import Gallery from 'react-grid-gallery';
 
 class PokemonCollection extends React.Component {
     constructor(props) {
@@ -19,33 +18,6 @@ class PokemonCollection extends React.Component {
 
     trade(){
         //TODO
-    }
-
-    PokemonViewer() {
-        let data = this.state.data;
-        if(data) {
-            console.log(JSON.stringify(data))
-
-            if(data.status == "error" && data.code == 403){
-                return <Login />
-            }
-
-            return <div>
-                <h1 className="display-4">Your Collection</h1>
-                <ul className="horizontal">
-                    { data.map(card =>
-                        <li key={card.id}>
-                            <LazyLoadImage effect="blur" src={card.image_url}  width={200} alt={card.name}/>
-                        </li>
-                    )}
-                </ul>
-            </div>;
-        }
-
-        return <div>
-            <h1 className="display-4">Fetching Collection</h1>
-        </div>;
-
     }
 
     componentDidMount() {
@@ -73,64 +45,77 @@ class PokemonCollection extends React.Component {
         let data = this.state.data
 
         let content;
+        let images;
         if(!userInfo.isLoggedIn || (data.status && data.status == "error" && data.code == 403)){
             content = <Login />;
         } else {
+            images = generateImagesList(data);
             content = <div>
-                <h1 className="display-4">Your Collection</h1>
-                <ul className="horizontal">
-                    { data.map(card =>
-                        <li key={card.id}>
-                            <LazyLoadImage effect="blur" src={card.image_url}  width={200} alt={card.name}/>
-                        </li>
-                    )}
-                </ul>
+                <Gallery images={images}/>
             </div>
         }
 
         return (
-            <div className="vw-100 vh-100 primary-color d-flex align-items-sm-center justify-content-center">
-                <div className="jumbotron jumbotron-fluid bg-transparent">
-                    <div className="container secondary-color">
-                    {content}
-                    <hr className="my-4"/>
-                    <ul className="horizontal">
-                        <li>
-                            <button
-                                type="button"
-                                className="btn btn-lg custom-button"
-                                role="button"
-                                onClick={this.goHome}
-                            >
-                                Back Home
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                type="button"
-                                className="btn btn-lg custom-button"
-                                role="button"
-                                onClick={this.trade}
-                            >
-                                Trade
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                type="button"
-                                className="btn btn-lg custom-button"
-                                role="button"
-                                onClick={userInfo.logout}
-                            >
-                                Log out
-                            </button>
-                        </li>
-                    </ul>
+                <div>
+                    <h1 className="display-4">Your Collection {images? "(" + images.length + ")" : ""}</h1>
+                    <div className="container2 secondary-color">
+                        <div >
+                            {content}
+                        </div>
+
+                        <hr className="my-4"/>
+                        <ul className="horizontal">
+                            <li>
+                                <button
+                                    type="button"
+                                    className="btn btn-lg custom-button"
+                                    role="button"
+                                    onClick={this.goHome}
+                                >
+                                    Back Home
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    type="button"
+                                    className="btn btn-lg custom-button"
+                                    role="button"
+                                    onClick={this.trade}
+                                >
+                                    Trade
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    type="button"
+                                    className="btn btn-lg custom-button"
+                                    role="button"
+                                    onClick={userInfo.logout}
+                                >
+                                    Log out
+                                </button>
+                            </li>
+                        </ul>
                     </div>
-                </div>
+
             </div>
         );
     }
+}
+
+function generateImagesList(srcData){
+    return srcData.map(card =>
+        {
+            return{
+                src: card.image,
+                thumbnail: card.image_thumbnail,
+                thumbnailWidth: 240,
+                thumbnailHeight: 330,
+                // isSelected: true,
+                caption: card.name
+            }
+        }
+    );
 }
 
 PokemonCollection.contextType = UserContext;

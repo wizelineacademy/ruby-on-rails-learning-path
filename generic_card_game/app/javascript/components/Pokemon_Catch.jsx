@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Login from "./Login_Form";
 import {UserContext} from "./context/userContext";
+import Gallery from 'react-grid-gallery';
 
 class PokemonCatch extends React.Component {
     constructor(props) {
@@ -51,16 +52,11 @@ class PokemonCatch extends React.Component {
             content = <Login />;
         } else {
             if (data.length > 0) {
-                let cards;
-                cards = data.map(card =>
-                    <li key={card.id}>
-                        <LazyLoadImage effect="blur" src={card.image_url} width={200} alt={card.name}/>
-                    </li>
-                )
+                let images = generateImagesList(data);
                 content = (<div>
                     <h1 className="display-4">Wild Pokemon Found!</h1>
                     <ul className="horizontal">
-                        {cards}
+                        <Gallery images={images}/>
                     </ul>
                 </div>);
             } else {
@@ -78,6 +74,7 @@ class PokemonCatch extends React.Component {
                 <div className="jumbotron jumbotron-fluid bg-transparent">
                     <div className="container secondary-color">
                         {content}
+                        <br />
                         <hr className="my-4"/>
                         <ul className="horizontal">
                             <li>
@@ -116,6 +113,21 @@ class PokemonCatch extends React.Component {
             </div>
         );
     }
+}
+
+function generateImagesList(srcData){
+    return srcData.map(card =>
+        {
+            return{
+                src: card.image,
+                thumbnail: card.image_thumbnail,
+                thumbnailWidth: 240,
+                thumbnailHeight: 330,
+                // isSelected: true,
+                caption: card.name
+            }
+        }
+    );
 }
 
 PokemonCatch.contextType = UserContext;

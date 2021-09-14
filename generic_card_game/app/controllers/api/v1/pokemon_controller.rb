@@ -75,7 +75,7 @@ class Api::V1::PokemonController < ApplicationController
   end
 
   def convert_to_pokemon_card(card)
-    PokemonCard.create!(:card_id => card.id, :name => card.name, :rarity => card.rarity, :supertype => card.supertype, :image_url => card.images.small)
+    PokemonCard.create!(:card_id => card.id, :name => card.name, :rarity => card.rarity, :supertype => card.supertype, :image_thumbnail => card.images.small,:image => card.images.large)
   end
 
   def should_keep_based_on_rarity?(rarity)

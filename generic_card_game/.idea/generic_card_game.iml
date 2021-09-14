@@ -117,6 +117,7 @@
     <orderEntry type="library" scope="PROVIDED" name="websocket-driver (v0.7.5, chruby: ruby-2.7.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="websocket-extensions (v0.1.5, chruby: ruby-2.7.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="zeitwerk (v2.4.2, chruby: ruby-2.7.2) [gem]" level="application" />
+    <orderEntry type="library" name="@types/react-lazy-load-image-component" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
     <LOAD_PATH number="0" />

@@ -48,3 +48,18 @@
   width: 100%;
   opacity: 0.4;
 }
+
+.container2{
+  display: grid
+}
+
+.gallery-container {
+  display: flex; /* or inline-flex */
+  height: 300px; /* Or whatever */
+  width: 800px; /* Or whatever */
+
+  flex-flow: row wrap;
+
+  /* Then we define how is distributed the remaining space */
+  justify-content: space-around;
+}
