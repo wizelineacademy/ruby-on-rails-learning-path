@@ -38,6 +38,10 @@ class Game
             :my_name_is => { :en => "my name is", :es => "mi nombre es", :cz => "jmenuju se" },
             :i_come_from => { :en => "i come from", :es => "yo vengo de", :cz => "ja odchazim od" }
         }
+
+        def expressions
+           @@expressions 
+        end
         
         @@expressions.each_key do |word|
             define_method("say_#{word}") do |lang|
@@ -45,7 +49,6 @@ class Game
             end
         end
     
-        attr_accessor :expressions
     end
 
     class Poker

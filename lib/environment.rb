@@ -66,8 +66,13 @@ module Environment
         @personal_data 
         @professional_data
 
+        def initialize(name: "")
+            @name = name
+            @id = object_id
+        end
+
         ["professional_data", "personal_data"].each do |method|
-            define_method "set_#{method}" do |*data|
+            define_method "set_#{method}" do |**data|
                 if method == "professional_data"
                     @professional_data = data
                 else
@@ -80,7 +85,7 @@ module Environment
             @standard_shift
             @extra_shift
 
-            def initialize
+            def initialize(name)
                 @standard_shift = {
                     :id => object_id,
                     :hours => 8,
@@ -95,6 +100,7 @@ module Environment
                     :facility => String.new,
                     :status => nil
                 }
+                super(:name => name)
             end
 
             attr_accessor :standard_shift, :extra_shift
