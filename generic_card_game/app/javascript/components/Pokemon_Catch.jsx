@@ -70,46 +70,42 @@ class PokemonCatch extends React.Component {
         }
 
         return (
-            <div className="vw-100 vh-100 primary-color d-flex align-items-sm-center justify-content-center">
-                <div className="jumbotron jumbotron-fluid bg-transparent">
-                    <div className="container secondary-color">
-                        {content}
-                        <br />
-                        <hr className="my-4"/>
-                        <ul className="horizontal">
-                            <li>
-                                <button
-                                    type="button"
-                                    className="btn btn-lg custom-button"
-                                    role="button"
-                                    onClick={this.goHome}
-                                >
-                                    Back Home
-                                </button>
-                            </li>
-                            <li>
-                                <button
-                                    type="button"
-                                    className="btn btn-lg custom-button"
-                                    role="button"
-                                    onClick={this.trade}
-                                >
-                                    Trade
-                                </button>
-                            </li>
-                            <li>
-                                <button
-                                    type="button"
-                                    className="btn btn-lg custom-button"
-                                    role="button"
-                                    onClick={userInfo.logout}
-                                >
-                                    Log out
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            <div className="container2 secondary-color">
+                {content}
+                <br />
+                <hr className="my-4"/>
+                <ul className="horizontal">
+                    <li>
+                        <button
+                            type="button"
+                            className="btn btn-lg custom-button"
+                            role="button"
+                            onClick={this.goHome}
+                        >
+                            Back Home
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            className="btn btn-lg custom-button"
+                            role="button"
+                            onClick={this.trade}
+                        >
+                            Trade
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            className="btn btn-lg custom-button"
+                            role="button"
+                            onClick={userInfo.logout}
+                        >
+                            Log out
+                        </button>
+                    </li>
+                </ul>
             </div>
         );
     }

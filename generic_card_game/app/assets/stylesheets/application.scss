@@ -50,7 +50,11 @@
 }
 
 .container2{
-  display: grid
+  display: grid;
+  align-content: center;
+  align-self: center;
+  vertical-align: center;
+  horiz-align: center;
 }
 
 .gallery-container {
