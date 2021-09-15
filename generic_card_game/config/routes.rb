@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
       get 'pokemon/catch'
       get 'pokemon/collection'
+      get 'pokemon/all_caught_pokemon'
 
       get 'access/logged_in', to: 'access#is_logged_in?'
       post 'access/authenticate'

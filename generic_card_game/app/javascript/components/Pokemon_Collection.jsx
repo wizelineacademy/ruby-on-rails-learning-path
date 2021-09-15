@@ -21,9 +21,9 @@ class PokemonCollection extends React.Component {
     }
 
     componentDidMount() {
-        const catchURL = "/api/v1/pokemon/collection";
+        const collectionURL = "/api/v1/pokemon/collection";
 
-        fetch(catchURL, {
+        fetch(collectionURL, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"

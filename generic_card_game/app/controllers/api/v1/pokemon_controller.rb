@@ -27,6 +27,16 @@ class Api::V1::PokemonController < ApplicationController
     render json: trainer.pokemon_cards
   end
 
+  # @return an array of all the pokemon that have been caught by all trainers
+  def all_caught_pokemon
+    caught_pokemon = []
+    PokemonTrainer.all.each do |trainer|
+      caught_pokemon << trainer.pokemon_cards.to_a
+    end
+    p caught_pokemon.length
+    render json: caught_pokemon
+  end
+
   private
 
   def catch_pokemon
@@ -53,8 +63,6 @@ class Api::V1::PokemonController < ApplicationController
     end
     randomCard
   end
-
-  private
 
   def get_card_by_id(card_id)
     if @@cardsCache.has_key? card_id
