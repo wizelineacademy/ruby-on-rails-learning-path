@@ -1,24 +1,18 @@
-# README
+# Pokemon TCG
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application is based on the popular `Pokemon Trading Card Game (TCG)`.
 
-Things you may want to cover:
+A player's objective is to complete their Pokemon collection by catching as many unique cards as possible.
 
-* Ruby version
 
-* System dependencies
+## System requirements
+- Ruby 2.7.2
+- Rails 6.1.4
+- PostgreSQL 13.4
 
-* Configuration
+## Configuration
+1. Create a database and a user with access to it. Then edit `config/database.yml` accordingly
+2. Install all gems by running `bundle instal` in the root directory
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Run the application
+1. Just execute the command `rails s` to start serving the application. By default it will listen to `http://localhost:3000`
