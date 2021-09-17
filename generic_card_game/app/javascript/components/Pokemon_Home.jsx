@@ -10,10 +10,15 @@ class PokemonHome extends React.Component {
         this.catchPokemon = this.catchPokemon.bind(this);
         this.viewAllPokemon = this.viewAllPokemon.bind(this);
         this.retrieveCollection = this.retrieveCollection.bind(this);
+        this.createPokemon = this.createPokemon.bind(this);
 
         this.state = {
             collection: []
         }
+    }
+
+    createPokemon(){
+        this.props.history.push(`/pokemon/create`)
     }
 
     viewAllPokemon(){
@@ -78,6 +83,16 @@ class PokemonHome extends React.Component {
                             onClick={this.viewCollection}
                         >
                             View Collection
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            type="button"
+                            className="btn btn-lg custom-button"
+                            role="button"
+                            onClick={this.createPokemon}
+                        >
+                            Create Pokemon
                         </button>
                     </li>
                     <li>

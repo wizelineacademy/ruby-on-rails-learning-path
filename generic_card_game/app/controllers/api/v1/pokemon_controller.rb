@@ -37,7 +37,38 @@ class Api::V1::PokemonController < ApplicationController
     render json: caught_pokemon
   end
 
+  def new_custom
+    unless session[:user_id]
+      return render json: {status: "error", code: 403, message: "not logged in"}
+    end
+    card_id = generate_custom_card_id
+    new_custom_card = PokemonCard.new(:card_id => card_id, :name => params[:pokemon][:name], :rarity => params[:pokemon][:rarity], :supertype => POKEMON_SUPERTYPE, :image_thumbnail => params[:pokemon][:image], :image => params[:pokemon][:image])
+    if new_custom_card.save
+      trainer = get_pokemon_trainer session[:user_id]
+      trainer.pokemon_cards << new_custom_card
+      return render json: {
+        status: "OK",
+        message: "Card Generated Successfully"
+      }
+    else
+      return render json: {
+        status: "error",
+        message: "The card could not be generated"
+      }
+    end
+  end
+
   private
+
+  def generate_custom_card_id
+    c = 1
+    card_id = "custom-#{c}"
+    while(PokemonCard.find_by_card_id card_id)
+      c += 1
+      card_id = "custom-#{c}"
+    end
+    card_id
+  end
 
   def catch_pokemon
     # 1. Get all the sets

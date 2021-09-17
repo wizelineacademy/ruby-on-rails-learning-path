@@ -5,6 +5,7 @@ class Home extends React.Component {
         super(props);
     
         this.createRoom = this.createRoom.bind(this);
+        this.goPokemon = this.goPokemon.bind(this);
     }
 
     createRoom(){
@@ -26,6 +27,10 @@ class Home extends React.Component {
             .catch(error => console.log(error.message));
     }
 
+    goPokemon(){
+        this.props.history.push(`/pokemon`)
+    }
+
     render() {
         return (
             <div className="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">
@@ -36,14 +41,26 @@ class Home extends React.Component {
                     A generic card game.
                   </p>
                   <hr className="my-4" />
-                  <button
-                    type="button"
-                    className="btn btn-lg custom-button"
-                    role="button"
-                    onClick={this.createRoom}
-                  >
-                    New Room
-                  </button>
+                    <ul className="horizontal">
+                        <li>
+                          <button
+                            type="button"
+                            className="btn btn-lg custom-button"
+                            role="button"
+                            onClick={this.createRoom}
+                          >
+                            New Room
+                          </button>
+                            <button
+                                type="button"
+                                className="btn btn-lg custom-button"
+                                role="button"
+                                onClick={this.goPokemon}
+                            >
+                                Pokemon TCG
+                            </button>
+                        </li>
+                    </ul>
                 </div>
               </div>
             </div>
