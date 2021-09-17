@@ -67,10 +67,13 @@ class Human
 
   types = %w(personal professional)
 
+  def initialize(name: nil)
+    @name = name
+    @id = self.id
+  end
+
   types.each do |type|
     define_method("set_#{type}_data") do |arg|
-      @id = arg[:id]
-      @name = arg[:name]
       if type == "personal" #/not sure hwo to do this dynamic
         @personal_data = {
           :surname => arg[:surname],
@@ -96,7 +99,7 @@ end
 class Worker < Human
   attr_accessor :standard_shift, :extra_shift
 
-  def initialize()
+  def set_shift()
     @standard_shift = {
       :id => self.id,
       :hours => 8,
