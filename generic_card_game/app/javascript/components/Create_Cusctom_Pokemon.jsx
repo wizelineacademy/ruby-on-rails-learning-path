@@ -17,8 +17,12 @@ class CreateCustomPokemon extends React.Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.validateForm = this.validateForm.bind(this);
+        this.goHome = this.goHome.bind(this);
     }
 
+    goHome(){
+        this.props.history.push(`/pokemon`)
+    }
 
     validateForm() {
         return this.state.name.length > 0 && this.state.image.length > 0;

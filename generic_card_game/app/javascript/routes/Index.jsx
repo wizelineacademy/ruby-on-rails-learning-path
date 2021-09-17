@@ -10,7 +10,8 @@ import CreateCustomPokemon from "../components/Create_Cusctom_Pokemon";
 export default (
     <Router>
         <Switch>
-            <Route path="/" exact component={Home}/>
+            {/*<Route path="/" exact component={Home}/>*/}
+            <Route path="/" exact component={Pokemon_Home}/>
             <Route path="/room/:uuid" exact component={Room}/>
 
             <Route path="/pokemon" exact component={Pokemon_Home} />
