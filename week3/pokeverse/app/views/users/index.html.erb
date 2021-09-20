@@ -1,0 +1,32 @@
+<% @page_title = "Users" %>
+
+<div class="users index">
+  <h2>Manage Users</h2>
+
+  <%= link_to('Add New User', new_user_path, :class => 'action new') %>
+
+  <div><%= pluralize(@users.size, 'user') %> found</div>
+
+  <table class="listing" summary="Users list">
+    <tr>
+      <th>Username</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>User Type</th>
+      <th>Actions</th>
+    </tr>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= user.username %></td>
+      <td><%= user.name %></td>
+      <td><%= mail_to(user.email) %></td>
+      <td><%= user.user_type.user_type %></td>
+      <td class="actions">
+        <%= link_to('Edit', edit_user_path(user), :class => 'action edit') %>
+        <%= link_to('Delete', delete_user_path(user), :class => 'action delete') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+
+</div>

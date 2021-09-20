@@ -1,0 +1,33 @@
+<% @page_title = "Pokemons" %>
+
+<div class="pokemons index">
+  <h2>Manage Pokemons</h2>
+
+  <div><%= pluralize(@pokemons.size, 'pokemon') %> found</div>
+  <br/>
+  <div class="get-pokemons">
+    <%= form_tag(pokemons_load_new_pokemon_path, :method => :post) do %>
+      <%= submit_tag("Create new pokemon") %>
+    <% end %>
+  </div>
+  <br/>
+  <table class="listing" summary="Pokemons list">
+    <tr>
+      <th>Image</th>
+      <th>Number</th>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+    <% @pokemons.each do |pokemon| %>
+    <tr>
+      <td><%= image_tag(pokemon.image_url) %></td>
+      <td><%= pokemon.pokeapi_id%></td>
+      <td><%= pokemon.name.capitalize %></td>
+      <td class="actions">
+        <%= link_to('Show', pokemon_path(pokemon), :class => 'action show') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+
+</div>

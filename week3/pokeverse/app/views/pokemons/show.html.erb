@@ -1,0 +1,36 @@
+<% @page_title = "Moves" %>
+
+<div class="pokemon show">
+  <h2><%= @pokemon.name.capitalize %></h2>
+
+  <%= link_to("<< Back to List", pokemons_path, :class => 'back-link') %>
+
+  <table summary="Page detail view">
+    <tr>
+      <th>Image</th>
+      <td><%= image_tag(@pokemon.image_url) %></td>
+    </tr>
+    <tr>
+      <th>Number</th>
+      <td><%= @pokemon.pokeapi_id %></td>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <td><%= @pokemon.name.capitalize %></td>
+    </tr>
+  </table>
+
+  <table class="listing" summary="Moves list">
+    <tr>
+      <th>Number</th>
+      <th>Name</th>
+    </tr>
+    <% @pokemon.moves.each do |move| %>
+    <tr>
+      <td><%= move.pokeapi_id%></td>
+      <td><%= move.name.capitalize %></td>
+    </tr>
+    <% end %>
+  </table>
+
+</div>

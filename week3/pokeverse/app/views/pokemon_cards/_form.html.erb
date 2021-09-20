@@ -1,0 +1,51 @@
+<%= error_messages_for(f.object) %>
+
+<h3><%= f.object.pokemon.name.capitalize %></h3>
+<%= image_tag(f.object.pokemon.image_url) %>
+<%= f.hidden_field(:pokemon_id) %>
+<table summary="Pokemon Card fields">
+  <tr>
+    <th><%= f.label(:defense) %></th>
+    <td><%= f.select(:defense, PokemonCard.defense_values, :selected => f.object.defense) %></td>
+  </tr>
+</table>
+<h4>Pokemon Moves</h4>
+<table summary="Pokemon Card moves">
+  <%= f.fields_for :pokemon_card_moves do |pcm| %>
+  <tr>
+  <% unless pcm.object.is_ability %>
+    <%= pcm.hidden_field(:id) %>
+    <th><%= pcm.label(:move) %></th>
+    <td><%= pcm.collection_select(:move_id, f.object.pokemon.moves, :id, :name) %></td>
+    <th><%= pcm.label(:cost) %></th>
+    <td><%= pcm.select(:cost, PokemonCardMove.cost_values) %></td>
+    <th><%= pcm.label(:type) %></th>
+    <td><%= pcm.collection_select(:type_id, Type.order(:color), :id, :color) %></td>
+    <th><%= pcm.label(:description) %></th>
+    <td><%= pcm.text_area(:description, :size => '40x5') %></td>
+  <% end %>
+  </tr>
+  <% end %>
+</table>
+<h4>Pokemon Ability</h4>
+<table summary="Pokemon Card ability">
+  <%= f.fields_for f.object.pokemon_card_moves.last do |pcm| %>
+  <%= pcm.hidden_field(:id) %>
+  <tr>
+    <th><%= pcm.label(:move) %></th>
+    <td><%= pcm.collection_select(:move_id, f.object.pokemon.moves, :id, :name) %></td>
+    <th><%= pcm.label(:description) %></th>
+    <td><%= pcm.text_area(:description, :size => '40x5') %></td>
+  </tr>
+  <% end %>
+</table>
+<h4>Pokemon Tokens</h4>
+<table summary="Pokemon Card tokens">
+  <%= f.fields_for :pokemon_card_tokens do |pct| %>
+  <%= pct.hidden_field(:id) %>
+  <tr>
+    <th><%= pct.label(:type) %></th>
+    <td><%= pct.collection_select(:type_id, Type.order(:color), :id, :color) %></td>
+  </tr>
+  <% end %>
+</table>
