@@ -31,13 +31,14 @@ module Environment
     attr_accessor :missions
     def initialize
       @missions = Hash.new
+      @depot = Depot.new
     end
 
     def new_mission(name, objective, pack)
       @missions[name] = {
         status: :active,
         objective: objective,
-        pack: Depot.packs[pack]
+        pack: @depot.packs[pack]
       }
     end
 
