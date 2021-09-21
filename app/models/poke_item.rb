@@ -1,0 +1,2 @@
+class PokeItem < ApplicationRecord
+end
