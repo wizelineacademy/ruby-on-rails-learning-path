@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   get 'login', to: "login#auth", as: :LoginPage
   get 'login/auth'
   get 'login/register'
+  post 'login/register', to: "login#new"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
