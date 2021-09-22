@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe PokemonMove, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "pokemon move required fields" do
+    it "must have all fields" do
+      expect{PokemonMove.create!}.to raise_error(ActiveRecord::NotNullViolation)
+    end
+  end
 end
