@@ -125,7 +125,7 @@ module PokeApi
             move.external_id = data[:id.to_s]
             move.name = data[:name.to_s].gsub("-"," ").capitalize
             move.accuracy = data[:accuracy.to_s].nil? ? 50 : data[:accuracy.to_s]
-            move.power = data[:power.to_s]
+            move.power = data[:power.to_s].nil? ? rand(1..100) : data[:power.to_s]
             move.descriptive_name = data[:name.to_s].gsub("-"," ").capitalize
             texts = data[:flavor_text_entries.to_s]
             move.effect_description = texts.length == 0 ? move.name : texts.select{|el| el[:language.to_s][:name.to_s] == "en"}.first[:flavor_text.to_s]
