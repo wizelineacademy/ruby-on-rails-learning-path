@@ -75,7 +75,7 @@ module PokeApi
         pokeSelectionId = data[:results.to_s][selection][:url.to_s].match(/\/(\d+)\//).captures.first.to_i
         pokemon = Pokemon.find_by external_id: pokeSelectionId
         if pokemon.nil?
-            pokemon = PokeApi.downloadPokemonData(pokeSelectionId)
+            pokemon = PokeApi.saveJSONPokemonDataToDB(PokeApi.downloadPokemonData(pokeSelectionId))
         end
         pokemon
     end
@@ -87,15 +87,18 @@ module PokeApi
         moveSelectionId = data[:moves.to_s][selection][:url.to_s].match(/\/(\d+)\//).captures.first.to_i
         move = Pokemon.find_by external_id: moveSelectionId
         if move.nil?
-            move = PokeApi.downloadMoveData(moveSelectionId)
+            move = PokeApi.saveJSONMoveDataToDB(PokeApi.downloadMoveData(moveSelectionId))
         end
         move
     end
 
     def PokeApi.downloadPokemonData(id)
         url = "#{POKE_MON_URL}/#{id}"
-        data = PokeApi.makeRequestTo(url)
-        unless data == nil
+        PokeApi.makeRequestTo(url)  
+    end
+
+    def PokeApi.saveJSONPokemonDataToDB(data)
+        unless data.nil?
             pokemon = Pokemon.new
             pokemon.external_id = data[:id.to_s]
             pokemon.name = data[:name.to_s].capitalize
@@ -113,12 +116,15 @@ module PokeApi
 
     def PokeApi.downloadMoveData(id)
         url = "#{POKE_MOVE_URL}/#{id}"
-        data = PokeApi.makeRequestTo(url)
-        unless data == nil
+        PokeApi.makeRequestTo(url)
+    end
+
+    def PokeApi.saveJSONMoveDataToDB(data)
+        unless data.nil?
             move = PokemonMove.new
             move.external_id = data[:id.to_s]
             move.name = data[:name.to_s].gsub("-"," ").capitalize
-            move.accuracy = data[:accuracy.to_s]
+            move.accuracy = data[:accuracy.to_s].nil? ? 50 : data[:accuracy.to_s]
             move.power = data[:power.to_s]
             move.descriptive_name = data[:name.to_s].gsub("-"," ").capitalize
             texts = data[:flavor_text_entries.to_s]
@@ -132,5 +138,4 @@ module PokeApi
             nil
         end
     end
-
 end
