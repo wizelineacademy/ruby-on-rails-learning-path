@@ -56,16 +56,12 @@ class LoginController < ApplicationController
     else
       if is_email_valid?(email)
         user = User.find_by email: email
-        unless user.save
+        if user.nil? || user.authenticate(password) == false
           flash[:error] = "Incorrect credentials" 
         else
-          if user.nil? || user.authenticate(password) == false
-            flash[:error] = "Incorrect credentials" 
-          else
-            session[:user_id] = user.id
-            redirect_to(root_path)
-            return 
-          end
+          session[:user_id] = user.id
+          redirect_to(root_path)
+          return 
         end
       else
         flash[:error] = "Please use a valid email"      

@@ -1,2 +1,0 @@
-class PokemonTrainedPokemonMove < ApplicationRecord
-end
