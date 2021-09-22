@@ -3,7 +3,7 @@
 <div class="g-sidenav-show  bg-gray-100">
 
   <section class="min-vh-100 mb-8">
-    <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3" style="background-image: url('../assets/img/pokemon.png'); background-position: center;background-size: contain; background-repeat: no-repeat;">
+    <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3" style="background-image: url('../assets2/img/pokemon.png'); background-position: center;background-size: contain; background-repeat: no-repeat;">
       <span class="mask bg-gradient-dark opacity-0"></span>
       <div class="container">
       </div>
@@ -14,6 +14,7 @@
           <div class="card z-index-0">
             <div class="card-header text-center pt-4">
               <h5>Register</h5>
+              <h6>Start trading and earning Pokemons</h6>
             </div>
             <div class="card-body">
               <% if flash[:error] %>
@@ -45,7 +46,7 @@
                 <div class="text-center">
                   <%= form.submit class: 'btn bg-gradient-dark w-100 my-4 mb-2', value: "Register"%>
                 </div>
-                <p class="text-sm mt-3 mb-0">Already have an account? <a href="javascript:;" class="text-dark font-weight-bolder">Sign in</a></p>
+                <p class="text-sm mt-3 mb-0">Already have an account? <a href="<%=login_auth_path%>" class="text-dark font-weight-bolder">Sign in</a></p>
               <% end %>
 
 
@@ -58,10 +59,10 @@
     </div>
   </section>
   <!--   Core JS Files   -->
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="../assets2/js/core/popper.min.js"></script>
+  <script src="../assets2/js/core/bootstrap.min.js"></script>
+  <script src="../assets2/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../assets2/js/plugins/smooth-scrollbar.min.js"></script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -74,6 +75,6 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+  <script src="../assets2/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
 </div>
 

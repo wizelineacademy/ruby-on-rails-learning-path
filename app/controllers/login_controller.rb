@@ -5,7 +5,9 @@ class LoginController < ApplicationController
   end
 
   def auth
-
+    if is_user_already_logged
+      redirect_to(root_path)
+    end
   end
 
   def register
@@ -41,4 +43,35 @@ class LoginController < ApplicationController
     end
     render :register
   end
+
+  def login
+    flash[:error] = nil
+    email = params[:email]
+    password = params[:password]
+    flash[:email] = email
+    flash[:password] = password
+    data = [email, password]
+    if data.include?(nil) || data.include?("")
+      flash[:error] = "Please fill out all the form"      
+    else
+      if is_email_valid?(email)
+        user = User.find_by email: email
+        unless user.save
+          flash[:error] = "Incorrect credentials" 
+        else
+          if user.nil? || user.authenticate(password) == false
+            flash[:error] = "Incorrect credentials" 
+          else
+            session[:user_id] = user.id
+            redirect_to(root_path)
+            return 
+          end
+        end
+      else
+        flash[:error] = "Please use a valid email"      
+      end
+    end
+    render :auth
+  end
+
 end
