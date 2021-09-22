@@ -28,5 +28,10 @@ RSpec.describe "PokeApi" do
             expect(subject.getRandomMove).to_not be_nil
         end
     end
+    context "load seed data from API" do
+        it "can load data" do
+            expect(subject.seedData).to be_truthy
+        end
+    end
 end
   
