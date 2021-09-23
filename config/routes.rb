@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: "dashboard#main"
   get 'dashboard/main'
+  get 'dashboard/pokemons'
+  post 'dashboard/capturePokemon', to: "dashboard#capture"
   get 'login', to: "login#auth", as: :LoginPage
   post 'login', to: "login#login"
   get 'login/auth'

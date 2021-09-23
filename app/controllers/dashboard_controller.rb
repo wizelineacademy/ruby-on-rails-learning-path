@@ -6,4 +6,12 @@ class DashboardController < ApplicationController
 
   end
 
+  def pokemons
+    render json: PokemonModule.getPokemonsForUser(session[:user_id])
+  end
+
+  def capture
+    
+  end
+
 end
