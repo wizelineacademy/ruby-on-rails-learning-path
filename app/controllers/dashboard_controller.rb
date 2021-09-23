@@ -28,16 +28,8 @@ class DashboardController < ApplicationController
       render json: {error: 1, error_desc: "Error ocurred while requesting API data"}
       return
     end
-    tp = PokemonTrained.new 
-    tp.user_id = user
-    tp.pokemon_id = pokemon.id
-    unless tp.save
+    unless PokemonModule.addNewPokemonToUser(user, pokemon, move)
       render json: {error: 1, error_desc: "Server error #POKEMON_TRAINED"}
-      return
-    end
-    tp.pokemon_moves << move
-    unless tp.save
-      render json: {error: 1, error_desc: "Server error #POKEMON_TRAINED_MOVE"}
       return
     end
     item.quantity = item.quantity - 1

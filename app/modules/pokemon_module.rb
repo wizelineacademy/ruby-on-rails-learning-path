@@ -18,12 +18,65 @@ module PokemonModule
         data
     end
 
-    def PokemonModule.addNewPokemonToUser(user)
-        user = User.find_by_id(user)
+    def PokemonModule.addNewPokemonToUser(user_id, pokemon, move)
+        user = User.find_by_id(user_id)
         if user.nil?
-            return nil
+            return false
         end
-        
+        if pokemon.nil? || move.nil?
+            return false
+        end
+        tp = PokemonTrained.new 
+        tp.user_id = user_id
+        tp.pokemon_id = pokemon.id
+        unless tp.save
+            return false
+        end
+        tp.pokemon_moves << move
+        unless tp.save
+            tp.destroy
+            return false
+        end
+        true
     end
 
+    def PokemonModule.getRandomPokeball
+        available = PokeItem.find_by_is_pokeball(true)
+        selection = rand(0..available.length-1)
+        available[selection]
+    end
+
+    def PokemonModule.modifyQuantityOfItem(user_id, item_id, quantity)
+        results = UserPokeItem.where(user_id: user_id, poke_item_id: item_id)
+        if results.length == 0
+            item = UserPokeItem.new
+            item.user_id = user_id
+            item.poke_item_id = item_id
+        else
+            item = results.first
+        end
+        item.quantity = quantity
+        if item.quantity == 0
+            item.destroy.destroyed?
+        else
+            item.save
+        end
+    end
+
+    def PokemonModule.addQuantityToItem(user_id, item_id, quantity)
+        results = UserPokeItem.where(user_id: user_id, poke_item_id: item_id)
+        if results.length == 0
+            item = UserPokeItem.new
+            item.user_id = user_id
+            item.poke_item_id = item_id
+        else
+            item = results.first
+        end
+        item.quantity = item.quantity + quantity
+        if item.quantity == 0
+            item.destroy.destroyed?
+        else
+            item.save
+        end
+    end
 end

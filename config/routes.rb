@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'dashboard/main'
   get 'dashboard/pokemons'
   post 'dashboard/capturePokemon', to: "dashboard#capture"
+  get 'dashboard/newPokeball', to: "dashboard#giveRandomPokeballToUser"
   get 'login', to: "login#auth", as: :LoginPage
   post 'login', to: "login#login"
   get 'login/auth'
