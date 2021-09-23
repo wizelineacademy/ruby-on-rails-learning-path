@@ -95,4 +95,26 @@ module PokemonModule
             item.save
         end
     end
+
+    def PokemonModule.saveCustomPokemonForUser(user_id,name:,base_hp:)
+        user = User.find_by_id(user_id)
+        if user.nil?
+            return nil
+        end
+        pokemon = Pokemon.new
+        pokemon.name = name
+        pokemon.base_hp = base_hp
+        pokemon.is_custom = true
+        unless pokemon.save
+            return nil
+        end
+        tp = PokemonTrained.new
+        tp.user_id = user.id
+        tp.pokemon_id = pokemon.id
+        tp.custom_name = name
+        unless tp.save
+            return nil
+        end
+        data = {id: tp.id,is_custom: true, custom_name: name,pokemon_data: pokemon}
+    end
 end

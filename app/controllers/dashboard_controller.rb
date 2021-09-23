@@ -57,8 +57,24 @@ class DashboardController < ApplicationController
     unless result
       render json: {error: 1, error_desc: "Server error #ITEM"}
     else
-      render json: {success: 1, data: {item: pokeball}}
+      render json: {success: 1, data: pokeball}
     end
+  end
+
+  def saveCustomPokemon
+    user = session[:user_id]
+    name = params[:name]
+    base_hp = params[:base_hp]
+    if name.nil? || base_hp.nil?
+      render json: {error: 1, error_desc: "Missing parameters"}
+      return
+    end
+    result = PokemonModule.saveCustomPokemonForUser(user,name: name,base_hp: base_hp)
+    if result.nil?
+      render json: {error: 1, error_desc: "Server error #POKEMON_TRAINED"}
+      return
+    end
+    render json: {success: 1, data: result}
   end
 
 end
