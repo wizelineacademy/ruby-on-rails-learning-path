@@ -57,7 +57,7 @@ module PokemonModule
     end
 
     def PokemonModule.getRandomPokeball
-        available = PokeItem.find_by_is_pokeball(true)
+        available = PokeItem.where(is_pokeball: true)
         selection = rand(0..available.length-1)
         available[selection]
     end

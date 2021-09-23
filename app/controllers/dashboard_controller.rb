@@ -51,7 +51,14 @@ class DashboardController < ApplicationController
   end
 
   def giveRandomPokeballToUser
-
+    user = session[:user_id]
+    pokeball = PokemonModule.getRandomPokeball
+    result = PokemonModule.addQuantityToItem(user, pokeball.id, 1)
+    unless result
+      render json: {error: 1, error_desc: "Server error #ITEM"}
+    else
+      render json: {success: 1, data: {item: pokeball}}
+    end
   end
 
 end
