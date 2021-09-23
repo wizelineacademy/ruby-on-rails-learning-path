@@ -14,6 +14,11 @@ class LoginController < ApplicationController
 
   end
 
+  def logout
+    session[:user_id] = nil
+    redirect_to(root_path)
+  end
+
   def new
     flash[:error] = nil
     flash[:success] = nil 
