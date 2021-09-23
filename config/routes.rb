@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: "dashboard#main"
   get 'dashboard/main'
   get 'dashboard/pokemons'
+  get 'dashboard/items', to: "dashboard#pokeItems"
   post 'dashboard/capturePokemon', to: "dashboard#capture"
   get 'dashboard/newPokeball', to: "dashboard#giveRandomPokeballToUser"
   get 'login', to: "login#auth", as: :LoginPage

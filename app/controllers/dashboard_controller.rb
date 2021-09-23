@@ -10,6 +10,10 @@ class DashboardController < ApplicationController
     render json: PokemonModule.getPokemonsForUser(session[:user_id])
   end
 
+  def pokeItems
+    render json: PokemonModule.getItemsForUser(session[:user_id])
+  end
+
   def capture
     user = session[:user_id]
     pokeball = params[:item_id]

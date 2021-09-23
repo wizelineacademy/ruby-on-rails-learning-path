@@ -18,6 +18,22 @@ module PokemonModule
         data
     end
 
+    def PokemonModule.getItemsForUser(user)
+        data = []
+        items = User.find_by_id(user).user_poke_items
+        if items.nil?
+            return data
+        end
+        items.each do |p|
+            item = {}
+            item[:id] = p.id
+            item[:quantity] = p.quantity
+            item[:item_data] = p.poke_item
+            data << item
+        end
+        data
+    end
+
     def PokemonModule.addNewPokemonToUser(user_id, pokemon, move)
         user = User.find_by_id(user_id)
         if user.nil?
