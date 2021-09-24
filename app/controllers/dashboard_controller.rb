@@ -3,7 +3,8 @@ class DashboardController < ApplicationController
   before_action :confirm_user_access
   
   def main
-
+    @pokeData = PokemonModule.getPokemonsForUser(session[:user_id])
+    @pokeBallData = PokemonModule.getItemsForUser(session[:user_id])
   end
 
   def pokemons
@@ -36,13 +37,7 @@ class DashboardController < ApplicationController
       render json: {error: 1, error_desc: "Server error #POKEMON_TRAINED"}
       return
     end
-    item.quantity = item.quantity - 1
-    result = false
-    if item.quantity = 0
-      result = item.destroy
-    else
-      result = item.save
-    end
+    result = PokemonModule.addQuantityToItem(user, item.poke_item_id, -1)
     unless result
       render json: {error: 1, error_desc: "Server error #ITEM"}
       return
