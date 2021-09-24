@@ -72,4 +72,44 @@ class DashboardController < ApplicationController
     render json: {success: 1, data: result}
   end
 
+  def saveCustomNameForTP
+    name = params[:custom_name]
+    tp = params[:id]
+    if name.nil? || tp.nil?
+      render json: {error: 1, error_desc: "Missing parameters"}
+      return
+    end
+    myPokemon = PokemonTrained.find_by_id(tp)
+    if myPokemon.nil?
+      render json: {error: 1, error_desc: "Wrong parameters"}
+      return
+    end
+    myPokemon.custom_name = name
+    unless myPokemon.save
+      render json: {error: 1, error_desc: "Server error"}
+      return
+    else
+      render json: {success: 1}
+    end
+  end
+
+  def deleteCustomPokemon
+    tp = params[:id]
+    if tp.nil?
+      render json: {error: 1, error_desc: "Missing parameters"}
+      return
+    end
+    myPokemon = PokemonTrained.find_by_id(tp)
+    if myPokemon.nil?
+      render json: {error: 1, error_desc: "Wrong parameters"}
+      return
+    end
+    unless myPokemon.destroy.destroyed?
+      render json: {error: 1, error_desc: "Server error"}
+      return
+    else
+      render json: {success: 1}
+    end
+  end
+
 end

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   post 'dashboard/capturePokemon', to: "dashboard#capture"
   get 'dashboard/newPokeball', to: "dashboard#giveRandomPokeballToUser"
   post 'dashboard/savePokemon', to: "dashboard#saveCustomPokemon"
+  post 'dashboard/savePokemonCN', to: "dashboard#saveCustomNameForTP"
+  post 'dashboard/deleteCustomPokemon', to: "dashboard#deleteCustomPokemon"
   get 'login', to: "login#auth", as: :loginPage
   get 'logout', to: "login#logout", as: :logoutPage
   post 'login', to: "login#login"

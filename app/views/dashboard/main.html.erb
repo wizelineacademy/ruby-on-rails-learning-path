@@ -234,6 +234,7 @@
             </div>
             <div class="modal-body">
                 <form role="form text-left">
+                    <input id="modal-form-id" type="hidden" class="invisible" placeholder="Name" aria-label="Name" aria-describedby="email-addon">
                     <img id="modal-img-pokemon" style="height: 100% !important;width: 100% !important" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/great-ball.png" class="avatar avatar-xl rounded-circle me-2" alt="pokemon">
                   <label>Name</label>
                   <div class="input-group mb-3">
@@ -251,7 +252,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn bg-gradient-primary">Save changes</button>
+                <button type="button" id="modal-form-btn-close" onclick="deleteCustomPokemon();" class="btn bg-gradient-danger invisible">Delete</button>
+                <button type="button"  onclick="savePokemonCustomData();" class="btn bg-gradient-primary">Save changes</button>
             </div>
             </div>
         </div>
@@ -298,6 +300,7 @@
 
     function setPokemonModalData(name, imgSrc, customName, baseHp, is_custom, id){
         $("#modal-form-name").val(name);
+        $("#modal-form-id").val(id);
         $("#modal-title-pokemon").text(name);
         $("#modal-img-pokemon").attr("src",is_custom ? "/assets2/img/pngegg.png" : imgSrc);
         $("#modal-form-custom-name").val(customName);
@@ -305,9 +308,58 @@
         if(!is_custom){
             $( "#modal-form-base-hp" ).prop( "disabled", true );
             $( "#modal-form-name" ).prop( "disabled", true );
+            $("#modal-form-btn-close").addClass("invisible");
+        }else{
+            $("#modal-form-btn-close").removeClass("invisible");
         }    
     }
 
+    function savePokemonCustomData(){
+        let id = $("#modal-form-id").val();
+        let customName = $("#modal-form-custom-name").val();
+        $.ajax({
+            url: 'dashboard/savePokemonCN',
+            dataType: 'json',
+            type: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify( { id: id, custom_name: customName} ),
+            processData: false,
+            success: function( data, textStatus, jQxhr ){
+                console.log(data);
+                if(data.error != null){
+                    $('#modalPokemon').modal('hide');
+                    return;
+                }
+                location.reload();
+            },
+            error: function( jqXhr, textStatus, errorThrown ){
+                console.log( errorThrown );
+            }
+        });
+    }
+
+    function deleteCustomPokemon(){
+        let id = $("#modal-form-id").val();
+        $.ajax({
+            url: 'dashboard/deleteCustomPokemon',
+            dataType: 'json',
+            type: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify( { id: id} ),
+            processData: false,
+            success: function( data, textStatus, jQxhr ){
+                console.log(data);
+                if(data.error != null){
+                    $('#modalPokemon').modal('hide');
+                    return;
+                }
+                location.reload();
+            },
+            error: function( jqXhr, textStatus, errorThrown ){
+                console.log( errorThrown );
+            }
+        });
+    }
   </script>
   <!--   Core JS Files   -->
   <script src="../assets2/js/core/popper.min.js"></script>
