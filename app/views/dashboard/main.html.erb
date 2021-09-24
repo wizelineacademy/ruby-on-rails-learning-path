@@ -128,7 +128,7 @@
                             <span class="badge badge-sm bg-gradient-<%= p[:is_custom] ? "secondary" : "success" %>"><%= p[:is_custom] ? "Custom" : "Original" %></span>
                         </td>
                         <td class="align-middle">
-                            <a href="javascript: viewPokemon(<%= p[:id] %>);" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="View pokemon">
+                            <a href="javascript: viewPokemon(<%= p[:id] %>,'<%= p[:pokemon_data][:name] %>','<%= p[:pokemon_data][:image_route] %>','<%= p[:custom_name].nil? ? "" : p[:custom_name] %>',<%= p[:pokemon_data][:base_hp] %>, <%= p[:is_custom] %>);" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="View pokemon">
                             View
                             </a>
                         </td>
@@ -200,6 +200,7 @@
         </div>
       </div>
     </div>
+    <!-- Modal Pokeball -->
     <div class="modal fade" id="modalPokeball" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
       <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
         <div class="modal-content">
@@ -220,6 +221,40 @@
           </div>
         </div>
       </div>
+    </div>
+    <!-- Modal Pokemon -->
+    <div class="modal fade" id="modalPokemon" tabindex="-1" role="dialog" aria-labelledby="modalPokemon" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-title-pokemon">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form text-left">
+                    <img id="modal-img-pokemon" style="height: 100% !important;width: 100% !important" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/great-ball.png" class="avatar avatar-xl rounded-circle me-2" alt="pokemon">
+                  <label>Name</label>
+                  <div class="input-group mb-3">
+                    <input id="modal-form-name" type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="email-addon">
+                  </div>
+                  <label>Base HP</label>
+                  <div class="input-group mb-3">
+                    <input id="modal-form-base-hp" type="text" class="form-control" placeholder="Base HP" aria-label="Base HP" aria-describedby="email-addon">
+                  </div>
+                  <label>Custom Name</label>
+                  <div class="input-group mb-3">
+                    <input id="modal-form-custom-name" type="text" class="form-control" placeholder="Custom Name" aria-label="Custom Name" aria-describedby="email-addon">
+                  </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn bg-gradient-primary">Save changes</button>
+            </div>
+            </div>
+        </div>
     </div>
   </main>
   <script>
@@ -256,9 +291,23 @@
     });
   }
 
-  function viewPokemon(id){
-
+  function viewPokemon(id, n, i, c, b,is_custom){
+      setPokemonModalData(n,i,c,b,is_custom, id);
+      $('#modalPokemon').modal('show');
   }
+
+    function setPokemonModalData(name, imgSrc, customName, baseHp, is_custom, id){
+        $("#modal-form-name").val(name);
+        $("#modal-title-pokemon").text(name);
+        $("#modal-img-pokemon").attr("src",is_custom ? "/assets2/img/pngegg.png" : imgSrc);
+        $("#modal-form-custom-name").val(customName);
+        $("#modal-form-base-hp").val(baseHp);
+        if(!is_custom){
+            $( "#modal-form-base-hp" ).prop( "disabled", true );
+            $( "#modal-form-name" ).prop( "disabled", true );
+        }    
+    }
+
   </script>
   <!--   Core JS Files   -->
   <script src="../assets2/js/core/popper.min.js"></script>
