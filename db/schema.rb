@@ -38,25 +38,11 @@ ActiveRecord::Schema.define(version: 2021_09_22_232604) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "pokemon_moves_pokemon_traineds", id: false, force: :cascade do |t|
-    t.bigint "pokemon_trained_id"
-    t.bigint "pokemon_move_id"
-    t.index ["pokemon_move_id"], name: "index_pokemon_moves_pokemon_traineds_on_pokemon_move_id"
-    t.index ["pokemon_trained_id"], name: "index_pokemon_moves_pokemon_traineds_on_pokemon_trained_id"
-  end
-
   create_table "pokemon_moves_traineds", id: false, force: :cascade do |t|
     t.bigint "pokemon_trained_id"
     t.bigint "pokemon_move_id"
     t.index ["pokemon_move_id"], name: "index_pokemon_moves_traineds_on_pokemon_move_id"
     t.index ["pokemon_trained_id"], name: "index_pokemon_moves_traineds_on_pokemon_trained_id"
-  end
-
-  create_table "pokemon_trained_pokemon_moves", id: false, force: :cascade do |t|
-    t.bigint "pokemon_trained_id"
-    t.bigint "pokemon_move_id"
-    t.index ["pokemon_move_id"], name: "index_pokemon_trained_pokemon_moves_on_pokemon_move_id"
-    t.index ["pokemon_trained_id"], name: "index_pokemon_trained_pokemon_moves_on_pokemon_trained_id"
   end
 
   create_table "pokemon_traineds", force: :cascade do |t|

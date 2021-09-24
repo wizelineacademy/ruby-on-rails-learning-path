@@ -23,21 +23,21 @@ default: &default
 
 development:
   <<: *default
-  database: pokePage_development
+  database: ddnpkdh5i2cssn
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user running Rails.
-  username: poke_user
+  username: stgehvmxqsqfdg
 
   # The password associated with the postgres role (username).
-  password: polopo
+  password: fac7993e99c5180378bd5f4dc65686800f6d871bef383419dd1c225287067a17
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
-  host: localhost
+  host: ec2-52-45-73-150.compute-1.amazonaws.com
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.
@@ -75,14 +75,16 @@ test:
 # the values provided in this file. Alternatively, you can specify a connection
 # URL environment variable explicitly:
 #
-#   production:
-#     url: <%= ENV['MY_APP_DATABASE_URL'] %>
+  production:
+    <<: *default
+    url: <%= ENV['DATABASE_URL'] %>
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-production:
-  <<: *default
-  database: pokePage_production
-  username: pokePage
-  password: <%= ENV['POKEPAGE_DATABASE_PASSWORD'] %>
+# production:
+#   <<: *default
+#   host: ec2-52-45-73-150.compute-1.amazonaws.com
+#   database: ddnpkdh5i2cssn
+#   username: stgehvmxqsqfdg
+#   password: <%= ENV['POKEPAGE_DATABASE_PASSWORD'] %>
