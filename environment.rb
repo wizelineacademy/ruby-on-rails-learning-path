@@ -55,23 +55,12 @@ module Environment
 	end
 
 	class Human
+    attr_accessor :id, :name, :personal_data, :professional_data
     def initialize(name)
       @id = object_id
       @name = name
       @personal_data = Hash.new
       @professional_data = Hash.new
-    end
-
-    def name
-      @name
-    end
-
-    def personal_data
-      @personal_data
-    end
-
-    def professional_data
-      @professional_data
     end
 
     data_types = %w(personal_data professional_data)
