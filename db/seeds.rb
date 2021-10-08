@@ -10,11 +10,11 @@ pokemons = [{name: "Example1"}, {name: "Example2"}, {name: "Example3"}]
 
 pokemons.each_with_index do |pokemon, i|
 	attrs = {
-    name: pokemon[:name]
-    base_hp: 10
-    base_exp: 10
-    weight: 10
-    height: 10
+    name: pokemon[:name],
+    base_hp: 10,
+    base_exp: 10,
+    weight: 10,
+    height: 10,
     pokemon_api_id: 9999 + (i+1)
   }
 
