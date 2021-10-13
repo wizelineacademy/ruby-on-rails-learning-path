@@ -1,0 +1,25 @@
+<h1>Create Account</h1>
+
+<%= form_for(@user) do |f| %>
+
+  <table>
+    <tr>
+      <th>Email</th>
+      <td><%= f.text_field(:email) %></td>
+    </tr>
+    <tr>
+      <th>Password</th>
+      <td><%= f.password_field(:password) %></td>
+    </tr>
+    <tr>
+      <th>Password Confirmation</th>
+      <td><%= f.password_field(:password_confirmation) %></td>
+    </tr>
+  </table>
+
+
+  <div class="form-buttons">
+    <%= f.submit("Update Pokemon") %>
+  </div>
+
+<% end %>

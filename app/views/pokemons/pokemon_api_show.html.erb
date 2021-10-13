@@ -1,0 +1,39 @@
+<div class="d-flex flex-row">
+  <div class="mx-auto">
+    <h1>Get Info from PokeAPI</h1>
+  </div>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<%= link_to 'get info', api_info_path %>
+
+<% if @response.present? %>
+  <table class="table table-dark">
+    <tbody>
+      <tr>
+        <th scope="row">Name</th>
+        <th><%= @response['name'] %></th>
+      </tr>
+      <tr>
+        <th scope="row">ID</th>
+        <th><%= @response['id'] %></th>
+      </tr>
+      <tr>
+        <th scope="row">Base EXP</th>
+        <th><%= @response['base_experience'] %></th>
+      </tr>
+      <tr>
+        <th scope="row">Weight</th>
+        <th><%= @response['weight'] %></th>
+      </tr>
+      <tr>
+        <th scope="row">Height</th>
+        <th><%= @response['height'] %></th>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

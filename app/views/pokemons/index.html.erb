@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <h1 class="mx-auto">Pokemon List</h1>
+  <h1>Pokemon List</h1>
 </div>
 <table class="pt-5 mx-auto">
 	<% @pokemons.each do |pokemon| %>
@@ -11,3 +11,8 @@
     </tr>
 	<% end %>
 </table>
+
+<div class="mx-auto">
+  <p><%= link_to 'Add New Pokemon Manually', new_pokemon_path %></p>
+  <p><%= link_to 'Add New Pokemon from API', pokemon_api_show_path %></p>
+</div>

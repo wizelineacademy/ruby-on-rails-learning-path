@@ -1,12 +1,11 @@
-<h1><%= @pokemon.name %></h1>
-  <h2>Edit Pokemon</h2>
+<h2>Add New Pokemon</h2>
 
   <%= form_for(@pokemon) do |f| %>
 
     <%= render(partial: 'form', locals: {f: f}) %>
 
     <div class="form-buttons">
-      <%= f.submit("Update Pokemon") %>
+      <%= f.submit("Create Pokemon") %>
     </div>
 
   <% end %>

@@ -1,10 +1,6 @@
 class SessionsController < ApplicationController
-	def menu
-	# display text & links
-  end
-
   def login
-    # login form
+
   end
 
   def attempt_login
@@ -18,7 +14,7 @@ class SessionsController < ApplicationController
     if authorized_user
       session[:user_id] = authorized_user.id
       flash[:notice] = "You are now logged in."
-      redirect_to pokemons_index_path
+      redirect_to pokemons_path
     else
       flash.now[:notice] = "Invalid username/password combination."
       render('login')
@@ -29,6 +25,6 @@ class SessionsController < ApplicationController
   def logout
     session[:user_id] = nil
     flash[:notice] = 'Logged out'
-    redirect_to(access_login_path)
+    redirect_to(sessions_login_path)
   end
 end
