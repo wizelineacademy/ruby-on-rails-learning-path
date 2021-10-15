@@ -38,16 +38,44 @@ class PokemonsController < ApplicationController
     redirect_to pokemons_path
   end
 
-  def pokemon_api_show
-    
+  def destroy
+    @pokemon = Pokemon.find(params[:id])
+    if @pokemon.destroy
+      flash[:notice] = 'Pokemon Deleted'
+    else
+      flash[:error] = @pokemon.errors
+    end
+
+    redirect_to pokemons_path
   end
 
+  def pokemon_api_show;end
+
   def api_info
-    api_connection = PokemonApiService.new('ditto')
+    api_connection = PokemonApiService.new(params[:pokemon_name])
 
     @response = api_connection.get_info
 
     render 'pokemon_api_show'
+  end
+
+  def save_pokemon_from_api
+    attrs = {
+      name: params[:name],
+      base_exp: params[:base_experience],
+      weight: params[:weight],
+      height: params[:height]
+    }
+
+    @pokemon = Pokemon.new(attrs)
+
+    if @pokemon.save
+      flash[:notice] = "Pokemon created successfully."
+    else
+      flash[:error] = @pokemon.errors
+    end
+
+    redirect_to pokemons_path
   end
 
   private

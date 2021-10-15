@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :pokemons
   resources :users
   get 'pokemon_api_show', to: 'pokemons#pokemon_api_show'
-  get 'api_info', to: 'pokemons#api_info'
+  post 'api_info', to: 'pokemons#api_info'
+  post 'save_pokemon_from_api', to: 'pokemons#save_pokemon_from_api'
 end

@@ -4,12 +4,22 @@
   </div>
 </div>
 
+<%= form_tag(api_info_path) do %>
+  <table>
+    <tr>
+      <td><%= label_tag(:pokemon_name) %></td>
+      <td><%= text_field_tag(:pokemon_name, params[:pokemon_name]) %></td>
+    </tr>
+      <td>&nbsp;</td>
+      <td><%= submit_tag("Get Info") %></td>
+    </tr>
+  </table>
+<% end %>
 
 <br>
 <br>
 <br>
 <br>
-<%= link_to 'get info', api_info_path %>
 
 <% if @response.present? %>
   <table class="table table-dark">
@@ -36,4 +46,28 @@
       </tr>
     </tbody>
   </table>
+
+  <%= form_tag(save_pokemon_from_api_path) do %>
+    <table>
+      <tr>
+        <td><%= hidden_field_tag(:name, @response['name']) %></td>
+      </tr>
+      <tr>
+        <td><%= hidden_field_tag(:id, @response['id']) %></td>
+      </tr>
+      <tr>
+        <td><%= hidden_field_tag(:base_experience, @response['base_experience']) %></td>
+      </tr>
+      <tr>
+        <td><%= hidden_field_tag(:weight, @response['weight']) %></td>
+      </tr>
+      <tr>
+        <td><%= hidden_field_tag(:height, @response['height']) %></td>
+      </tr>
+        <td>&nbsp;</td>
+        <td><%= submit_tag("Save Pokemon to DB") %></td>
+      </tr>
+    </table>
+  <% end %>
+
 <% end %>
