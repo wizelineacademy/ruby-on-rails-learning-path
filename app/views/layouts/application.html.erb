@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PokemonApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  </head>
+
+  <body>
+    <% if !session[:user_id].blank? %>
+      <div class="button pt-3 float-right">
+        <%= link_to 'Logout', sessions_logout_path %>
+      </div>
+    <% end %>
+
+    <% if !flash[:notice].blank? %>
+      <div class="alert alert-success pt-5">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <% if !flash[:error].blank? %>
+      <div class="alert alert-danger pt-5">
+        <%= flash[:error] %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>

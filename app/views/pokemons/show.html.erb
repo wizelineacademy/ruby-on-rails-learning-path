@@ -1,0 +1,11 @@
+<h1>pokemon</h1>
+
+<h2>Abilities</h2>
+<% @pokemon.abilities.each do |ability| %>
+  <p><%= ability.name %></p>
+<% end %>
+
+<h2>Moves</h2>
+<% @pokemon.moves.each do |move| %>
+  <p><%= move.name %></p>
+<% end %>

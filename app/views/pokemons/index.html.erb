@@ -1,0 +1,35 @@
+<div class="jumbotron">
+  <h1>Pokemon List</h1>
+</div>
+<table class="pt-5 mx-auto table">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Base EXP</th>
+    <th>Weight</th>
+    <th>Height</th>
+    <th>Edit</th>
+    <th>Show</th>
+    <th>Delete</th>
+  </tr>
+	<% @pokemons.each do |pokemon| %>
+    <tr>
+      <td><%= pokemon.id %></td>
+      <td><%= pokemon.name %></td>
+      <td><%= pokemon.base_exp %></td>
+      <td><%= pokemon.weight %></td>
+      <td><%= pokemon.height %></td>
+      <td><%= link_to 'Edit', edit_pokemon_path(id: pokemon.id) %></td>
+      <td><%= link_to 'Show', pokemon_path(id: pokemon.id) %></td>
+      <td><%= link_to 'Delete', pokemon_path(id: pokemon.id), method: :delete %></td>
+    </tr>
+	<% end %>
+</table>
+
+<div class="d-flex">
+  <%= link_to 'Add New Pokemon Manually', new_pokemon_path, class: 'btn btn-secondary mx-auto' %>
+</div>
+
+<div class="d-flex pt-3">
+  <%= link_to 'Add New Pokemon from API', pokemon_api_show_path, class: 'btn btn-secondary mx-auto' %>
+</div>
