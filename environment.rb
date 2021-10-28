@@ -38,7 +38,7 @@ module Environment
             @missions[name] = {
                 :objective => objective,
                 :pack => pack,
-                :active => :active
+                :status => :active
             }
         end
 
