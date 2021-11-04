@@ -75,6 +75,6 @@ Based on the self-study material and mentorship covered until this deliverable
 
 For submitting your work, you should follow these steps:
 
-1. Create a pull request with your code, targeting the master branch of your fork.
+1. Create a pull request with your code, targeting the main branch of your fork, make sure your PRs name follows this name convention "#{your-name}--#{number of deliverable}" ex: "ivanreyes--practice1"
 2. Make sure you are adding Apostat23, hivanreyes, david-ojeda-w, Rikard189 as reviewers
 3. Stay tune for feedback
