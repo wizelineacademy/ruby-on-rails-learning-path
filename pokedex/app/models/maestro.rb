@@ -1,0 +1,2 @@
+class Maestro < ApplicationRecord
+end
