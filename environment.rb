@@ -6,7 +6,7 @@ module Environment
       @packs = {
         simple_transportation_pack: {
           intelligence: [:cellphone],
-          items: [:medipack, :checy_versa]
+          items: [:medipack, :chevy_versa]
         },
         standard_transportation_pack: {
           intelligence: [:cellphone, :antenna],
@@ -69,7 +69,8 @@ module Environment
 
   class Worker < Human
     attr_accessor :standard_shift, :extra_shift
-    def initialize
+    def initialize(name:)
+      super
       @standard_shift = {
         id: self.object_id,
         hours: 8,
