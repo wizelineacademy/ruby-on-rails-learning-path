@@ -1,3 +1,3 @@
 class Game < ApplicationRecord
-    has_many :game_pokemons
+    has_many :games_pokemons
 end

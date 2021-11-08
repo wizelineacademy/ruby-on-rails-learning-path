@@ -2,6 +2,8 @@ class AccessController < ApplicationController
 
   layout 'admin'
 
+  before_action :confirm_logged_in, :except => [:login, :attempt_login, :logout]
+
   def menu
   end
 
@@ -9,8 +11,9 @@ class AccessController < ApplicationController
   end
 
   def attempt_login
-    if params[:username].present? && params[:password].present?
-      found_user = AdminUser.where(:username => params[:username]).first
+    if params[:email].present? && params[:password].present?
+      found_user = Maestro.where(:email => params[:email]).first
+      p found_user
       if found_user
         authorized_user = found_user.authenticate(params[:password])
       end
@@ -21,7 +24,7 @@ class AccessController < ApplicationController
       flash[:notice] = "You are now logged in"
       redirect_to(admin_path)
     else
-      flash.now[:notice] = "Invalid username/password combination."
+      flash.now[:notice] = "Invalid email/password combination."
       render('login')
     end
   end
@@ -31,4 +34,5 @@ class AccessController < ApplicationController
     flash[:notice] = 'Logged out'
     redirect_to(access_login_path)
   end
+
 end

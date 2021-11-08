@@ -1,3 +1,3 @@
 class Stat < ApplicationRecord
-    has_and_belongs_to_many :pokemons
+    has_many :pokemons_stats
 end

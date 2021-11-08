@@ -1,3 +1,3 @@
 class Ability < ApplicationRecord
-    has_many :ability_pokemons
+    has_many :abilities_pokemons
 end

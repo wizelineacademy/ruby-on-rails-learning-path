@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_05_185203) do
+ActiveRecord::Schema.define(version: 2021_11_05_212159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,14 +22,14 @@ ActiveRecord::Schema.define(version: 2021_11_05_185203) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "ability_pokemons", force: :cascade do |t|
+  create_table "abilities_pokemons", force: :cascade do |t|
     t.integer "pokemon_id"
     t.integer "ability_id"
     t.boolean "is_hidden", default: true
     t.integer "slot"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["pokemon_id", "ability_id"], name: "index_ability_pokemons_on_pokemon_id_and_ability_id"
+    t.index ["pokemon_id", "ability_id"], name: "index_abilities_pokemons_on_pokemon_id_and_ability_id"
   end
 
   create_table "forms", force: :cascade do |t|
@@ -41,20 +41,20 @@ ActiveRecord::Schema.define(version: 2021_11_05_185203) do
     t.index ["pokemon_id"], name: "index_forms_on_pokemon_id"
   end
 
-  create_table "game_pokemons", force: :cascade do |t|
-    t.integer "pokemon_id"
-    t.integer "game_id"
-    t.integer "game_index"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["pokemon_id", "game_id"], name: "index_game_pokemons_on_pokemon_id_and_game_id"
-  end
-
   create_table "games", force: :cascade do |t|
     t.string "name"
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "games_pokemons", force: :cascade do |t|
+    t.integer "pokemon_id"
+    t.integer "game_id"
+    t.integer "game_index"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pokemon_id", "game_id"], name: "index_games_pokemons_on_pokemon_id_and_game_id"
   end
 
   create_table "maestros", force: :cascade do |t|
@@ -66,6 +66,15 @@ ActiveRecord::Schema.define(version: 2021_11_05_185203) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "maestros_pokemons", force: :cascade do |t|
+    t.integer "pokemon_id"
+    t.integer "maestro_id"
+    t.integer "level"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pokemon_id", "maestro_id"], name: "index_maestros_pokemons_on_pokemon_id_and_maestro_id"
   end
 
   create_table "moves", force: :cascade do |t|
@@ -83,16 +92,6 @@ ActiveRecord::Schema.define(version: 2021_11_05_185203) do
     t.index ["pokemon_id", "move_id"], name: "index_moves_pokemons_on_pokemon_id_and_move_id"
   end
 
-  create_table "pokemon_stats", force: :cascade do |t|
-    t.integer "pokemon_id"
-    t.integer "stat_id"
-    t.integer "base_stat"
-    t.integer "effort"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["pokemon_id", "stat_id"], name: "index_pokemon_stats_on_pokemon_id_and_stat_id"
-  end
-
   create_table "pokemons", force: :cascade do |t|
     t.integer "height"
     t.integer "pokedex_id", null: false
@@ -103,6 +102,16 @@ ActiveRecord::Schema.define(version: 2021_11_05_185203) do
     t.integer "weight"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pokemons_stats", force: :cascade do |t|
+    t.integer "pokemon_id"
+    t.integer "stat_id"
+    t.integer "base_stat"
+    t.integer "effort"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pokemon_id", "stat_id"], name: "index_pokemons_stats_on_pokemon_id_and_stat_id"
   end
 
   create_table "pokemons_types", force: :cascade do |t|
@@ -133,16 +142,6 @@ ActiveRecord::Schema.define(version: 2021_11_05_185203) do
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "teams", force: :cascade do |t|
-    t.integer "pokemon_id"
-    t.integer "maestro_id"
-    t.string "name"
-    t.integer "level"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["pokemon_id", "maestro_id"], name: "index_teams_on_pokemon_id_and_maestro_id"
   end
 
   create_table "types", force: :cascade do |t|

@@ -4,7 +4,7 @@ def create_abilities(abilities, pokemon)
     abilities.each do |a|
         ability = Ability.find_by(name: a['ability']['name'])
         if ability
-            join = AbilityPokemon.new(
+            join = AbilitiesPokemon.new(
                 :is_hidden => a['is_hidden'], 
                 :slot => a['slot'], 
                 :pokemon => pokemon, 
@@ -26,7 +26,7 @@ def create_games(games, pokemon)
 
         game = Game.find_by(name: g['version']['name'])
         if game
-            join = GamePokemon.new(:game_index => g['game_index'], :pokemon => pokemon, :game => game)
+            join = GamesPokemon.new(:game_index => g['game_index'], :pokemon => pokemon, :game => game)
             join.save
         end
     end
@@ -55,7 +55,7 @@ def create_stats(stats, pokemon)
     stats.each do |s|
         stat = Stat.find_by(name: s['stat']['name'])
         if stat
-            join = PokemonStat.new(:base_stat => s['base_stat'], :effort => s['effort'], :pokemon => pokemon, :stat => stat)
+            join = PokemonsStat.new(:base_stat => s['base_stat'], :effort => s['effort'], :pokemon => pokemon, :stat => stat)
             join.save
         end
     end
@@ -132,6 +132,28 @@ def seed_pokemons(url)
     end
 end
 
+def seed_maestros()
+    ash = Maestro.create(
+        name: "Ash Ketchum",
+        email: "ash@test.com",
+        region: "Kanto",
+        hometown: "Pallet Town",
+        picture: "https://pokemon.fandom.com/wiki/Ash_Ketchum?file=Ash_anime_The_Beginning_Gold_and_Silver.png",
+        password: "pass"
+    )
+
+    pokemons = []
+    names = ['pikachu', 'bulbasaur', 'snorlax']
+
+    names.each do |n|
+        pokemon = Pokemon.find_by(name: n)
+        if pokemon
+            join = MaestrosPokemons.new(:level => 1, :pokemon => pokemon, :maestro => ash)
+            join.save
+        end
+    end
+end
+
 # seed abilities
 url = "https://pokeapi.co/api/v2/ability/"
 seed_type(Ability, url)
@@ -155,3 +177,6 @@ seed_type(Type, url)
 # seed pokemons
 url = "https://pokeapi.co/api/v2/pokemon/"
 seed_pokemons(url)
+
+# seed maestros
+seed_maestros()
