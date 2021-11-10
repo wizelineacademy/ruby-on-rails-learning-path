@@ -1,2 +1,133 @@
-<h1>Pokemons#show</h1>
-<p>Find me in app/views/pokemons/show.html.erb</p>
+<% if !flash[:notice].blank? %>
+  <div class="notice">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<%= link_to("<< Back to List", pokemons_path, :class => 'back-link') %>
+
+<div class="pokemons show">
+  <h2>Show Pokemon</h2>
+
+  <%= link_to "Edit", edit_pokemon_path(@pokemon), class: "btn btn-primary" %>
+  <%= link_to "Delete", maestros_pokemons_delete_path(@pokemon), class: "btn btn-primary" %>
+  <table summary="Pokemon detail view">
+    <tr>
+        <td>
+            <%= image_tag(@pokemon.sprites.last.front_default) %>
+        </td>        
+        <td>
+            <table summary="Pokemon detail view">
+                <tr>
+                <th>Name</th>
+                <td><%= @pokemon.name %></td>
+                </tr>
+                <tr>
+                <th>Id</th>
+                <td><%= @pokemon.pokedex_id %></td>
+                </tr>
+                <tr>
+                <th>Is default?</th>
+                <td><%= @pokemon.is_default ? 'true' : 'false' %></td>
+                </tr>
+                <tr>
+                <th>Location Area Encounters</th>
+                <td><%= @pokemon.location_area_encounters %></td>
+                </tr>
+                <tr>
+                <th>Order</th>
+                <td><%= @pokemon.order %></td>
+                </tr>
+                <tr>
+                <th>Width</th>
+                <td><%= @pokemon.weight %></td>
+                </tr>
+                <tr>
+                <th>Height</th>
+                <td><%= @pokemon.height %></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+  </table>
+
+  <h2>Abilities</h2>
+  <table summary="Pokemon abilities view">
+    <% @pokemon.abilities_pokemons.each do |ability| %>
+        <tr>
+        <th><%= ability.slot %></th>
+        <td><%= link_to ability.ability.name, ability.ability.url%></td>
+        </tr>
+    <% end %>
+  </table>
+
+ <h2>Forms</h2>
+  <%= link_to @pokemon.form.name, @pokemon.form.url%>
+
+ <h2>Games</h2>
+  <table summary="Pokemon games view">
+    <% @pokemon.games_pokemons.each do |game| %>
+        <tr>
+        <th><%= game.game_index %></th>
+        <td><%= link_to game.game.name, game.game.url%></td>
+        </tr>
+    <% end %>
+  </table>
+
+ <h2>Moves</h2>
+    <% @pokemon.moves.each do |move| %>
+        <%= link_to move.name, move.url%>
+    <% end %>
+
+ <h2>Sprites</h2>
+    
+    <div class="pokemons sprites">
+        <div class="pokemons sprite">
+            <span class="pokemon sprites_header">Default</span>
+            <span class="pokemons sprite"><%= image_tag(@pokemon.sprites.last.front_default) %></span>
+            <span class="pokemons sprite"><%= image_tag(@pokemon.sprites.last.back_default) %></span>
+        </div>
+        <% if @pokemon.sprites.last.front_female %>
+            <div class="pokemons sprite">
+                <span class="pokemon sprites_header">Default Female</span>
+                <span class="pokemons sprite"><%= image_tag(@pokemon.sprites.last.front_female) %></span>
+                <span class="pokemons sprite"><%= image_tag(@pokemon.sprites.last.back_female) %></span>
+            </div>
+        <% end %>
+        <% if @pokemon.sprites.last.front_shiny %>
+            <div class="pokemons sprite">
+                <span class="pokemon sprites_header">Shiny</span>
+                <span class="pokemons sprite"><%= image_tag(@pokemon.sprites.last.front_shiny) %></span>
+                <span class="pokemons sprite"><%= image_tag(@pokemon.sprites.last.back_shiny) %></span>
+            </div>
+        <% end %>
+        <% if @pokemon.sprites.last.front_shiny_female %>
+            <div class="pokemons sprite">
+                <span class="pokemon sprites_header">Shiny Female</span>
+                <span class="pokemons sprite"><%= image_tag(@pokemon.sprites.last.front_shiny_female) %></span>
+                <span class="pokemons sprite"><%= image_tag(@pokemon.sprites.last.back_shiny_female) %></span>
+            </div>
+        <% end %>
+    </div>
+
+ <h2>Stats</h2>
+  <table summary="Pokemon stats view">
+    <tr>
+        <th>Stat</th>
+        <th>Base</th>
+        <th>Effort</th>
+    </tr>
+    <% @pokemon.pokemons_stats.each do |stat| %>
+        <tr>
+        <th><%= link_to stat.stat.name, stat.stat.url%></th>
+        <td><%= stat.base_stat %></td>
+        <td><%= stat.effort %></td>
+        </tr>
+    <% end %>
+  </table>
+
+   <h2>Types</h2>
+    <% @pokemon.types.each do |type| %>
+        <%= link_to type.name, type.url%>
+    <% end %>
+</div>

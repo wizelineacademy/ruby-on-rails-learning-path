@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   get 'access/logout'
   get 'pokemons/index'
   get 'pokemons/show'
-  get 'pokemons/new'
   get 'pokemons/edit'
-  get 'pokemons/delete'
+  get 'maestros_pokemons/new'
+  get 'maestros_pokemons/delete'
   
   namespace :api do
     namespace :v1 do
@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   end
   
   resources :pokemons
+
+  resources :maestros_pokemons
 end

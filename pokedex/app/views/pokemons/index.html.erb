@@ -1,2 +1,27 @@
-<h1>Pokemons#index</h1>
-<p>Find me in app/views/pokemons/index.html.erb</p>
+
+
+<div class="pokemons index">
+    <h2>Trainer Card</h2>
+
+    <div>
+        <div>
+            <%= content_tag( :p, "Name: #{@maestro.name}") %>
+            <%= content_tag( :p, "#{@maestro.hometown} (#{@maestro.region})") %>
+            <%= content_tag( :p, "Pokedex: #{@pokemons.size}") %>
+        </div>
+        <div>
+            <%= image_tag @maestro.picture %>
+        </div>
+    </div>
+    <div>
+        <% @pokemons.each do |pokemon| %>
+            <div>
+            <%= link_to pokemon_path(@pokemon, id: pokemon.pokemon_id) do %>
+                <%= image_tag(pokemon.pokemon.sprites.last.front_default) %>
+            <% end %>
+            <%= content_tag( :p, pokemon.level) %>
+            </div>
+        <% end %>
+    </div>
+    <%= link_to("Add new Pokemon", maestros_pokemons_new_path, :class=> 'action new') %>
+</div>

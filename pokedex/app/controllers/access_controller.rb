@@ -13,7 +13,6 @@ class AccessController < ApplicationController
   def attempt_login
     if params[:email].present? && params[:password].present?
       found_user = Maestro.where(:email => params[:email]).first
-      p found_user
       if found_user
         authorized_user = found_user.authenticate(params[:password])
       end

@@ -7,4 +7,9 @@ class Pokemon < ApplicationRecord
     has_one :form
     has_many :sprites
     has_and_belongs_to_many :maestros
+
+    validates :name, :pokedex_id, :location_area_encounters, :order, :weight, :height, presence: true
+    validates :height, :pokedex_id, :order, :weight, numericality: { only_integer: true }
+    validates :name, :pokedex_id, uniqueness: true
+    validates :name, length: { maximum: 40 }
 end

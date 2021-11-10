@@ -1,2 +1,36 @@
-<h1>Pokemons#edit</h1>
-<p>Find me in app/views/pokemons/edit.html.erb</p>
+<%= link_to("<< Back to List", pokemons_path, :class => 'back-link') %>
+
+<div class="pokemon edit">
+  <h2>Update Subject</h2>
+
+  <%= form_for(@pokemon) do |f| %>
+
+    <table summary="Pokemon form fields">
+      <tr>
+        <th>Name</th>
+        <td><%= f.text_field(:name) %></td>
+      </tr>
+      <tr>
+        <th>Is default?</th>
+        <td><%= f.check_box(:is_default, {}, "yes", "no") %></td>
+      </tr>
+      <tr>
+        <th>Order</th>
+        <td><%= f.number_field(:order) %></td>
+      </tr>
+      <tr>
+        <th>Weight</th>
+        <td><%= f.number_field(:weight) %></td>
+      </tr>
+      <tr>
+        <th>Height</th>
+        <td><%= f.number_field(:height) %></td>
+      </tr>
+    </table>
+
+    <div class="form-buttons">
+      <%= f.submit("Update") %>
+    </div>
+
+  <% end %>
+</div>
