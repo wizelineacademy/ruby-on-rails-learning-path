@@ -1,6 +1,6 @@
 require "test_helper"
 
-class MaestrosPokemonsControllerTest < ActionDispatch::IntegrationTest
+class PokemonsStatTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -16,137 +16,137 @@ ActiveRecord::Schema.define(version: 2021_11_05_212159) do
   enable_extension "plpgsql"
 
   create_table "abilities", force: :cascade do |t|
-    t.string "name"
-    t.string "url"
+    t.string "name", limit: 30, null: false
+    t.string "url", limit: 40, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "abilities_pokemons", force: :cascade do |t|
-    t.integer "pokemon_id"
-    t.integer "ability_id"
+    t.integer "pokemon_id", null: false
+    t.integer "ability_id", null: false
     t.boolean "is_hidden", default: true
-    t.integer "slot"
+    t.integer "slot", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["pokemon_id", "ability_id"], name: "index_abilities_pokemons_on_pokemon_id_and_ability_id"
   end
 
   create_table "forms", force: :cascade do |t|
-    t.integer "pokemon_id"
-    t.string "name"
-    t.string "url"
+    t.integer "pokemon_id", null: false
+    t.string "name", limit: 40, null: false
+    t.string "url", limit: 50, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["pokemon_id"], name: "index_forms_on_pokemon_id"
   end
 
   create_table "games", force: :cascade do |t|
-    t.string "name"
-    t.string "url"
+    t.string "name", limit: 20, null: false
+    t.string "url", limit: 40, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "games_pokemons", force: :cascade do |t|
-    t.integer "pokemon_id"
-    t.integer "game_id"
-    t.integer "game_index"
+    t.integer "pokemon_id", null: false
+    t.integer "game_id", null: false
+    t.integer "game_index", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["pokemon_id", "game_id"], name: "index_games_pokemons_on_pokemon_id_and_game_id"
   end
 
   create_table "maestros", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "region"
-    t.string "hometown"
-    t.string "picture"
-    t.string "password_digest"
+    t.string "name", limit: 30, null: false
+    t.string "email", limit: 50, null: false
+    t.string "region", limit: 30
+    t.string "hometown", limit: 30
+    t.string "picture", limit: 100
+    t.string "password_digest", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "maestros_pokemons", force: :cascade do |t|
-    t.integer "pokemon_id"
-    t.integer "maestro_id"
-    t.integer "level"
+    t.integer "pokemon_id", null: false
+    t.integer "maestro_id", null: false
+    t.integer "level", default: 1, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["pokemon_id", "maestro_id"], name: "index_maestros_pokemons_on_pokemon_id_and_maestro_id"
   end
 
   create_table "moves", force: :cascade do |t|
-    t.string "name"
-    t.string "url"
+    t.string "name", limit: 40, null: false
+    t.string "url", limit: 40, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "moves_pokemons", force: :cascade do |t|
-    t.integer "pokemon_id"
-    t.integer "move_id"
+    t.integer "pokemon_id", null: false
+    t.integer "move_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["pokemon_id", "move_id"], name: "index_moves_pokemons_on_pokemon_id_and_move_id"
   end
 
   create_table "pokemons", force: :cascade do |t|
-    t.integer "height"
+    t.integer "height", default: 1
     t.integer "pokedex_id", null: false
     t.boolean "is_default", default: true
-    t.string "location_area_encounters"
+    t.string "location_area_encounters", limit: 50
     t.string "name", limit: 40, null: false
-    t.integer "order"
-    t.integer "weight"
+    t.integer "order", default: 1
+    t.integer "weight", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pokemons_stats", force: :cascade do |t|
-    t.integer "pokemon_id"
-    t.integer "stat_id"
-    t.integer "base_stat"
-    t.integer "effort"
+    t.integer "pokemon_id", null: false
+    t.integer "stat_id", null: false
+    t.integer "base_stat", default: 1
+    t.integer "effort", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["pokemon_id", "stat_id"], name: "index_pokemons_stats_on_pokemon_id_and_stat_id"
   end
 
   create_table "pokemons_types", force: :cascade do |t|
-    t.integer "pokemon_id"
-    t.integer "type_id"
+    t.integer "pokemon_id", null: false
+    t.integer "type_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["pokemon_id", "type_id"], name: "index_pokemons_types_on_pokemon_id_and_type_id"
   end
 
   create_table "sprites", force: :cascade do |t|
-    t.integer "pokemon_id"
-    t.string "back_default"
-    t.string "back_female"
-    t.string "back_shiny"
-    t.string "back_shiny_female"
-    t.string "front_default"
-    t.string "front_female"
-    t.string "front_shiny"
-    t.string "front_shiny_female"
+    t.integer "pokemon_id", null: false
+    t.string "back_default", limit: 100, null: false
+    t.string "back_female", limit: 100
+    t.string "back_shiny", limit: 100
+    t.string "back_shiny_female", limit: 100
+    t.string "front_default", limit: 100, null: false
+    t.string "front_female", limit: 100
+    t.string "front_shiny", limit: 100
+    t.string "front_shiny_female", limit: 100
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["pokemon_id"], name: "index_sprites_on_pokemon_id"
   end
 
   create_table "stats", force: :cascade do |t|
-    t.string "name"
-    t.string "url"
+    t.string "name", limit: 20, null: false
+    t.string "url", limit: 40, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "types", force: :cascade do |t|
-    t.string "name"
-    t.string "url"
+    t.string "name", limit: 40, null: false
+    t.string "url", limit: 40, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -1,15 +1,15 @@
 class CreateSprites < ActiveRecord::Migration[6.1]
   def up
     create_table :sprites do |t|
-      t.integer "pokemon_id"
-      t.string "back_default"
-      t.string "back_female"
-      t.string "back_shiny"
-      t.string "back_shiny_female"
-      t.string "front_default"
-      t.string "front_female"
-      t.string "front_shiny"
-      t.string "front_shiny_female"
+      t.integer "pokemon_id", :null => false
+      t.string "back_default", :limit => 100, :null => false
+      t.string "back_female", :limit => 100
+      t.string "back_shiny", :limit => 100
+      t.string "back_shiny_female", :limit => 100
+      t.string "front_default", :limit => 100, :null => false
+      t.string "front_female", :limit => 100
+      t.string "front_shiny", :limit => 100
+      t.string "front_shiny_female", :limit => 100
       t.timestamps
     end
     add_index("sprites", "pokemon_id")

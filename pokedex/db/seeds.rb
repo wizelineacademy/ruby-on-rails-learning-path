@@ -138,7 +138,7 @@ def seed_maestros()
         email: "ash@test.com",
         region: "Kanto",
         hometown: "Pallet Town",
-        picture: "https://pokemon.fandom.com/wiki/Ash_Ketchum?file=Ash_anime_The_Beginning_Gold_and_Silver.png",
+        picture: "https://static.wikia.nocookie.net/pokemon/images/8/85/Ash_anime_The_Beginning_Gold_and_Silver.png",
         password: "pass"
     )
 
