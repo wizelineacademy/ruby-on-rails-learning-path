@@ -1,6 +1,6 @@
 class PokemonsController < ApplicationController
 
-  layout false
+  layout "application"
   
   def index
     @pokemons = MaestrosPokemons.sorted
