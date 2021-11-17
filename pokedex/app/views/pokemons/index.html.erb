@@ -1,0 +1,37 @@
+
+
+<div class="pokemons">
+    <h2>Trainer Card</h2>
+
+    <div class='card'>
+        <div class='info'>
+            <div class='info_content'>
+                <div>
+                    <%= image_tag @maestro.picture, :class => 'picture' %>                    
+                </div>                
+            </div>
+            <div class='info_content_text'>
+                <div class='divisor'>
+                    <%= content_tag( :p, "Name: #{@maestro.name}") %>
+                    <%= content_tag( :p, "Ubication: #{@maestro.hometown} (#{@maestro.region})") %>
+                    <%= content_tag( :p, "Pokedex: #{@pokemons.size}") %>
+                </div>
+                <%= link_to("Add new Pokemon", maestros_pokemons_new_path, :class =>"button") %>
+            </div>
+        </div>
+        <div class='pokemons_container'>
+            <% @pokemons.each do |pokemon| %>
+                <div class='pokemon'>                    
+                    <%= link_to pokemon_path(@pokemon, id: pokemon.pokemon_id) do %>
+                        <%= image_tag(pokemon.pokemon.sprites.last.front_default) %>
+                    <% end %>
+                    <div class='pokemon_info'>
+                        <%= content_tag( :p, pokemon.pokemon.name.titleize) %>
+                        <%= content_tag( :p, pokemon.level) %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    
+</div>

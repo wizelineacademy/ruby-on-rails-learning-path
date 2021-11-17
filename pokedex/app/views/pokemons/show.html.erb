@@ -1,0 +1,144 @@
+<% if !flash[:notice].blank? %>
+  <div class="notice">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<div class="pokemons">
+  <%= link_to("<< Back to List", pokemons_path, :class => 'back-link') %>
+
+  <h2><%= @pokemon.name.titleize %></h2>
+
+  <%= link_to "Edit", edit_pokemon_path(@pokemon), :class =>"button"%>
+  <%= link_to "Delete", maestros_pokemons_delete_path(@pokemon), :class =>"button" %>
+  <table summary="Pokemon detail view">
+    <tr>
+        <td>
+            <%= image_tag(@pokemon.sprites.last.front_default, :class=>'picture') %>
+        </td>        
+        <td>
+            <table summary="Pokemon detail view" >
+                <tr>
+                <th>Id</th>
+                <td><%= @pokemon.pokedex_id %></td>
+                </tr>
+                <tr>
+                <th>Is default?</th>
+                <td><%= @pokemon.is_default ? 'true' : 'false' %></td>
+                </tr>
+                <tr>
+                <th>Encounters</th>
+                <td><%= @pokemon.location_area_encounters %></td>
+                </tr>
+                <tr>
+                <th>Order</th>
+                <td><%= @pokemon.order %></td>
+                </tr>
+                <tr>
+                <th>Width</th>
+                <td><%= @pokemon.weight %></td>
+                </tr>
+                <tr>
+                <th>Height</th>
+                <td><%= @pokemon.height %></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+  </table>
+
+  <h2>Abilities</h2>
+  <table summary="Pokemon abilities view">
+    <% @pokemon.abilities_pokemons.each do |ability| %>
+        <tr>
+        <th><%= ability.slot %></th>
+        <td><%= link_to ability.ability.name.titleize, ability.ability.url%></td>
+        </tr>
+    <% end %>
+  </table>
+
+ <h2>Forms</h2>
+  <%= link_to @pokemon.form.name.titleize, @pokemon.form.url, :class =>"link"%>
+
+ <h2>Games</h2>
+  <ul>
+    <% @pokemon.games_pokemons.each do |game| %>
+        <li>
+        <%= link_to "#{game.game_index} #{game.game.name.titleize}", game.game.url%>
+        </li>
+    <% end %>
+    </ul>
+
+ <h2>Moves</h2>
+    <ul>
+        <% @pokemon.moves.each do |move| %>
+            <li><%= link_to move.name.titleize, move.url%></li>
+        <% end %>
+    </ul>
+ <h2>Sprites</h2>
+    <div class="pokemons_sprites">
+        <span class="sprites_header">Default</span>
+        <div class="sprite_container">
+            <div class="sprite_type">
+                <div>
+                    <span class="sprite_img"><%= image_tag(@pokemon.sprites.last.front_default, :class=>'picture') %></span>
+                    <span class="sprite_img"><%= image_tag(@pokemon.sprites.last.back_default, :class=>'picture') %></span>  
+                </div>              
+                <span class="sprites_title">Male</span>
+            </div>
+            <% if @pokemon.sprites.last.front_female %>
+                <div class="sprite_type">
+                    <div>
+                        <span class="sprite_img"><%= image_tag(@pokemon.sprites.last.front_female, :class=>'picture') %></span>
+                        <span class="sprite_img"><%= image_tag(@pokemon.sprites.last.back_female, :class=>'picture') %></span>
+                    </div>
+                    <span class="sprites_title">Female</span>   
+                </div>         
+            <% end %>
+        </div>
+    </div>
+     <% if @pokemon.sprites.last.front_shiny %>
+        <div class="pokemons_sprites">
+            <span class="sprites_header">Shiny</span>
+            <div class="sprite_container">
+                <div class="sprite_type">
+                    <div>
+                        <span class="sprite_img"><%= image_tag(@pokemon.sprites.last.front_shiny, :class=>'picture') %></span>
+                        <span class="sprite_img"><%= image_tag(@pokemon.sprites.last.back_shiny, :class=>'picture') %></span>  
+                    </div>              
+                    <span class="sprites_title">Male</span>
+                </div>
+                <% if @pokemon.sprites.last.front_shiny_female %>
+                    <div class="sprite_type">
+                        <div>
+                            <span class="sprite_img"><%= image_tag(@pokemon.sprites.last.front_shiny_female, :class=>'picture') %></span>
+                            <span class="sprite_img"><%= image_tag(@pokemon.sprites.last.back_shiny_female, :class=>'picture') %></span>
+                        </div>
+                        <span class="sprites_title">Female</span>   
+                    </div>         
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+
+ <h2>Stats</h2>
+  <table summary="Pokemon stats view">
+    <tr>
+        <th>Stat</th>
+        <th>Base</th>
+        <th>Effort</th>
+    </tr>
+    <% @pokemon.pokemons_stats.each do |stat| %>
+        <tr>
+        <th><%= link_to stat.stat.name.titleize, stat.stat.url%></th>
+        <td><%= stat.base_stat %></td>
+        <td><%= stat.effort %></td>
+        </tr>
+    <% end %>
+  </table>
+
+   <h2>Types</h2>
+    <% @pokemon.types.each do |type| %>
+        <%= link_to type.name.titleize, type.url, :class =>"link"%>
+    <% end %>
+</div>
