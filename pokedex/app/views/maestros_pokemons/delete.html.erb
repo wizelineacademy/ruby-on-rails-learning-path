@@ -1,6 +1,5 @@
-<%= link_to("<< Back to List", pokemons_path, :class => 'back-link') %>
-
-<div class="pokemons delete">
+<div class="pokemons">
+  <%= link_to("<< Back to List", pokemons_path, :class => 'back-link') %>
   <h2>Delete Pokemon</h2>
 
   <%= form_for(@maestro_pokemon, :method => 'delete') do |f| %>
@@ -11,7 +10,7 @@
     <p><%= f.object.pokemon.name %></p>
 
     <div class="form-buttons">
-      <%= f.submit("Delete Pokemon") %>
+      <%= f.submit("Delete Pokemon", :class =>"button") %>
     </div>
 
   <% end %>

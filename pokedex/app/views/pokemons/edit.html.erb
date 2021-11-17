@@ -1,6 +1,6 @@
-<%= link_to("<< Back to List", pokemons_path, :class => 'back-link') %>
+<div class="pokemons">
+  <%= link_to("<< Back to List", pokemons_path, :class => 'back-link') %>
 
-<div class="pokemon edit">
   <h2>Update Subject</h2>
 
   <%= form_for(@pokemon) do |f| %>
@@ -29,7 +29,7 @@
     </table>
 
     <div class="form-buttons">
-      <%= f.submit("Update") %>
+      <%= f.submit("Update", :class =>"button") %>
     </div>
 
   <% end %>

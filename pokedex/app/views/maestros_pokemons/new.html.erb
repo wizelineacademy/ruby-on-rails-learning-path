@@ -1,6 +1,7 @@
-<%= link_to("<< Back to List", pokemons_path, :class => 'back-link') %>
 
-<div class="pokemon edit">
+<div class="pokemons">
+  <%= link_to("<< Back to List", pokemons_path, :class => 'back-link') %>
+  
   <h2>Add Pokemon</h2>
 
   <%= form_for(@maestro_pokemon, :url => maestros_pokemons_path, :method => 'post') do |f| %>

@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require primary
+ *= require login
  *= require pokemons
  *= require maestros_pokemons
  *= require_self
