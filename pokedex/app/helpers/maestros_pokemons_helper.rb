@@ -1,0 +1,2 @@
+module MaestrosPokemonsHelper
+end
