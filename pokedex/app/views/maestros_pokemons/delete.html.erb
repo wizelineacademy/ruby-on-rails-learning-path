@@ -2,16 +2,17 @@
   <%= link_to("<< Back to List", pokemons_path, :class => 'back-link') %>
   <h2>Delete Pokemon</h2>
 
-  <%= form_for(@maestro_pokemon, :method => 'delete') do |f| %>
+  <div class="maestros_container">
+    <%= form_for(@maestro_pokemon, :method => 'delete') do |f| %>
 
-    <p>Are you sure you want to permanently delete this Pokemon?</p>
+      <p>Are you sure you want to permanently delete this Pokemon?</p>
 
-    <p><%= image_tag(f.object.pokemon.sprites.last.front_default) %></p>
-    <p><%= f.object.pokemon.name %></p>
+      <p><%= image_tag(f.object.pokemon.sprites.last.front_default, :class => 'picture') %></p>
+      <p><%= f.object.pokemon.name.titleize %></p>
 
-    <div class="form-buttons">
-      <%= f.submit("Delete Pokemon", :class =>"button") %>
-    </div>
-
-  <% end %>
+      <div class="form-buttons">
+        <%= f.submit("Delete Pokemon", :class =>"button") %>
+      </div>
+    <% end %>
+  </div>
 </div>

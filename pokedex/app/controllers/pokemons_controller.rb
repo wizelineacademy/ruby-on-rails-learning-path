@@ -1,7 +1,8 @@
-class PokemonsController < ApplicationController
+# frozen_string_literal: true
 
-  layout "application"
-  
+class PokemonsController < ApplicationController
+  layout 'application'
+
   def index
     @pokemons = MaestrosPokemons.sorted
     @maestro = Maestro.find(session[:user_id])

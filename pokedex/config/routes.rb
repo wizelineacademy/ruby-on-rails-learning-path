@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  get 'admin', :to => 'access#menu'
+  get 'admin', to: 'access#menu'
   get 'access/menu'
   get 'access/login'
   post 'access/attempt_login'
@@ -9,7 +11,7 @@ Rails.application.routes.draw do
   get 'pokemons/edit'
   get 'maestros_pokemons/new'
   get 'maestros_pokemons/delete'
-  
+
   namespace :api do
     namespace :v1 do
       resources :pokemons do
@@ -17,7 +19,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  
+
   resources :pokemons
 
   resources :maestros_pokemons

@@ -1,4 +1,5 @@
-class Form < ApplicationRecord
+# frozen_string_literal: true
 
-    belongs_to :pokemon
+class Form < ApplicationRecord
+  belongs_to :pokemon
 end

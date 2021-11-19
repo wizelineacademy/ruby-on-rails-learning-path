@@ -1,12 +1,17 @@
-class Api::V1::PokemonsController < ApplicationController
-    before_action :set_pokemon
+# frozen_string_literal: true
 
-    def show
+module Api
+  module V1
+    class PokemonsController < ApplicationController
+      before_action :set_pokemon
+
+      def show; end
+
+      private
+
+      def set_pokemon
+        @pokemon = Pokemon.find(params[:id])
+      end
     end
-
-    private
-
-        def set_pokemon
-            @pokemon = Pokemon.find(params[:id])
-        end
-    end
+  end
+end

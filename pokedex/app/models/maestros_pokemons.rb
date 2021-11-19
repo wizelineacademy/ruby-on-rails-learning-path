@@ -1,6 +1,8 @@
-class MaestrosPokemons < ApplicationRecord
-    belongs_to :maestro
-    belongs_to :pokemon
+# frozen_string_literal: true
 
-    scope :sorted, lambda { order("level DESC") }
+class MaestrosPokemons < ApplicationRecord
+  belongs_to :maestro
+  belongs_to :pokemon
+
+  scope :sorted, -> { order('level DESC') }
 end

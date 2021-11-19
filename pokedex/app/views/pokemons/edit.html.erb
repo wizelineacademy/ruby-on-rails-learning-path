@@ -26,11 +26,11 @@
         <th>Height</th>
         <td><%= f.number_field(:height) %></td>
       </tr>
+      <tr>
+        <th></th>
+        <td><%= f.submit("Update", :class =>"button") %></td>
+      </tr>
     </table>
-
-    <div class="form-buttons">
-      <%= f.submit("Update", :class =>"button") %>
-    </div>
 
   <% end %>
 </div>

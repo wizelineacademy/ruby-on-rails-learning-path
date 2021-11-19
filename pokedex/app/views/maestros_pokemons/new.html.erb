@@ -13,13 +13,19 @@
       </tr>
       <tr>
         <th>Pokemon</th>
-        <td><%= f.collection_radio_buttons(:pokemon_id, Pokemon.all, :id, :name) %></td>
+        <td>
+          <ul class='maestros_ul'>
+              <% list = Pokemon.all
+                list.each {|x| %>
+                  <li><%= f.radio_button :pokemon_id, x.id %> <%= x.name.titleize %></li>
+              <% } %>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th></th>
+        <td><%= f.submit("Add", :class=>"button") %></td>
       </tr>
     </table>
-
-    <div class="form-buttons">
-      <%= f.submit("Add") %>
-    </div>
-
   <% end %>
 </div>
