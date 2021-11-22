@@ -46,7 +46,7 @@ module Environment
             where(arg, *args).take
         end
 
-        %w(paused aborted failed accomplished).each do |status|
+        ["paused", "aborted", "failed", "accomplished"].each do |status|
             define_method("set_mission_to_#{status}") do |argument|
                 @missions[argument][:status] = status
             end
@@ -63,7 +63,7 @@ module Environment
             @professional_data = {}
         end
 
-        %w(personal professional).each do |data_type|
+        ["personal", "professional"].each do |data_type|
             define_method("set_#{data_type}_data") do |argument|
                 instance_variable_set(:"@#{data_type}_data", argument)
             end
