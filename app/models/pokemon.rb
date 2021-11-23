@@ -4,6 +4,13 @@ class Pokemon < ApplicationRecord
   has_many :abilities, :through => :pokemons_abilities
   has_many :types, :through => :pokemons_types
 
-  validates_presence_of :name, :height, :weight, :hp, :attack, :defense, :special_attack, :special_defense, :speed
-  validates_uniqueness_of :name
+  validates :name, :presence => true, :uniqueness => { case_sensitive: false }
+  validates :height, :presence => true, :numericality => { only_integer: true, greater_than: 0 }
+  validates :weight, :presence => true, :numericality => { only_integer: true, greater_than: 0 }
+  validates :hp, :presence => true, :numericality => { only_integer: true, greater_than: 0 }
+  validates :attack, :presence => true, :numericality => { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :defense, :presence => true, :numericality => { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :special_attack, :presence => true, :numericality => { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :special_defense, :presence => true, :numericality => { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :speed, :presence => true, :numericality => { only_integer: true, greater_than_or_equal_to: 0 }
 end
