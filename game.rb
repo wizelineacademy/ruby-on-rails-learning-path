@@ -1,7 +1,8 @@
-require_relative 'environment'
+require './environment'
 
-class Game 
+class Game
   include Environment
+
   attr_accessor :board, :depot, :control
 
   def initialize
@@ -10,26 +11,27 @@ class Game
       control: {},
       status: nil
     }
+
     @depot = Environment::Depot.new
     @control = Environment::Control.new
   end
 
-  def new_worker(name)
-    worker = Environment::Human.new(name)
-    @board[:players][name] = worker
+  def new_worker(name:)
+    new_player = Environment::Worker.new name: name
+    @board[:players][name] = new_player
   end
 
   def new_mission(name:, objective:, pack:)
-    mission = @control.new_mission(name, objective, pack)
-    @board[:control][:missions] = mission
+    @control.new_mission(name: name, objective: objective, pack: pack)
+    @board[:control][name] = @control.missions[name]
   end
-end
+end 
 
 game = Game.new
-diego = game.new_worker name: 'Diego'
-diego.set_personal_data surname: 'Mota', age: 40, marital_status: :single, children: 0, country: :mx, language: :es
-diego.set_professional_data position: 'SE', occupation: 'IT', skills: [:ruby, :blender], observations: 'none'
-puts "#{diego.name}, #{diego.class}", diego.personal_data, diego.professional_data
+weyler = game.new_worker name: 'Weyler'
+weyler.set_personal_data surname: 'Maldonado', age: 24, marital_status: :single, children: 0, country: :mx, language: :es
+weyler.set_professional_data position: 'SE', occupation: 'IT', skills: [:ruby, :blender], observations: 'none'
+puts "#{weyler.name}, #{weyler.class}", weyler.personal_data, weyler.professional_data
 
 testA5 = Game.new
 testA5.new_mission name: :alpha, objective: 'Get Alpha to the base', pack: testA5.depot.packs[:simple_transportation_pack]
