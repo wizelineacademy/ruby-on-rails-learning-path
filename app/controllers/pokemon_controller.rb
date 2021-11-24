@@ -1,6 +1,8 @@
 class PokemonController < ApplicationController
+  layout 'public'
 
   def index
+    @pokemons = Pokemon.all
   end
 
   def show

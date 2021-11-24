@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html class="h-100">
+  <head>
+    <title>PokeApp<%= " | #{@page_title}" if @page_title %></title>
+    <%= stylesheet_link_tag('application', :media => 'all') %>
+  </head>
+  <body class="d-flex flex-column h-100">
+    <header>
+      <%= render(:partial => 'layouts/navbar') %> 
+    </header>
+
+    <main class="flex-shrink-0">
+      <%= yield %>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-ligth">
+      <div class="container">
+        <span class="text-muted">PokeApp.</span>
+      </div>
+    </footer>
+  </body>
+</html>

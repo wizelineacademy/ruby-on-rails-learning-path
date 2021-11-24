@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   root :to => 'pokemon#index'
 
-  get 'pokemon/search'
-
   resources :pokemon do
     member do
       get :delete
