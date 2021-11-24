@@ -1,2 +1,70 @@
-<h1>Pokemon#show</h1>
-<p>Find me in app/views/pokemon/show.html.erb</p>
+<% @page_title = @pokemon.name.capitalize %>
+
+<div class="container mt-5 text-center">
+  <h1 class="pt-2"><%= "#{@pokemon.name.capitalize} | #{@pokemon.base_experience} exp" %></h1>
+  
+  <div class="row">
+
+    <div class="col-4">
+      <div class="row">
+        
+        <div class="col-12">
+          <img class="bg-light" src=<%= @pokemon.sprite %> style="min-width: 250px" >
+        </div>
+        <div class="col-12">
+          <div class="d-grip gap-2 text-center">
+            <% @pokemon.types.each do |p_type| %>
+            <span class="badge rounded-pill bg-secondary"> <%= p_type.name.capitalize %> </span>
+            <% end %>        
+          </div>
+        </div>
+
+        <div class="col-12 mt-2">
+          <%= link_to('Update', edit_pokemon_path(@pokemon), :class => "btn btn-primary") %>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-8">
+      <div class="row">
+        <div class="col-12">
+          <div class="card rounded-3">
+            <div class="card-header text-center">
+              <h3 class="text-center">Stats</h3>
+            </div>
+            <div class="card-body bg-info">
+              <div class="row">
+              <% @pokemon_stats.each do |stat_name| %>
+                <div class="col-4">
+                  <h5 class="text-white"><%= stat_name.capitalize.gsub('_', ' ') %></h5>
+                  <p class="fw-bold"><%= @pokemon[stat_name] %></p>
+                </div>
+              <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 mt-5">
+          <div class="card rounded-3">
+            <div class="card-header text-center">
+              <h3 class="text-center">Abilities</h3>
+            </div>
+            <div class="card-body bg-warning">
+              <div class="row">
+              <% @pokemon.abilities.each do |p_ability| %>
+                <div class="col-4">
+                  <p class="fw-bold"><%= p_ability.name.capitalize %></p>
+                </div>
+              <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+  </div>
+</div>

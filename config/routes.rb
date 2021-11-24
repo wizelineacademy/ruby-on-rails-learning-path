@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root :to => 'pokemon#index'
 
-  resources :pokemon do
+  resources :pokemons, controller: 'pokemon' do
     member do
       get :delete
     end

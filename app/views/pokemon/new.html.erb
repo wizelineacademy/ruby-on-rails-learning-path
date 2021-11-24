@@ -1,2 +1,12 @@
-<h1>Pokemon#new</h1>
-<p>Find me in app/views/pokemon/new.html.erb</p>
+<div class="container text-center">
+  <h1>Create Pokemon</h1>
+
+  <%= form_for(@pokemon) do |f| %>
+    <%= render partial: "form", locals: { :f => f } %>
+    
+    <div class="ms-auto mb-2 mb-lg-0">
+      <%= f.submit("Create", :class => "btn btn-primary") %>
+    </div>
+
+  <% end %>
+</div>
