@@ -23,17 +23,59 @@ def add_abilities pokemon:, abilities:
   end
 end
 
+def get_all_abilities api:, offset: 100, limit: 100
+  response = api.get_abilities(offset: offset, limit: limit)
+  pokemon_abilities = response["results"]
+
+  if !pokemon_abilities.empty?
+    pokemon_abilities.concat(get_all_abilities(api: api, offset: offset + 100))
+  else
+    pokemon_abilities
+  end
+end
+
+def delete_abilities_and_types
+  pokemons = Pokemon.all
+  
+  pokemons.each do |pokemon|
+    pokemon.abilities.each do |p_ability|
+      pokemon.abilities.delete(p_ability)
+    end
+
+    pokemon.types.each do |p_type|
+      pokemon.types.delete(p_ability)
+    end
+  end
+end
+
+delete_abilities_and_types
+p "Relationships cleaned"
+
 Pokemon.destroy_all
+p "pokemons table cleaned"
 Ability.destroy_all
+p "abilities table cleaned"
 Type.destroy_all
+p "types table cleaned"
 User.destroy_all
-PokemonAbility.destroy_all
-PokemonType.destroy_all
+p "users table cleaned"
 
 pokemons = %w(pikachu squirtle charmander bulbasaur caterpie weedle pidgey rattata spearow ekans)
 @stats_allowed = ['hp', 'attack', 'defense', 'special_attack', 'special_defense', 'speed']
 
 api = PokeApi.new
+
+pokemon_types = api.get_types
+pokemon_types['results'].each do |p_type|
+  Type.create(name: p_type['name'])
+end
+p "#{Type.count} types added to types table"
+
+pokemon_abilities = get_all_abilities(api: api)
+pokemon_abilities.each do |p_ability|
+  Ability.create(name: p_ability['name'])
+end
+p "#{Ability.count} abilitites added to abilities table"
 
 pokemons.each do |pokemon|
   response = api.get_pokemon(name: pokemon)
@@ -55,7 +97,7 @@ pokemons.each do |pokemon|
   add_abilities(pokemon: new_pokemon, abilities: abilities)
 
   new_pokemon.save
-  p "#{new_pokemon.name} added to database"
+  p "#{new_pokemon.name} added to pokemons table"
 end
 
 trainer = User.create(

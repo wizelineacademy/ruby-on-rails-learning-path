@@ -3,4 +3,6 @@ class Ability < ApplicationRecord
   has_many :pokemons, :through => :pokemons_abilities
 
   validates :name, :presence => true, :uniqueness => { case_sensitive: false }
+
+  scope :sorted, -> { order(:name => :asc) }
 end

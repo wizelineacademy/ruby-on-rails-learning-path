@@ -13,19 +13,26 @@ class PokemonController < ApplicationController
 
   def new
     @pokemon = Pokemon.new
+    @types = Type.sorted
+    @abilities = Ability.sorted
   end
 
   def edit
     @pokemon = Pokemon.find(params[:id])
+    @all_types = Type.sorted
+    @all_abilities = Ability.sorted
   end
 
   def delete
   end
 
   def create
+    @pokemon = Pokemon.new(pokemon_params)
+    p params
   end
 
   def update
+    p params
   end
   
   def destroy
