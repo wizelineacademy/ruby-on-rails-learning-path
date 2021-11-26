@@ -1,36 +1,85 @@
-<div class="mb-3">
-  <label class="form-label">Name</label>
+<div class="form-floating mb-3">
   <%= f.text_field(:name, :class => "form-control") %>
+  <label>Name</label>
 </div>
-<div class="mb-3">
-  <label class="form-label">Type</label>
-  <%= f.select(:types, options_from_collection_for_select(@all_types, "id", "name", f.object.types.map(&:id)), {}, { :class => "form-select", :multiple => true }) %>
+
+<div class="form-floating mb-3">
+  <%= f.text_field(:sprite, :class => "form-control") %>
+  <label>Sprite</label>
 </div>
-<div class="mb-3">
-  <label class="form-label">Abilities</label>
-  <%= f.select(:abilities, options_from_collection_for_select(@all_abilities, "id", "name", f.object.abilities.map(&:id)), {}, { :class => "form-select", :multiple => true }) %>
+
+<div class="row mb-3 g-2">
+  <div class="col-md">
+    <div class="form-floating">
+      <%= f.text_field(:height, :class => "form-control") %>
+      <label>Height</label>
+    </div>
+  </div>
+  <div class="col-md">
+    <div class="form-floating">
+      <%= f.text_field(:weight, :class => "form-control") %>
+      <label>Weight</label>
+    </div>
+  </div>
 </div>
-<div class="mb-3">
-  <label class="form-label">HP</label>
-  <%= f.text_field(:hp, :class => "form-control") %>
+
+<div class="row mb-3 g-2">
+  <div class="col-md">
+    <div class="form-floating">
+      <%= f.select(:types, options_from_collection_for_select(@all_types, "id", "name", f.object.types.map(&:id)), {}, { :class => "form-select", :id => "pokemonType", :multiple => true }) %>
+      <label for="pokemonType">Type</label>
+    </div>
+  </div>
+  <div class="col-md">
+    <div class="form-floating">
+      <%= f.select(:abilities, options_from_collection_for_select(@all_abilities, "id", "name", f.object.abilities.map(&:id)), {}, { :class => "form-select", :id => "pokemonAbility", :multiple => true }) %>
+      <label for="pokemonAbility">Abilities</label>
+    </div>
+  </div>
 </div>
-<div class="mb-3">
-  <label class="form-label">Attack</label>
-  <%= f.text_field(:attack, :class => "form-control") %>
+
+<div class="row g-2 mb-3">
+  <div class="col-md">
+    <div class="form-floating">
+      <%= f.text_field(:hp, :class => "form-control") %>
+      <label>HP</label>
+    </div>
+  </div>
+
+  <div class="col-md">
+    <div class="form-floating">
+      <%= f.text_field(:attack, :class => "form-control") %>
+      <label>Attack</label>
+    </div>
+  </div>
+
+  <div class="col-md">
+    <div class="form-floating">
+      <%= f.text_field(:defense, :class => "form-control") %>
+      <label>Defense</label>
+    </div>
+  </div>
 </div>
-<div class="mb-3">
-  <label class="form-label">Defense</label>
-  <%= f.text_field(:defense, :class => "form-control") %>
-</div>
-<div class="mb-3">
-  <label class="form-label">Special Attack</label>
-  <%= f.text_field(:special_attack, :class => "form-control") %>
-</div>
-<div class="mb-3">
-  <label class="form-label">Special Defense</label>
-  <%= f.text_field(:special_defense, :class => "form-control") %>
-</div>
-<div class="mb-3">
-  <label class="form-label">Speed</label>
-  <%= f.text_field(:speed, :class => "form-control") %>
+
+<div class="row g-2 mb-3">
+  <div class="col-md">
+    <div class="form-floating">
+      <%= f.text_field(:special_attack, :class => "form-control") %>
+      <label>Special Attack</label>
+    </div>
+  </div>
+
+  <div class="col-md">
+    <div class="form-floating">
+      <%= f.text_field(:special_defense, :class => "form-control") %>
+      <label>Special Defense</label>
+    </div>
+  </div>
+
+  <div class="col-md">
+    <div class="form-floating">
+      <%= f.text_field(:speed, :class => "form-control") %>
+      <label>Speed</label>
+    </div>
+  </div>
 </div>

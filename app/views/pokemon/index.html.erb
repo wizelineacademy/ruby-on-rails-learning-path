@@ -8,7 +8,7 @@
     <% @pokemons.each do |pokemon| %>
     <div class="col">
       <div class="card text-dark my-3">
-        <img class="bg-light" src=<%= pokemon.sprite %> class="card-img-top">
+        <%= render partial: "sprite", locals: { :sprite => pokemon.sprite, :styles => "bg-light card-img-top" } %>
         <div class="card-body bg-white">
           <h5 class="card-title text-center"><%= link_to(pokemon.name.capitalize, pokemon_path(pokemon), :class => 'text-decoration-none text-dark stretched-link') %></h5>
           <div class="d-grip gap-2 text-center">

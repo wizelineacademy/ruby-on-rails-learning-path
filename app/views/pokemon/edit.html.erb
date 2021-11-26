@@ -1,12 +1,19 @@
 <div class="container text-center">
-  <h1>Create Pokemon</h1>
+  <h1>Update Pokemon</h1>
 
-  <%= form_for(@pokemon) do |f| %>
+  <div class="container d-flex justify-content-end">
+  <%= form_for @pokemon, html: { class: "m-auto p-3 mw-25" } do |f| %>
+    <div class="row">
+      <h3><%= f.object.name.capitalize %><h3>
+      <div class="col-12">
+        <%= render partial: "sprite", locals: { :sprite => @pokemon.sprite, :styles => "bg-light card-img-top w-25" } %>
+      </div>
+    </div>
     <%= render partial: "form", locals: { :f => f } %>
     
     <div class="ms-auto mb-2 mb-lg-0">
       <%= f.submit("Update", :class => "btn btn-primary") %>
     </div>
-
   <% end %>
+  </div>
 </div>
