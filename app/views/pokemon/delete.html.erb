@@ -1,2 +1,16 @@
-<h1>Pokemon#delete</h1>
-<p>Find me in app/views/pokemon/delete.html.erb</p>
+<div class="container text-center">
+  <h1>Delete Pokemon</h1>
+
+  <div class="container d-flex justify-content-end">
+  <%= form_for @pokemon, method: 'delete', html: { class: "m-auto p-3 mw-25" } do |f| %>
+    <p>Are you sure you want to permanently delete this pokemon?</p>
+    <%= render partial: "sprite", locals: { :sprite => f.object.sprite, :styles => "bg-light card-img-top w-50" } %>
+    <h3><%= f.object.name.capitalize %></h3>
+    
+    <div class="ms-auto mb-2 mb-lg-0">
+      <%= f.submit("Delete Pokemon", :class => "btn btn-primary") %>
+      <%= link_to('Cancel', pokemon_path(@pokemon), :class => "btn btn-danger") %>
+    </div>
+  <% end %>
+  </div>
+</div>

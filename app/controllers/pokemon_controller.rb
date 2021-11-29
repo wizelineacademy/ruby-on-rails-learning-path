@@ -1,6 +1,7 @@
 class PokemonController < ApplicationController
   layout 'public'
 
+  before_action :confirm_logged_in, :except => [:index, :show]
   before_action :set_stats, :only => [:show]
   before_action :get_types_and_abilities, :only => [:new, :edit]
 
@@ -21,6 +22,7 @@ class PokemonController < ApplicationController
   end
 
   def delete
+    @pokemon = Pokemon.find(params[:id])
   end
 
   def create
@@ -64,6 +66,10 @@ class PokemonController < ApplicationController
   end
   
   def destroy
+    @pokemon = Pokemon.find(params[:id])
+    @pokemon.destroy
+    flash[:notice] = "#{@pokemon.name.capitalize} deleted succesfully."
+    redirect_to(pokemons_path)
   end
 
   private

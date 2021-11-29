@@ -1,0 +1,22 @@
+<% @page_title = "User Login" %>
+
+<div class="container text-center mt-5">
+  <%= link_to("<< Back to Home", pokemons_path) %>
+  <div class="container d-flex justify-content-end">
+  <%= form_tag(access_attempt_login_path, :method => :post, class: 'm-auto p-3 mw-25') do %>
+    <div class="form-floating mb-3">
+      <%= text_field_tag(:username, params[:username], :class => "form-control") %>
+      <label>Username</label>
+    </div>
+    <div class="form-floating mb-3">
+      <%= password_field_tag(:password, nil, :class => "form-control") %>
+      <label>Password</label>
+    </div>
+
+    <div class="ms-auto mb-2 mb-lg-0">
+      <%= submit_tag("Log In", :class => "btn btn-primary") %>
+    </div>
+
+  <% end %>
+  </div>
+</div>

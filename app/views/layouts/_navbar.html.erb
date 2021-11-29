@@ -5,10 +5,15 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
+      <% if session[:user_id] %>
       <div class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <button class="btn btn-primary me-2" type="button">Login</button>
-        <button class="btn btn-warning" type="button">Register</button>
+        <%= link_to('Logout', access_logout_path, :class => "btn btn-danger me-2") %>
       </div>
+      <% else %>
+      <div class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <%= link_to('Login', access_login_path, :class => "btn btn-primary me-2") %>
+      </div>
+      <% end %>
     </div>
   </div>
 </nav>

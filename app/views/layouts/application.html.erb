@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
-    <title>RubyOnRailsLearningPath</title>
+    <title>PokeApp<%= " | #{@page_title}" if @page_title %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,7 +10,16 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+      <% if !flash[:notice].blank? %>
+      <div class="container alert alert-success alert-dismissible fade show mt-5 w-50" role="alert">
+        <strong><%= flash[:notice] %></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <% end %>
+
+      <%= yield %>
+    </main>
   </body>
 </html>
