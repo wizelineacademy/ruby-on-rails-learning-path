@@ -4,4 +4,5 @@ class PokemonsController < ApplicationController
       @pokemons = ['pikachu','charmander','mewtwo']
     end
 
+    
 end
