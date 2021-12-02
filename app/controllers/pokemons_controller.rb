@@ -13,4 +13,27 @@ class PokemonsController < ApplicationController
         @pokedata = JSON.parse(Net::HTTP.get(uri2))    
     end
 
+    def show
+        uri2 = URI.parse("https://pokeapi.co/api/v2/pokemon/#{params[:id]}") 
+        @pokedata = JSON.parse(Net::HTTP.get(uri2))    
+    end
+
+    def new
+    end
+
+    def create 
+    end
+
+    def edit
+    end
+
+    def update
+    end
+
+    def delete
+    end
+
+    def destroy
+    end
+
 end
