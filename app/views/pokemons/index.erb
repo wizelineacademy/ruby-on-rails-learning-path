@@ -1,4 +1,9 @@
-<h1>Hola mundo </h1>
 
 
-<%=image_tag @datos%>
+
+
+<%for i in 1..15 do %>
+<%  uri2 = URI.parse("https://pokeapi.co/api/v2/pokemon/#{i}") %>
+ <%=image_tag JSON.parse(Net::HTTP.get(uri2))["sprites"]["front_default"] %>
+  <%=JSON.parse(Net::HTTP.get(uri2))["species"]["name"] %><br/>
+     <%end%>
