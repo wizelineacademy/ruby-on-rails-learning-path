@@ -1,13 +1,4 @@
 
-
-<% uri2 = URI.parse("https://pokeapi.co/api/v2/pokemon/25") %>
-
-
-<%@pokedata = JSON.parse(Net::HTTP.get(uri2))%>
-
-<%=@pokedata.keys[0]%>
-
-
 <%for x in 0..@pokedata.keys.size do %>
     <%= "#{@pokedata.keys[x].to_s.upcase}:  #{@pokedata[@pokedata.keys[x]]}"%> <br/><br/>
 <%end%>
