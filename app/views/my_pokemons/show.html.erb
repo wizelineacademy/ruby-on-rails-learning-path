@@ -1,4 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <strong>Name:</strong>
+  <%= @my_pokemon.name %>
+</p>
+
+<p>
+  <strong>Sprite:</strong>
+   <%= @my_pokemon.sprites %>
+</p>
+
 <%= link_to 'Edit', edit_my_pokemon_path(@my_pokemon) %> |
 <%= link_to 'Back', my_pokemons_path %>

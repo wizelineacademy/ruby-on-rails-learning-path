@@ -11,7 +11,7 @@ class RefreshService
       pokemon.height = api_pokemon["height"]
       pokemon.held_items = api_pokemon["held_items"]
       pokemon.pokemon_api = api_pokemon["id"]
-      pokemon.sprites = api_pokemon["sprites"]
+      pokemon.sprites = api_pokemon["sprites"]["front_default"]
       pokemon.is_default = api_pokemon["is_default"]
       pokemon.location_area_encounters = api_pokemon["location_area_encounters"]
       pokemon.moves = api_pokemon["moves"]
@@ -28,7 +28,7 @@ class RefreshService
     private
     
     def api_pokemon_names
-        uri = 'https://pokeapi.co/api/v2/pokemon?limit=10&offset=0'
+        uri = 'https://pokeapi.co/api/v2/pokemon?limit=151&offset=0'
         parsed_response = http_get(uri)
         parsed_response["results"].map {|api_pokemon| api_pokemon["name"]}
         

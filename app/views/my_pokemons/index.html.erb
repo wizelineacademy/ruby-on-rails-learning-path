@@ -11,11 +11,23 @@
 
   <tbody>
     <% @my_pokemons.each do |my_pokemon| %>
+          <tr>
+<td>
+<div class="card text-white bg-info" style="width: 100rem;">
+  <img class="card-img-top" src="<%=my_pokemon.sprites%>" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><%=my_pokemon.name%> </h5>
+    <p class="card-text"><%=my_pokemon.sprites%> </p>
+  </div>
+</div>
+</td>
       <tr>
         <td><%= link_to 'Show', my_pokemon %></td>
         <td><%= link_to 'Edit', edit_my_pokemon_path(my_pokemon) %></td>
         <td><%= link_to 'Destroy', my_pokemon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+        </tr>
+
     <% end %>
   </tbody>
 </table>

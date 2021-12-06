@@ -9,6 +9,7 @@ class MyPokemonsController < ApplicationController
 
   # GET /my_pokemons/1 or /my_pokemons/1.json
   def show
+
   end
 
   # GET /my_pokemons/new
@@ -22,7 +23,7 @@ class MyPokemonsController < ApplicationController
 
   # POST /my_pokemons or /my_pokemons.json
   def create
-    @my_pokemon = MyPokemon.new(my_pokemon_params)
+    @my_pokemon = MyPokemon.new(allowed_params)
 
     respond_to do |format|
       if @my_pokemon.save
@@ -38,7 +39,7 @@ class MyPokemonsController < ApplicationController
   # PATCH/PUT /my_pokemons/1 or /my_pokemons/1.json
   def update
     respond_to do |format|
-      if @my_pokemon.update(my_pokemon_params)
+      if @my_pokemon.update(allowed_params)
         format.html { redirect_to @my_pokemon, notice: "My pokemon was successfully updated." }
         format.json { render :show, status: :ok, location: @my_pokemon }
       else
@@ -67,4 +68,8 @@ class MyPokemonsController < ApplicationController
     def my_pokemon_params
       params.fetch(:my_pokemon, {})
     end
+
+    def allowed_params
+      params.require(:my_pokemon).permit(:abilities, :base_experience, :forms, :game_indices, :height, :held_items, :pokemon_api, :is_default, :location_area_encounters, :moves, :name, :order, :past_types, :species, :sprites, :stats, :types, :weight, :created_at, :updated_at)
+  end 
 end

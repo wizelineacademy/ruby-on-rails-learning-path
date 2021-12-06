@@ -1,5 +1,4 @@
-
-<%for x in 0..@pokedata.keys.size do %>
-    <%= "#{@pokedata.keys[x].to_s.upcase}:  #{@pokedata[@pokedata.keys[x]]}"%> <br/><br/>
-<%end%>
-
+<% @pokemon.each do |pokes| %>
+   <%= pokes.name %> <br/>
+   <%= image_tag "#{pokes.sprites["front_default"]}" %> <br/>
+<% end %>
