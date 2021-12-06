@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  resources :my_pokemons
+  devise_for :trainers
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'pokemons#index'
+  root 'my_pokemons#index'
 
   resources :pokemons
-   get '/profile/:id', to: 'pokemons#profile' 
-
-
+  resources :my_pokemons  
+  resources :trainers
 end

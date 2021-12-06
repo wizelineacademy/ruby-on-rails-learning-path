@@ -27,9 +27,9 @@
     - Export to CSV
     - Deploy to Heroku
 
-- seed.rb
-    - Pull data from api
-    - Save data from the api to the db
+- seed.rb x
+    - Pull data from api x
+    - Save data from the api to the db x
 - Normalize pokemon data
 - Add tests Rspec
 - Add Form to Add/Edit pokemons

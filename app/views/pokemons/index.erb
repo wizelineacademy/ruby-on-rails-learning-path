@@ -1,4 +1,4 @@
-<%for i in 1..15 do %>
+<%for i in 1..10 do %>
 <%  uri2 = URI.parse("https://pokeapi.co/api/v2/pokemon/#{i}") %>
  <%=image_tag JSON.parse(Net::HTTP.get(uri2))["sprites"]["front_default"] %>
   <%=  link_to "#{JSON.parse(Net::HTTP.get(uri2))["species"]["name"]}", pokemon_path("#{i}")%><br/>

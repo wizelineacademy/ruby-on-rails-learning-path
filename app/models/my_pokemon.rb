@@ -1,0 +1,2 @@
+class MyPokemon < ApplicationRecord
+end
