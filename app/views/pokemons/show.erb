@@ -1,15 +1,75 @@
-<div class="d-flex justify-content-center">
-<% @pokemon.each do |poke| %>
- <div class="row row-cols-1 row-cols-md-1 g-2">
-  <div class="col">
-  <div class="card" style="max-width: 250rem;"> 
-    <%= image_tag  "#{poke.sprites["front_default"]}" , style: 'height:100%;width:auto;'%> 
-    <div class="card-body">
-        <h5> <%= link_to "#{poke.name}", pokemon_path("#{poke.name}")%> </h5>
-      <p class="card-text"><small class="text-muted"> <%="SAVED AT: #{poke.updated_at}"%> </small></p>
+
+
+  <h1 class="d-flex justify-content-center"> <%=params[:id].upcase%> </h1>
+    <div class="card-group">
+      <%@pokemon.each do |poke|%>
+        <div class="row row-cols-1 row-cols-md-1 g-2">
+          <div class="col">
+            <div class="card-group">
+              <div class="card"> 
+                <div class="card img-fluid">
+                  <%= image_tag "/background/#{poke.types[0]['type']['name']}.jpg", style: 'height:400px;width:400px'%> 
+                    <div class="card-img-overlay">
+                      <%= image_tag  "#{poke.sprites["front_default"]}", style: 'height:300px;width:300px', class: "mx-auto d-block"%> 
+                    </div>
+                </div>
+                <div class="card-body">
+                  <div>
+                  <h5 class="d-flex justify-content-center"> <%= link_to "#{poke.name.upcase}", pokemon_path("#{poke.name}")%> </h5>
+                  <%if current_trainer.pokemons.where(["name = ?" , "#{poke.name}"]).empty?%>
+                    <%= button_to "ADD TO FAVORITES ❤️", my_pokemons_path, method: :post, params: { pokemon_id: poke.id } , class: "mx-auto d-block"%>
+                  <%else%>
+                    <%= button_to "REMOVE FROM FAVORITES ☺", my_pokemon_path(poke.name), method: :delete , class: "mx-auto d-block"%>
+                  <%end%>
+                  </div>
+                    <div class="d-flex justify-content-center">
+                      <%poke.types.each do |type|%>
+                        <%= image_tag  "/types/#{type["type"]["name"]}.png"%> 
+                      <%end%>
+                    </div><br/>
+                      <p class="card-text d-flex justify-content-center"><small class="text-muted"> <%="SAVED AT: #{poke.updated_at}"%> </small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <%poke.abilities.each do |ability|%>
+        <h1><%=ability["ability"]["name"]%></h1>
+        <%end%>  <br/>
+          <h1><%=poke.base_experience%></h1><br/>
+            <h1><%=poke.forms%></h1><br/>
+          <h1><%=poke.height%></h1><br/>
+           <h1><%=poke.held_items%></h1><br/>
+           <h1><%=poke.pokemon_api%></h1><br/>
+           <h1><%=poke.is_default%></h1><br/>               
+          <h1><%=poke.location_area_encounters%></h1><br/>
+                                    
+        <%poke.moves.each do |move|%>
+        <h1><%=move["move"]["name"]%></h1>
+        <%end%>         <br/>        
+                                     <h1><%=poke.name%></h1><br/>
+                                      <h1><%=poke.order%></h1><br/>
+                                       <h1><%=poke.past_types%></h1><br/>
+                                        <h1><%=poke.species%></h1><br/>
+                            <%poke.stats.each do |stat|%>
+        <h1><%= stat["stat"]["name"]%></h1> <h1><%= stat["base_stat"]%></h1>
+        <%end%>  <br/>
+                      
+
+        <%poke.types.each do |type|%>
+        <h1><%=type["type"]["name"]%></h1>
+        <%end%>  <br/>
+                   
+                                         <h1><%=poke.weight%></h1><br/>
+
+                 <%sprites = poke.sprites.extract!(*["front_default", "back_default"]).values%>
+                 <%sprites.each do |sprite|%>
+                 <%=image_tag sprite%>
+                 <%end%>
+       
+    
+     
+        </div>
+      <%end%>
     </div>
-  </div>
-     </div>
-  </div>
-<% end %>
-</div>
