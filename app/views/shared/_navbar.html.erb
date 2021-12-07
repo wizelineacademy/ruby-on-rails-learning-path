@@ -10,11 +10,11 @@
           <a class="nav-link" href="/my_pokemons">My Saved Pokemons</a>
         </li>
       </ul>
-    <form class="d-flex">
+      <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form> 
-      <ul class="nav-link navbar-nav navbar-right">
+      <ul class="nav-item navbar-nav navbar-right">
 
         <% if trainer_signed_in? %>
          <li><%= link_to current_trainer.email, edit_trainer_registration_path%></li>

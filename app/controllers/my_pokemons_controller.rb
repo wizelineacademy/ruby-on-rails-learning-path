@@ -9,13 +9,13 @@ class MyPokemonsController < ApplicationController
 
   # GET /my_pokemons/1 or /my_pokemons/1.json
   def show
-    @my_pokemon = MyPokemon.where(["name = ?" , params[:id]])  
+    @my_pokemon = current_trainer
 
   end
 
   # GET /my_pokemons/new
   def new
-    @my_pokemon = MyPokemon.new
+    @my_pokemon = Pokemon.new
   end
 
   # GET /my_pokemons/1/edit
@@ -24,17 +24,9 @@ class MyPokemonsController < ApplicationController
 
   # POST /my_pokemons or /my_pokemons.json
   def create
-    @my_pokemon = MyPokemon.new(allowed_params)
-
-    respond_to do |format|
-      if @my_pokemon.save
-        format.html { redirect_to @my_pokemon, notice: "My pokemon was successfully created." }
-        format.json { render :show, status: :created, location: @my_pokemon }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @my_pokemon.errors, status: :unprocessable_entity }
-      end
-    end
+    pokemon = Pokemon.find(params[:pokemon_id])
+    current_trainer.pokemons << pokemon
+    redirect_to pokemons_path, notice: "POKEMON #{pokemon.name.upcase} SAVED INTO YOUR FAVORITES."
   end
 
   # PATCH/PUT /my_pokemons/1 or /my_pokemons/1.json
@@ -52,17 +44,14 @@ class MyPokemonsController < ApplicationController
 
   # DELETE /my_pokemons/1 or /my_pokemons/1.json
   def destroy
-    @my_pokemon.destroy
-    respond_to do |format|
-      format.html { redirect_to my_pokemons_url, notice: "My pokemon was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    current_trainer.pokemons.delete(Pokemon.where("name = ?", params[:id]))
+    redirect_to pokemons_path, notice: "POKEMON #{params[:id].upcase} HAS BEEN DELETED FROM YOUR FAVORITES."  
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_my_pokemon
-      @my_pokemon = MyPokemon.where(["name = ?" , params[:id]])  
+      @my_pokemon = Pokemon.where(["name = ?" , params[:id]])  
     end
 
     # Only allow a list of trusted parameters through.
