@@ -1,2 +1,0 @@
-class MyPokemon < ApplicationRecord
-end

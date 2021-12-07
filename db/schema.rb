@@ -10,39 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_06_042755) do
+ActiveRecord::Schema.define(version: 2021_12_06_035103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "my_pokemons", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "name"
-    t.json "abilities"
-    t.integer "base_experience"
-    t.json "forms"
-    t.json "game_indices"
-    t.integer "height"
-    t.json "held_items"
-    t.integer "pokemon_api"
-    t.boolean "is_default"
-    t.json "location_area_encounters"
-    t.json "moves"
-    t.json "order"
-    t.json "past_types"
-    t.json "species"
-    t.json "sprites"
-    t.json "stats"
-    t.json "types"
-    t.integer "weight"
-    t.integer "trainer_id"
-  end
-
-  create_table "my_pokemons_trainers", id: false, force: :cascade do |t|
-    t.bigint "my_pokemon_id", null: false
-    t.bigint "trainer_id", null: false
-  end
 
   create_table "pokemons", force: :cascade do |t|
     t.string "name"
@@ -65,6 +36,11 @@ ActiveRecord::Schema.define(version: 2021_12_06_042755) do
     t.json "stats"
     t.json "types"
     t.integer "weight"
+  end
+
+  create_table "pokemons_trainers", id: false, force: :cascade do |t|
+    t.bigint "pokemon_id", null: false
+    t.bigint "trainer_id", null: false
   end
 
   create_table "trainers", force: :cascade do |t|
