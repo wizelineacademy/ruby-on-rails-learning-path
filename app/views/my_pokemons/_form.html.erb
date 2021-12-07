@@ -1,7 +1,7 @@
 <%= form_with(model: my_pokemon) do |form| %>
   <% if my_pokemon.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(my_pokemon.errors.count, "error") %> prohibited this my_pokemon from being saved:</h2>
+      <h2><%= pluralize(my_pokemon.errors.count, "error") %> prohibited this comment from being saved:</h2>
 
       <ul>
         <% my_pokemon.errors.each do |error| %>

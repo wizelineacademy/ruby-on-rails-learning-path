@@ -4,11 +4,12 @@ class MyPokemonsController < ApplicationController
 
   # GET /my_pokemons or /my_pokemons.json
   def index
-    @my_pokemons = MyPokemon.all
+    @my_pokemon = MyPokemon.all
   end
 
   # GET /my_pokemons/1 or /my_pokemons/1.json
   def show
+    @my_pokemon = MyPokemon.where(["name = ?" , params[:id]])  
 
   end
 
@@ -61,7 +62,7 @@ class MyPokemonsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_my_pokemon
-      @my_pokemon = MyPokemon.find(params[:id])
+      @my_pokemon = MyPokemon.where(["name = ?" , params[:id]])  
     end
 
     # Only allow a list of trusted parameters through.

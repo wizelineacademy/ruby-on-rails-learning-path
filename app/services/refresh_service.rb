@@ -28,7 +28,7 @@ class RefreshService
     private
     
     def api_pokemon_names
-        uri = 'https://pokeapi.co/api/v2/pokemon?limit=151&offset=0'
+        uri = 'https://pokeapi.co/api/v2/pokemon?limit=2000&offset=0'
         parsed_response = http_get(uri)
         parsed_response["results"].map {|api_pokemon| api_pokemon["name"]}
         

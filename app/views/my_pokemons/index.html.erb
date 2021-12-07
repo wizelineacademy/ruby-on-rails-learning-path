@@ -1,37 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<h1>My Pokemons</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @my_pokemons.each do |my_pokemon| %>
-          <tr>
-<td>
-<div class="card text-white bg-info" style="width: 100rem;">
-  <img class="card-img-top" src="<%=my_pokemon.sprites%>" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title"><%=my_pokemon.name%> </h5>
-    <p class="card-text"><%=my_pokemon.sprites%> </p>
+<h1>My Saved Pokemons</h1>
+<div class="card-group">
+ <%@my_pokemon.each do |poke|%>
+ <div class="row row-cols-1 row-cols-md-1 g-2">
+  <div class="col">
+  <div class="card" style="max-width: 200rem;"> 
+    <%= image_tag  "#{poke.sprites}" , style: 'height:100%;width:auto;'%> 
+    <div class="card-body">
+        <h5> <%= link_to "#{poke.name}", my_pokemon_path("#{poke.name}")%> </h5>
+      <p class="card-text"><small class="text-muted"> <%="SAVED AT: #{poke.updated_at}"%> </small></p>
+    </div>
   </div>
+     </div>
+  </div>
+<%end%>
 </div>
-</td>
-      <tr>
-        <td><%= link_to 'Show', my_pokemon %></td>
-        <td><%= link_to 'Edit', edit_my_pokemon_path(my_pokemon) %></td>
-        <td><%= link_to 'Destroy', my_pokemon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-        </tr>
-
-    <% end %>
-  </tbody>
-</table>
-
-<br>
 
 <%= link_to 'New My Pokemon', new_my_pokemon_path %>

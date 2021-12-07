@@ -1,14 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @my_pokemon.name %>
-</p>
+<div class="d-flex justify-content-center">
+<% @my_pokemon.each do |poke| %>
+ <div class="row row-cols-1 row-cols-md-1 g-2">
+  <div class="col">
+  <div class="card" style="max-width: 250rem;"> 
+    <%= image_tag  "#{poke.sprites}" , style: 'height:100%;width:auto;'%> 
+    <div class="card-body">
+        <h5> <%= link_to "#{poke.name}", my_pokemon_path("#{poke.name}")%> </h5>
+      <p class="card-text"><small class="text-muted"> <%="SAVED AT: #{poke.updated_at}"%> </small></p>
+    </div>
+  </div>
+     </div>
+  </div>
+<% end %>
+</div>
 
-<p>
-  <strong>Sprite:</strong>
-   <%= @my_pokemon.sprites %>
-</p>
 
 <%= link_to 'Edit', edit_my_pokemon_path(@my_pokemon) %> |
 <%= link_to 'Back', my_pokemons_path %>

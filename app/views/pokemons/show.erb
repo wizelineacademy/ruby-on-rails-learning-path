@@ -1,4 +1,15 @@
-<% @pokemon.each do |pokes| %>
-   <%= pokes.name %> <br/>
-   <%= image_tag "#{pokes.sprites["front_default"]}" %> <br/>
+<div class="d-flex justify-content-center">
+<% @pokemon.each do |poke| %>
+ <div class="row row-cols-1 row-cols-md-1 g-2">
+  <div class="col">
+  <div class="card" style="max-width: 250rem;"> 
+    <%= image_tag  "#{poke.sprites["front_default"]}" , style: 'height:100%;width:auto;'%> 
+    <div class="card-body">
+        <h5> <%= link_to "#{poke.name}", pokemon_path("#{poke.name}")%> </h5>
+      <p class="card-text"><small class="text-muted"> <%="SAVED AT: #{poke.updated_at}"%> </small></p>
+    </div>
+  </div>
+     </div>
+  </div>
 <% end %>
+</div>

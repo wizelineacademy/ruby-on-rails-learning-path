@@ -1,12 +1,12 @@
 # Action Plan
 
 - Add Pokemons Controller `/pokemons`
-  - `/pokemons` all records
-  - `/pokemons/:id` record details
+  - `/pokemons` all records  x
+  - `/pokemons/:id` record details x 
   - pull data on every request or pull 
 - Add MyPokemons Controller `/my-pokemons` [Rails Docs](https://guides.rubyonrails.org/association_basics.html#the-has-and-belongs-to-many-association)
   - `/my-pokemons` Add to user favorites
-  - Display user favorites records
+  - Display user favorites records x
    ```
   # User.rb
   has_and_belongs_to_many :pokemons
@@ -15,8 +15,8 @@
   has_and_belongs_to_many :users
   ```
 
-- Add Pokemon model
-- Add users usession handling with devise
+- Add Pokemon model x
+- Add users usession handling with devise x
 - Add pokemon pagination
 - Add my-pokemon pagination
 - Implement design patterns
@@ -32,7 +32,7 @@
     - Save data from the api to the db x
 - Normalize pokemon data
 - Add tests Rspec
-- Add Form to Add/Edit pokemons
+- Add Form to Add/Edit pokemons x
 - Add validations
 
 
