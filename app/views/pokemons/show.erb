@@ -1,13 +1,13 @@
 
 
   <h1 class="d-flex justify-content-center"> <%=params[:id].upcase%> </h1>
-    <div class="card-group">
+
       <%@pokemon.each do |poke|%>
         <div class="row row-cols-1 row-cols-md-1 g-2">
           <div class="col">
             <div class="card-group">
               <div class="card"> 
-                <div class="card img-fluid">
+                <div class="card img-fluid mx-auto d-block">
                   <%= image_tag "/background/#{poke.types[0]['type']['name']}.jpg", style: 'height:400px;width:400px'%> 
                     <div class="card-img-overlay">
                       <%= image_tag  "#{poke.sprites["front_default"]}", style: 'height:300px;width:300px', class: "mx-auto d-block"%> 
@@ -32,44 +32,151 @@
               </div>
             </div>
           </div>
-        </div>
-        <div>
-          <%poke.abilities.each do |ability|%>
-        <h1><%=ability["ability"]["name"]%></h1>
-        <%end%>  <br/>
-          <h1><%=poke.base_experience%></h1><br/>
-            <h1><%=poke.forms%></h1><br/>
-          <h1><%=poke.height%></h1><br/>
-           <h1><%=poke.held_items%></h1><br/>
-           <h1><%=poke.pokemon_api%></h1><br/>
-           <h1><%=poke.is_default%></h1><br/>               
-          <h1><%=poke.location_area_encounters%></h1><br/>
-                                    
-        <%poke.moves.each do |move|%>
-        <h1><%=move["move"]["name"]%></h1>
-        <%end%>         <br/>        
-                                     <h1><%=poke.name%></h1><br/>
-                                      <h1><%=poke.order%></h1><br/>
-                                       <h1><%=poke.past_types%></h1><br/>
-                                        <h1><%=poke.species%></h1><br/>
-                            <%poke.stats.each do |stat|%>
-        <h1><%= stat["stat"]["name"]%></h1> <h1><%= stat["base_stat"]%></h1>
-        <%end%>  <br/>
-                      
+        
+      
 
-        <%poke.types.each do |type|%>
-        <h1><%=type["type"]["name"]%></h1>
-        <%end%>  <br/>
-                   
-                                         <h1><%=poke.weight%></h1><br/>
-
-                 <%sprites = poke.sprites.extract!(*["front_default", "back_default"]).values%>
+                                           <div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">Sprites</div>
+  <div class="card-body text-dark">
+    <h5 class="card-title">
+        <%sprites = poke.sprites.extract!(*["back_default", "front_default"]).values%>
                  <%sprites.each do |sprite|%>
                  <%=image_tag sprite%>
                  <%end%>
-       
-    
-     
+  </div>
+   </div>
+             <div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">Abilities</div>
+  <div class="card-body text-dark">
+    <ul class="list-group list-group-flush">
+  <%poke.abilities.each do |ability|%>
+         <li class="list-group-item"><%=ability["ability"]["name"]%></li>
+        <%end%> 
+  </ul>
+  </div>
+</div>
+                <div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">Base Experience</div>
+  <div class="card-body text-dark">
+    <h5 class="card-title"><%=poke.base_experience%></h5>
+  </div>
+</div>
+                          <div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">Pokemon Forms</div>
+  <div class="card-body text-dark">
+          <ul class="list-group list-group-flush">
+  <%poke.forms.each do |form|%>
+         <li class="list-group-item"><%=form["name"]  %></li>
+        <%end%> 
+  </ul>
+  </div>
+</div>
+            
+                   <div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">Height</div>
+  <div class="card-body text-dark">
+    <h5 class="card-title"><%=poke.height%></h5>
+  </div>
+</div>
+      
+                    <div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">Held Items</div>
+  <div class="card-body text-dark">
+        <ul class="list-group list-group-flush">
+  <%poke.held_items.each do |held|%>
+         <li class="list-group-item"><%=held["item"]["name"]  %></li>
+        <%end%> 
+  </ul>
+  </div>
+</div>
+ 
+                  <div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">Pokemon ID</div>
+  <div class="card-body text-dark">
+    <h5 class="card-title"><%=poke.pokemon_api%></h5>
+  </div>
+</div>
+
+                 <div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">Is Default</div>
+  <div class="card-body text-dark">
+    <h5 class="card-title"><%=poke.is_default%></h5>
+  </div>
+</div>
+
+                          <div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">Location Area Encounters</div>
+  <div class="card-body text-dark">
+    <h5 class="card-title"><%=poke.location_area_encounters%></h5>
+  </div>
+</div> 
+           
+
+                                <div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">Pokemon Name</div>
+  <div class="card-body text-dark">
+    <h5 class="card-title"><%=poke.name%></h5>
+  </div>
+</div> 
+                        <div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">Pokemon Order</div>
+  <div class="card-body text-dark">
+    <h5 class="card-title"><%=poke.order%></h5>
+  </div>
+</div> 
+
+                        <div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">Past Types</div>
+  <div class="card-body text-dark">
+    <h5 class="card-title"><%=poke.past_types%></h5>
+  </div>
+</div> 
+
+                        <div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">Species</div>
+  <div class="card-body text-dark">
+    <h5 class="card-title"><%=poke.species["name"]%></h5>
+  </div>
+</div> 
+
+                                      <div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">Stats</div>
+  <div class="card-body text-dark">
+      <ul class="list-group list-group-flush">
+  <%poke.stats.each do |stat|%>
+         <li class="list-group-item"><%=stat["stat"]["name"] + ": " + stat["base_stat"].to_s  %></li>
+        <%end%> 
+  </ul>
+  </div>
+</div>  
+
+
+                                   <div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">Types</div>
+  <div class="card-body text-dark">
+    <h5 class="card-title"><%poke.types.each do |type|%>
+        <%=type["type"]["name"]%>
+        <%end%></h5>
+  </div>
+</div>  
+                 
+                                    <div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">Weight</div>
+  <div class="card-body text-dark">
+    <h5 class="card-title"> <%=poke.weight%> </h5>
+  </div>
+</div>                       
+
+                                     <div class="card border-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">Moves</div>
+  <div class="card-body text-dark">
+    <ul class="list-group list-group-flush">
+  <%poke.moves.each do |move|%>
+         <li class="list-group-item"><%=move["move"]["name"]%></li>
+        <%end%> 
+  </ul>
+  </div>
+ </div>       
         </div>
       <%end%>
     </div>
