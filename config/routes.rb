@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'auth/logout'
   get 'pokemons/index'
   get 'pokemons/show'
+  get 'pokemons/new'
   get 'pokemons/edit'
   get 'pokemons/delete'
   root :to => 'pokemons#index'

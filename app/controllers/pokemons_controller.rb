@@ -40,6 +40,14 @@ class PokemonsController < ApplicationController
   end
 
   def delete
+    @pokemon = Pokemon.find(params[:id])
+  end
+
+  def destroy
+    @pokemon = Pokemon.find(params[:id])
+    @pokemon.destroy
+    flash[:notice] = "Pokemon destroyed successfully."
+    redirect_to(pokemons_path)
   end
 
   private
@@ -48,5 +56,3 @@ class PokemonsController < ApplicationController
     params.require(:pokemon).permit(:name, :height, :weight)
   end
 end
-
-

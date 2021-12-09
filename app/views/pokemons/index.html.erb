@@ -1,4 +1,6 @@
 <h1>Pokemons</h1>
+
+<%= link_to("Create New", pokemons_new_path) %>
 <table width="100%" cellspacing="0" cellpadding="0" border="1">
   <tr>
     <th>Name</th>
@@ -29,7 +31,10 @@
         <% end %>
       </ul>
     </td>
-    <td><%= link_to("Edit", edit_pokemon_path(pokemon), :class => 'action edit') %></td>
+    <td>
+    <%= link_to("Edit", edit_pokemon_path(pokemon), :class => 'action edit') %> |
+    <%= link_to("Delete", delete_pokemon_path(pokemon), :class => 'action delete') %>
+    </td>
   </tr>
   <% end %>
 </table>
