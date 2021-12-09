@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Challenge</title>
+    <title><%= @page_titl ? "#{@page_title}" : "Pokemons" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,12 @@
   </head>
 
   <body>
+    <% if !session[:email].blank? %>
+      <div>
+        You are logged in as: <%= session[:email]%>
+        [ <%= link_to("Log out", auth_logout_path) %> ]
+      </div>
+    <% end %>
     <% if !flash[:notice].blank? %>
       <div class="notice">
         <%= flash[:notice] %>
