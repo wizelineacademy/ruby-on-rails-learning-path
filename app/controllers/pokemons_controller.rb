@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'net/http'
-require 'json'
 # Class to show ALL pokemons from database, also show individual
 class PokemonsController < ApplicationController
   before_action :authenticate_trainer!

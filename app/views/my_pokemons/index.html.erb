@@ -1,29 +1,31 @@
-  <h1 class="d-flex justify-content-center"> My Saved Pokemons</h1>
-    <div class="card-group">
-      <%@my_pokemons.each do |poke|%>
-        <div class="row row-cols-1 row-cols-md-1 g-2">
-          <div class="col">
-            <div class="card-group">
-              <div class="card"> 
-                <div class="card img-fluid">
-                  <%= image_tag "/background/#{poke.types[0]['type']['name']}.jpg", style: 'height:400px;width:400px'%> 
-                    <div class="card-img-overlay">
-                      <%= image_tag  "#{poke.sprites["front_default"]}", style: 'height:300px;width:300px', class: "mx-auto d-block"%> 
-                    </div>
-                </div>
-                <div class="card-body">
-                  <h5 class="d-flex justify-content-center"> <%= link_to "#{poke.name.upcase}", pokemon_path("#{poke.name}")%> </h5>
-                    <%= button_to "REMOVE FROM FAVORITES ☺", my_pokemon_path(poke.name), method: :delete , class: "mx-auto d-block"%>
-                    <div class="d-flex justify-content-center">
-                      <%poke.types.each do |type|%>
-                        <%= image_tag  "/types/#{type["type"]["name"]}.png"%> 
-                      <%end%>
-                    </div><br/>
-                      <p class="card-text d-flex justify-content-center"><small class="text-muted"> <%="SAVED AT: #{poke.updated_at}"%> </small></p>
-                </div>
+  
+<h1 class="d-flex justify-content-center"> My Saved Pokemons</h1>
+<div class="card-group">
+  <%@my_pokemons.each do |poke|%>
+    <div class="row row-cols-1 row-cols-md-1 g-2">
+      <div class="col">
+        <div class="card-group">
+          <div class="card">
+            <div class="card img-fluid">
+              <%= image_tag "/background/#{poke.types[0]['type']['name']}.jpg", style: 'height:400px;width:400px'%>
+              <div class="card-img-overlay">
+                <%= image_tag  "#{poke.sprites["front_default"]}", style: 'height:300px;width:300px', class: "mx-auto d-block"%>
               </div>
+            </div>
+            <div class="card-body">
+              <h5 class="d-flex justify-content-center"> <%= link_to "#{poke.name.upcase}", pokemon_path("#{poke.name}")%> </h5>
+              <%= button_to "REMOVE FROM FAVORITES ☺", my_pokemon_path(poke.name), method: :delete , class: "mx-auto d-block"%>
+              <div class="d-flex justify-content-center">
+                <%poke.types.each do |type|%>
+                  <%= image_tag  "/types/#{type["type"]["name"]}.png"%>
+                <%end%>
+              </div>
+              <br/>
+              <p class="card-text d-flex justify-content-center"><small class="text-muted"> <%="SAVED AT: #{poke.updated_at}"%> </small></p>
             </div>
           </div>
         </div>
-      <%end%>
+      </div>
     </div>
+  <%end%>
+</div>

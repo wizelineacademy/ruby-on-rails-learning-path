@@ -14,3 +14,18 @@
  *= require_self
  *= require bootstrap
  */
+
+ @font-face {
+    font-family: 'Pokemon';
+    src: url('PokemonHollow.ttf');
+ }
+
+ @font-face {
+    font-family: 'JetBrainsMono';
+    src: url('JetBrainsMono-Medium.ttf');
+ }
+
+ h5{
+    background-color: white;
+    font-family: "JetBrainsMono";
+ }
