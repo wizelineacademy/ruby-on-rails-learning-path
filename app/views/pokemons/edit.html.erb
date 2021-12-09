@@ -1,0 +1,8 @@
+<%= link_to("<< Back to List", pokemons_path, :class => 'back-link') %>
+
+<%= form_for(@pokemon, :url => pokemon_path(@pokemon)) do |f| %>
+  <%= render(:partial => 'form', :locals => {:f => f}) %>
+  <div class="form-buttons">
+    <%= f.submit("Update Pokemon") %>
+  </div>
+<% end %>

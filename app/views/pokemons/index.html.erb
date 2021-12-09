@@ -6,28 +6,30 @@
     <th>Weight</th>
     <th>Abilities</th>
     <th>Stats</th>
+    <th>Actions</th>
   </tr>
   <% @pokemons.each do |pokemon| %>
   <tr>
     <td>
-      <%= link_to(pokemon.name.capitalize, edit_pokemon_path(pokemon), :class => 'action edit') %>
+      <%= link_to(pokemon.name.capitalize, pokemon_path(pokemon), :class => 'action edit') %>
     </td>
     <td><%= pokemon.height %></td>
     <td><%= pokemon.weight %></td>
     <td>
       <ul>
         <% pokemon.abilities.each do |ability| %>
-        <li><%= ability.name.capitalize %></li>
+        <li><%= clean_tag(ability.name) %></li>
         <% end %>
       </ul>
     </td>
         <td>
       <ul>
         <% pokemon.stats.each do |stat| %>
-        <li><%= stat.name.capitalize %></li>
+        <li><%= clean_tag(stat.name) %></li>
         <% end %>
       </ul>
     </td>
+    <td><%= link_to("Edit", edit_pokemon_path(pokemon), :class => 'action edit') %></td>
   </tr>
   <% end %>
 </table>

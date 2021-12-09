@@ -1,0 +1,16 @@
+<%= link_to("<< Back to List", pokemons_path, :class => 'back-link') %>
+
+<table summary="Pokemon form fields">
+  <tr>
+    <th>Name</th>
+    <td><%= @pokemon.name %></td>
+  </tr>
+  <tr>
+    <th>Height</th>
+    <td><%= @pokemon.height %></td>
+  </tr>
+  <tr>
+    <th>Weight</th>
+    <td><%= @pokemon.weight %></td>
+  </tr>
+</table>
