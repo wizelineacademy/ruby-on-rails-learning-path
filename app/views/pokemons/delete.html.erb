@@ -6,7 +6,7 @@
   <h2>Delete Pokemon</h2>
 
   <%= form_for(@pokemon, :url => pokemon_path(@pokemon), :method => 'delete') do |f| %>
-    <p>Are you sure you want to permanently delete this page?</p>
+    <p>Are you sure you want to permanently delete this pokemon?</p>
     <p class="reference-name"><%= f.object.name %></p>
     <div class="form-buttons">
       <%= f.submit("Delete Pokemon") %>
