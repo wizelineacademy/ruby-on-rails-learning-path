@@ -1,0 +1,36 @@
+<%= link_to("<< Back to List", pokemons_path, :class => 'back-link') %>
+
+<table summary="Pokemon form fields">
+  <tr>
+    <th>Name</th>
+    <td><%= @pokemon.name %></td>
+  </tr>
+  <tr>
+    <th>Height</th>
+    <td><%= @pokemon.height %></td>
+  </tr>
+  <tr>
+    <th>Weight</th>
+    <td><%= @pokemon.weight %></td>
+  </tr>
+  <tr>
+    <th>Abilities</th>
+    <td>
+      <ul>
+        <% @pokemon.abilities.each do |ability| %>
+        <li><%= clean_tag(ability.name) %></li>
+        <% end %>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Stats</th>
+    <td>
+      <ul>
+        <% @pokemon.stats.each do |stat| %>
+        <li><%= clean_tag(stat.name) %></li>
+        <% end %>
+      </ul>
+    </td>
+  </tr>
+</table>

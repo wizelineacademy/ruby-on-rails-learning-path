@@ -1,0 +1,40 @@
+<h1>Pokemons</h1>
+
+<%= link_to("Create New", pokemons_new_path) %>
+<table width="100%" cellspacing="0" cellpadding="0" border="1">
+  <tr>
+    <th>Name</th>
+    <th>Height</th>
+    <th>Weight</th>
+    <th>Abilities</th>
+    <th>Stats</th>
+    <th>Actions</th>
+  </tr>
+  <% @pokemons.each do |pokemon| %>
+  <tr>
+    <td>
+      <%= link_to(pokemon.name.capitalize, pokemon_path(pokemon), :class => 'action edit') %>
+    </td>
+    <td><%= pokemon.height %></td>
+    <td><%= pokemon.weight %></td>
+    <td>
+      <ul>
+        <% pokemon.abilities.each do |ability| %>
+        <li><%= clean_tag(ability.name) %></li>
+        <% end %>
+      </ul>
+    </td>
+        <td>
+      <ul>
+        <% pokemon.stats.each do |stat| %>
+        <li><%= clean_tag(stat.name) %></li>
+        <% end %>
+      </ul>
+    </td>
+    <td>
+    <%= link_to("Edit", edit_pokemon_path(pokemon), :class => 'action edit') %> |
+    <%= link_to("Delete", delete_pokemon_path(pokemon), :class => 'action delete') %>
+    </td>
+  </tr>
+  <% end %>
+</table>

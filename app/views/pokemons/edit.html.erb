@@ -1,0 +1,22 @@
+<%= link_to("<< Back to List", pokemons_path, :class => 'back-link') %>
+
+<%= form_for(@pokemon, :url => pokemon_path(@pokemon)) do |f| %>
+  <%= render(:partial => 'form', :locals => {:f => f}) %>
+    <label>Abilities</label>
+  <ul>
+  <% @abilities.each do |ability| %>
+  <% is_checked = @abilities_ids.include? ability.id %>
+  <li><%= f.check_box :abilities, {:multiple => true, :checked => is_checked }, ability.id, nil %><%= clean_tag(ability.name) %></li>
+  <% end %>
+  </ul>
+  <label>Stats</label>
+  <ul>
+  <% @stats.each do |stat| %>
+  <% is_checked = @stats_ids.include? stat.id %>
+  <li><%= f.check_box :stats, {:multiple => true, :checked => is_checked }, stat.id, nil %><%= clean_tag(stat.name) %></li>
+  <% end %>
+  </ul>
+  <div class="form-buttons">
+    <%= f.submit("Update Pokemon") %>
+  </div>
+<% end %>
