@@ -1,0 +1,10 @@
+AllCops:
+  Exclude:
+    - ‘db/migrate/*’
+    - ‘db/schema.rb’
+    - ‘db/**’
+    - ‘Gemfile’
+    - ‘bin/**’
+    - ‘bin/bundle’
+    - ‘client/**/*’
+    - ‘config/**/*’
