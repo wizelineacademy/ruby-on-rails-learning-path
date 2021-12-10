@@ -51,5 +51,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'bootstrap', '~> 5.0.1'
 gem 'devise', '~> 4.8'
-gem 'rspec', '~> 3.0'
+gem 'factory_bot_rails', '~> 6.2'
+gem 'rspec-rails', '~> 5.0', '>= 5.0.2'
 gem 'rubocop', '~> 1.23'
