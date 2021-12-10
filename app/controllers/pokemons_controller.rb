@@ -6,7 +6,7 @@ class PokemonsController < ApplicationController
 
   def index
     if params[:search]
-      @pokemons = Pokemon.where(['name = ?', params[:search]])
+      @pokemons = Pokemon.where('name LIKE ?', "%#{params[:search]}%")
       render file: "#{Rails.root}/public/404.html" if @pokemons.empty?
     else
       @pokemons = Pokemon.all
