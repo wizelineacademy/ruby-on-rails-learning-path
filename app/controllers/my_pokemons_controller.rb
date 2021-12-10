@@ -8,16 +8,22 @@ class MyPokemonsController < ApplicationController
   # GET /my_pokemons or /my_pokemons.json
   def index
     @my_pokemons = current_trainer.pokemons
+  rescue StandardError => e
+    print e
   end
 
   # GET /my_pokemons/1 or /my_pokemons/1.json
   def show
     @my_pokemon = current_trainer
+  rescue StandardError => e
+    print e
   end
 
   # GET /my_pokemons/new
   def new
     @my_pokemon = Pokemon.new
+  rescue StandardError => e
+    print e
   end
 
   # GET /my_pokemons/1/edit

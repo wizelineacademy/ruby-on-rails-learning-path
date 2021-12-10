@@ -5,11 +5,21 @@ class PokemonsController < ApplicationController
   before_action :authenticate_trainer!
 
   def index
-    @pokemons = Pokemon.all
+    if params[:search]
+      @pokemons = Pokemon.where(['name = ?', params[:search]])
+      render file: "#{Rails.root}/public/404.html" if @pokemons.empty?
+    else
+      @pokemons = Pokemon.all
+    end
+  rescue StandardError => e
+    print e
   end
 
   def show
     @pokemon = Pokemon.where(['name = ?', params[:id]])
+    render file: "#{Rails.root}/public/404.html" if @pokemon.empty?
+  rescue ActiveRecord::RecordNotFound => e
+    print e
   end
 
   def new; end

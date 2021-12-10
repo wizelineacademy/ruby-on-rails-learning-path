@@ -9,10 +9,10 @@
           <a class="nav-link" href="/my_pokemons">My Saved Pokemons</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit" >Search</button>
-      </form>
+<%= form_tag(pokemons_path, method: 'get') do %>
+      <%= text_field_tag(:search, params[:search]) %>
+      <%= submit_tag("Search", name: nil) %>
+<% end %>
       <ul class="nav-item navbar-nav navbar-right">
         <% if trainer_signed_in? %>
           <li><%= link_to current_trainer.email, edit_trainer_registration_path, class: "nav-link"%></li>
