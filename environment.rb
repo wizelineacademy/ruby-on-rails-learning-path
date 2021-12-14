@@ -45,7 +45,7 @@ module Environment
         @status = ["paused", "aborted", "failed", "accomplished"]
         @status.each do |state|
             define_method("set_mission_to_#{state}") do |name|
-                @missions[name][:status] = state.to_sym
+                @missions[name][:status] = state
             end
         end
 
@@ -53,18 +53,18 @@ module Environment
 
     class Human
         attr_accessor :id, :name, :personal_data, :professional_data
-
+        
         def initialize(name)
             @id = object_id,
             @name = name,
-            @personal_data = Hash.new,
-            @professional_data = Hash.new
+            @personal_data = {},
+            @professional_data = {}
         end
 
-        @data = ["personal", "professional"]
+
+        @data = ["personal_data", "professional_data"]
         @data.each do |type|
-        
-            define_method("set_#{type}_data") do |args|
+            define_method("set_#{type}") do |args|
                 instance_variable_set("@#{type}", args)
             end
 
@@ -73,23 +73,23 @@ module Environment
     end
 
     class Worker < Human
+  
         attr_accessor :standard_shift, :extra_shift
+        
+        @standard_shift = {
+            id: object_id,
+            hours: 8,
+            payment: 8,
+            facility: nil,
+            status:  nil
+        }
 
-        def initialize
-            @standard_shift = {
-                id: object_id,
-                hours: 8,
-                payment: 8,
-                facility: nil,
-                status:  nil
-            },
-            @extra_shift = {
-                id: object_id,
-                hours: 0,
-                payment: 0.0,
-                facility: nil,
-                status: nil
-            }
-        end
+        @extra_shift = {
+            id: object_id,
+            hours: 0,
+            payment: 0.0,
+            facility: nil,
+            status: nil
+        }
     end
 end
