@@ -6,7 +6,7 @@ module Environment
             @packs = { 
                 :simple_transportation_pack => {
                     :intelligence => [:cellphone],
-                    :items => [:mediapack, :chevy_versa]
+                    :items => [:medipack, :chevy_versa]
                 },
                 :standard_transportation_pack => {
                     :intelligence => [:cellphone, :antenna],
