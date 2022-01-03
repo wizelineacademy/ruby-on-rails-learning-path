@@ -45,25 +45,20 @@ Nice to have:
 
 To get started, follow these steps:
 
-1. Fork this project
+1. [Fork this project](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
 2. Commit periodically
 3. Have fun!
 
 ## Deliverables
 Please take this challenge seriously and try to make progress constantly, we will be providing feedback so if you are struggling with something, contact the mentors and peers to get help on time. Feel free to use the slack channel available.
 
-## First Deliverable (due end week 2)
-Based on the self-study material and mentorship covered until this deliverable
+Based on the self-study material is expected to have at the end of the modulo 2
 
 - Runnable application
 - Database model definitions
 - Seeds to populate DB with custom pokemons
 - Way to get the data from Api and push it to Database
 - Tests of the current implementation
-
-## Second Deliverable (due end week 3)
-Based on the self-study material and mentorship covered until this deliverable
-
 - Dashboard to see all pokemons
 - Form to create/edit pokemons
 - Database and model validations
@@ -75,6 +70,6 @@ Based on the self-study material and mentorship covered until this deliverable
 
 For submitting your work, you should follow these steps:
 
-1. Create a pull request with your code, targeting the main branch of your fork, make sure your PRs name follows this name convention "#{your-name}--#{number of deliverable}" ex: "ivanreyes--practice1"
-2. Make sure you are adding Apostat23, hivanreyes, david-ojeda-w, Rikard189 as reviewers
+1. Create a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) with your code, targeting the main branch of your fork, make sure your PRs name includes your name to easily identify them
+2. Make sure you are adding Apostat23, hivanreyes, Rikard189 as reviewers and post your link in the slack channel
 3. Stay tune for feedback
