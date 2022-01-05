@@ -1,14 +1,15 @@
 <div class="pokemons index">
   <h2>Pokemons</h2>
 
-  <%= link_to("Add New Pokemon", '#', :class => 'action new') %>
+  <%= link_to("Add New Pokemon", new_pokemon_path, :class => 'action new') %>
 
   <table class="listing" summary="Subject list">
     <tr class="header">
-      <th>#</th>
+      <th>PokemonID</th>
       <th>Pokemon</th>
       <th>Weight</th>
-      <th>Height</th> 
+      <th>Height</th>
+      <th>Base Experience</th>
 
       <%
 =begin%>
@@ -23,6 +24,7 @@
       <td><%= pokemon.name %></td>
       <td><%= pokemon.weight %></td>
       <td><%= pokemon.height %></td>
+      <td><%= pokemon.base_experience %></td>
       <%
 =begin%>
  <td class="center"><%= pokemon.abilities.size %></td>
@@ -31,8 +33,8 @@
 =end%>
       <td class="actions">
         <%= link_to("Show", pokemon_path(pokemon), :class => 'action show') %>
-        <%= link_to("Edit", '#', :class => 'action edit') %>
-        <%= link_to("Delete", '#', :class => 'action delete') %>
+        <%= link_to("Edit", edit_pokemon_path(pokemon), :class => 'action edit') %>
+        <%= link_to("Delete", delete_pokemon_path(pokemon), :class => 'action delete') %>
       </td>
     </tr>
     <% end %>

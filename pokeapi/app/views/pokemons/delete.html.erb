@@ -1,2 +1,17 @@
-<h1>Pokemons#delete</h1>
-<p>Find me in app/views/pokemons/delete.html.erb</p>
+<%= link_to("<< Back to List", pokemons_path, :class => 'back-link') %>
+
+<div class="pokemons delete">
+  <h2>Delete pokemon</h2>
+
+  <%= form_for(@pokemon, :method => 'delete') do |f| %>
+
+    <p>Are you sure you want to permanently delete this pokemon?</p>
+
+    <p class="reference-name"><%= f.object.name %></p>
+
+    <div class="form-buttons">
+      <%= f.submit("Delete pokemon") %>
+    </div>
+
+  <% end %>
+</div>
