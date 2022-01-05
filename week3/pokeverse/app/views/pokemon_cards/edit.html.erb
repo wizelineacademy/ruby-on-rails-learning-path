@@ -1,0 +1,17 @@
+<% @page_title = "Edit Pokemon Card" %>
+
+<%= link_to("<< Back to List", pokemon_cards_path, :class => 'back-link') %>
+
+<div class="pokemon-card edit">
+  <h2>Update Pokemon Card</h2>
+
+  <%= form_for(@pokemon_card) do |f| %>
+
+    <%= render(:partial => 'form', :locals => { :f => f }) %>
+
+    <div class="form-buttons">
+      <%= f.submit("Update Pokemon Card") %>
+    </div>
+
+  <% end %>
+</div>

@@ -1,0 +1,60 @@
+<% @page_title = "Pokemon Card" %>
+
+<div class="pokemon-card show">
+  <h2><%= @pokemon_card.pokemon.name.capitalize %></h2>
+
+  <%= link_to("<< Back to List", pokemon_cards_path, :class => 'back-link') %>
+
+  <table summary="Page detail view">
+    <tr>
+      <th>Image</th>
+      <td><%= image_tag(@pokemon_card.pokemon.image_url) %></td>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <td><%= @pokemon_card.pokemon.name.capitalize %></td>
+    </tr>
+    <tr>
+      <th>Defense</th>
+      <td><%= @pokemon_card.defense %></td>
+    </tr>
+  </table>
+  <h3>Card Moves</h3>
+  <table class="listing" summary="Card Moves">
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Cost</th>
+      <th>Description</th>
+    </tr>
+    <% @pokemon_card.pokemon_card_moves.each do |card_move| %>
+    <tr>
+      <% if card_move.is_ability %>
+      <td><%= card_move.move.name.capitalize %></td>
+      <td><%= "" %></td>
+      <td><%= "" %></td>
+      <td><%= card_move.description %></td>
+      <% else %>
+      <td><%= card_move.move.name.capitalize %></td>
+      <td><%= type_tag(card_move.type.color) %></td>
+      <td><%= card_move.cost %></td>
+      <td><%= card_move.description %></td>
+      <% end %>
+    </tr>
+    <% end %>
+  </table>
+  <h3>Card Tokens</h3>
+  <table class="listing" summary="Card Tokens">
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+    <% @pokemon_card.pokemon_card_tokens.each do |card_token| %>
+    <tr>
+      <td><%= type_tag(card_token.type.color) %></td>
+      <td><%= card_token.type.description %></td>
+    </tr>
+    <% end %>
+  </table>
+
+</div>

@@ -1,0 +1,24 @@
+<% @page_title = "Delete Pokemon Card" %>
+
+<%= link_to("<< Back to List", pokemon_cards_path, :class => 'back-link') %>
+
+<div class="pokemon-card delete">
+  <h2>Delete Pokemon Card</h2>
+
+  <%= form_for(@pokemon_card, :url => pokemon_card_path(@pokemon_card), :method => 'delete') do |f| %>
+
+    <p>Are you sure you want to permanently delete this pokemon card?</p>
+
+    <h3><%= f.object.pokemon.name.capitalize %></h3>
+    <p class="reference-name"><b>Defense: </b><%= f.object.defense %></p>
+    <h4>Moves</h4>
+    <% f.object.pokemon_card_moves.each do |pcm| %>
+        <p class="reference-name"><%= "#{pcm.move.name.capitalize}: #{pcm.description}" %></p>
+    <% end %>
+
+    <div class="form-buttons">
+      <%= f.submit("Delete Pokemon Card") %>
+    </div>
+
+  <% end %>
+</div>

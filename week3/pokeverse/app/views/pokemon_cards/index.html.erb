@@ -1,0 +1,29 @@
+<% @page_title = "Pokemon Cards" %>
+
+<div class="pokemon-cards index">
+  <h2>Manage Pokemon Cards</h2>
+
+  <%= link_to('Add New Pokemon Cards', new_pokemon_card_path, :class => 'action new') %>
+
+  <table class="listing" summary="Pokemon Cards list">
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Defense</th>
+      <th>Actions</th>
+    </tr>
+    <% @pokemon_cards.each do |card| %>
+    <tr>
+      <td><%= image_tag(card.pokemon.image_url) %></td>
+      <td><%= card.pokemon.name.capitalize %></td>
+      <td><%= card.defense %></td>
+      <td class="actions">
+        <%= link_to('Show', pokemon_card_path(card), :class => 'action show') %>
+        <%= link_to('Edit', edit_pokemon_card_path(card), :class => 'action show') %>
+        <%= link_to('Delete', delete_pokemon_card_path(card), :class => 'action delete') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+
+</div>
