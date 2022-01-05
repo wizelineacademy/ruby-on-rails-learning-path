@@ -1,2 +1,40 @@
-<h1>Pokemons#index</h1>
-<p>Find me in app/views/pokemons/index.html.erb</p>
+<div class="pokemons index">
+  <h2>Pokemons</h2>
+
+  <%= link_to("Add New Pokemon", '#', :class => 'action new') %>
+
+  <table class="listing" summary="Subject list">
+    <tr class="header">
+      <th>#</th>
+      <th>Pokemon</th>
+      <th>Weight</th>
+      <th>Height</th> 
+
+      <%
+=begin%>
+ <th>Abilities</th>
+      <th>Stats</th> 
+<%
+=end%>
+    </tr>
+    <% @pokemons.each do |pokemon| %>
+    <tr>
+      <td><%= pokemon.pokemon_id %></td>
+      <td><%= pokemon.name %></td>
+      <td><%= pokemon.weight %></td>
+      <td><%= pokemon.height %></td>
+      <%
+=begin%>
+ <td class="center"><%= pokemon.abilities.size %></td>
+      <td class="center"><%= pokemon.stats.size %></td> 
+<%
+=end%>
+      <td class="actions">
+        <%= link_to("Show", pokemon_path(pokemon), :class => 'action show') %>
+        <%= link_to("Edit", '#', :class => 'action edit') %>
+        <%= link_to("Delete", '#', :class => 'action delete') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>

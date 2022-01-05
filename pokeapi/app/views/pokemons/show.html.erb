@@ -1,2 +1,21 @@
-<h1>Pokemons#show</h1>
-<p>Find me in app/views/pokemons/show.html.erb</p>
+<%= link_to("<< Back to List", pokemons_path, :class => 'back-link') %>
+
+<div class="pokemons show">
+  <h2>Show Pokemon</h2>
+
+  <table summary="Pokemon detail view">
+    <tr>
+      <th>Name</th>
+      <td><%= @pokemon.name %></td>
+    </tr>
+    <tr>
+      <th>Weight</th>
+      <td><%= @pokemon.weight %></td>
+    </tr>
+    <tr>
+      <th>Height</th>
+      <td><%= @pokemon.height %></td>
+    </tr>
+  </table>
+
+</div>

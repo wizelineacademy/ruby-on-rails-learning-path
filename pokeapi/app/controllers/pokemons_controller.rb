@@ -1,8 +1,10 @@
 class PokemonsController < ApplicationController
   def index
+    @pokemons = Pokemon.sorted
   end
 
   def show
+    @pokemon = Pokemon.find(params[:id])
   end
 
   def new
