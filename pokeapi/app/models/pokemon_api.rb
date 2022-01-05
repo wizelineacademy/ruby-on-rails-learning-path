@@ -2,7 +2,7 @@ class PokemonApi
     def self.to_json
       pokemons = []
   
-        response = HTTParty.get("https://pokeapi.co/api/v2/pokemon?limit=2&offset=0")
+        response = HTTParty.get("https://pokeapi.co/api/v2/pokemon?limit=20&offset=0")
         response = JSON.parse(response.body)
         response.each do |k, value|
             if k == "results"
@@ -21,29 +21,88 @@ class PokemonApi
             puts poke['forms'][0]['name']
             puts poke['weight']
             puts poke['height']
-            abilities = poke['abilities']
-            stats = poke['stats']
-            pokemon = Pokemon.create(
+            pokeinserted = Pokemon.create(
                 name: poke['forms'][0]['name'],
                 base_experience: poke['base_experience'],
                 height: poke['height'],
                 weight: poke['weight'],
-                img: poke['sprites']['other']['dream_world']["front_default"]
+                img: poke['sprites']['other']['dream_world']["front_default"],
+                pokemon_id: poke['id']
             )
+            abilities = poke['abilities']
+            stats = poke['stats']
             abilities.map do |ability|
-                puts ability
-                puts ability['ability']['name']
                 response = HTTParty.get(ability['ability']["url"])
-                puts response["id"]
-                poke=Pokemon.where(name: poke['forms'][0]['name'])
+                abilityinserted=Ability.create(
+                    name: ability['ability']['name'],
+                    ability_id: response["id"]
+                )
+                puts pokeinserted
+                puts abilityinserted
+                newpa = PokemonAbility.new(
+                    ability: abilityinserted,
+                    pokemon: pokeinserted
+                )
+                newpa.save
             end
             stats.map do |stat|
-                puts stat
-                puts stat['stat']['name']
                 response = HTTParty.get(stat['stat']["url"])
-                puts response["id"]
+                statinserted=Stat.create(
+                    name: stat['stat']['name'],
+                    stat_id: response["id"]
+                )
+                news=PokemonStat.new(
+                    pokemon: pokeinserted,
+                    stat: statinserted
+                )
+                news.save
             end
-            puts poke['id']
+
+            # abilities.map do |ability|
+            #     response = HTTParty.get(ability['ability']["url"])
+            #     if Ability.where(:ability_id => response["id"]).blank?
+            #         # no truck record for this id
+            #         abilityinserted=Ability.create(
+            #             name: ability['ability']['name'],
+            #             ability_id: response["id"]
+            #         )
+            #         newpa = PokemonAbility.new(
+            #             ability_id: abilityinserted.ability_id,
+            #             pokemon_id: pokeinserted.pokemon_id
+            #         )
+            #         newpa.save
+            #     else
+            #         # at least 1 record for this truck
+            #         newpa = PokemonAbility.new(
+            #             ability_id: response["id"],
+            #             pokemon_id: pokeinserted.pokemon_id
+            #         )
+            #         newpa.save
+            #     end
+
+            # end
+            # stats.map do |stat|
+            #     response = HTTParty.get(stat['stat']["url"])
+            #     if Stat.where(:stat_id => response["id"]).blank?
+            #         # no truck record for this id
+            #         statinserted=Stat.create(
+            #             name: stat['stat']['name'],
+            #             stat_id: response["id"]
+            #         )
+            #         news=PokemonStat.new(
+            #             stat_id: response["id"],
+            #             pokemon_id: pokeinserted.pokemon_id
+            #         )
+            #         puts news.save
+            #     else
+            #         # at least 1 record for this truck
+            #         newps = PokemonStat.new(
+            #             stat_id: response["id"],
+            #             pokemon_id: pokeinserted.pokemon_id
+            #         )
+            #         puts newps.save
+            #     end
+            # end
         end
     end
 end

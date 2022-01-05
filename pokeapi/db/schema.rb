@@ -22,6 +22,22 @@ ActiveRecord::Schema.define(version: 2021_12_31_014559) do
     t.integer "ability_id", null: false
   end
 
+  create_table "pokemon_abilities", force: :cascade do |t|
+    t.integer "pokemon_id"
+    t.integer "ability_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pokemon_id", "ability_id"], name: "index_pokemon_abilities_on_pokemon_id_and_ability_id"
+  end
+
+  create_table "pokemon_stats", force: :cascade do |t|
+    t.integer "pokemon_id"
+    t.integer "stat_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pokemon_id", "stat_id"], name: "index_pokemon_stats_on_pokemon_id_and_stat_id"
+  end
+
   create_table "pokemons", force: :cascade do |t|
     t.string "name", null: false
     t.integer "base_experience"
@@ -30,22 +46,7 @@ ActiveRecord::Schema.define(version: 2021_12_31_014559) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "img", limit: 100
-  end
-
-  create_table "pokemons_abilities", force: :cascade do |t|
     t.integer "pokemon_id"
-    t.integer "ability_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["pokemon_id", "ability_id"], name: "index_pokemons_abilities_on_pokemon_id_and_ability_id"
-  end
-
-  create_table "pokemons_stats", force: :cascade do |t|
-    t.integer "pokemon_id"
-    t.integer "stat_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["pokemon_id", "stat_id"], name: "index_pokemons_stats_on_pokemon_id_and_stat_id"
   end
 
   create_table "stats", force: :cascade do |t|

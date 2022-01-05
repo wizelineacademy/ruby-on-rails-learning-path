@@ -5,5 +5,9 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-puts "Running seed data proc..."
-puts PokemonsSeed.savePokemons
+
+def rundata
+    render json: { pokemons: PokemonApi.to_json }
+end
+
+rundata
