@@ -1,8 +1,7 @@
-module Enviroment
+module Environment
   class Depot
     attr_accessor :packs
-    def initialize
-      
+    def initialize()
       @packs = { 
         :simple_transportation_pack => {
           :intelligence => [:cellphone],
@@ -35,9 +34,9 @@ module Enviroment
       @missions = Hash.new 
       @missions.store(name, {objective: objective, status: :active, pack: pack})
     end
-    ["paused","aborted","failed","accomplished"].each {|method|
-        define_method "set_mission_#{method}(:name)" do
-          @missionn[name][:status] = method
+    [:paused,:aborted,:failed,:accomplished].each {|method|
+        define_method "set_mission_to_#{method}" do 
+          @missions[method][:status] = method
         end
     }
 
@@ -45,7 +44,7 @@ module Enviroment
 
   class Human
     attr_accessor :id, :name,:personal_data, :professional_data
-    def initialize name
+    def initialize(name)
       @id = self.object_id and @name = name
     end
     type_of_data = [:personal,:professional]
@@ -69,23 +68,14 @@ module Enviroment
     
   end
 
-  class Worker<Human
+  class Worker < Human
     attr_accessor :standart_shift, :extra_shift
-
-    def initialize()
-      @standart_shift= {:id => self.object_id,
-        :hours => 8,
-        :payment => 8,
-        :facility => String.new,
-        :status => nil 
-        }
-      @extra_shift={
-        :id => self.object_id,
-        :hours => 0,
-        :payment => 0.0,
-        :facility => String.new,
-        :status => nil 
-      }  
+    def initialize(name)
+      super(name)
     end
+    def set_shift
+			@standard_shift = { id: self.object_id, hours: 8, payment: 8, facility: nil, status: nil }
+			@extra_shift = { id: self.object_id, hours: nil, payment: nil, facility: nil, status: nil }
+		end
   end
 end

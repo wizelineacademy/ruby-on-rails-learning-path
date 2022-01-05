@@ -1,15 +1,15 @@
-require_relative "enviroment.rb"
+require_relative "environment.rb"
 
 class Game 
-    include Enviroment
+    include Environment
     attr_accessor :board, :depot, :control
     def initialize
         @board = {:players => Hash.new, :control => Hash.new, :status => nil}
-        @depot = Enviroment::Depot.new
-        @control = Enviroment::Control.new
+        @depot = Environment::Depot.new
+        @control = Environment::Control.new
     end
     def new_worker (name: nil)
-        @board[:players].store(@control.new_mission(name: name, objective: nil, pack: nil),Enviroment::Worker.new)
+        @board[:players].store(@control.new_mission(name: name, objective: nil, pack: nil),Environment::Worker.new(name))
     end
 
     def new_mission (name: nil, objective: nil, pack: nil)
