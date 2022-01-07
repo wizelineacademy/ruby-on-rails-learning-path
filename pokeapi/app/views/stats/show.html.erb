@@ -1,0 +1,30 @@
+
+
+<%= link_to("<< Back to List", stats_path, :class => 'back-link') %>
+
+<div class="stats show">
+  <h2>Show Stat</h2>
+
+  <table summary="stat detail view">
+    <tr>
+      <th>Name</th>
+      <td><%= @stat.name %></td>
+    </tr>
+    <tr>
+      <th>Pokemon ID</th>
+      <td><%= @stat.pokemon_id %></td>
+    </tr>
+    <tr>
+      <th>StatID</th>
+      <td><%= @stat.stat_id %></td>
+    </tr>
+    <tr>
+      <th>Created</th>
+      <td><%= @stat.created_at %></td>
+    </tr>
+    <tr>
+      <th>Updated</th>
+      <td><%= @stat.updated_at %></td>
+    </tr>
+  </table>
+</div>

@@ -1,4 +1,7 @@
 class PokemonsController < ApplicationController
+
+  layout 'admin'
+  
   def index
     @pokemons = Pokemon.sorted
   end
@@ -12,16 +15,17 @@ class PokemonsController < ApplicationController
   end
 
   def create
-      # Instantiate a new object using form parameters
-      @pokemon = Pokemon.new(pokemon_params)
-      # Save the object
-      if @pokemon.save
-        # If save succeeds, redirect to the index action
-        redirect_to(pokemons_path)
-      else
-        # If save fails, redisplay the form so user can fix problems
-        render('new')
-      end
+    # Instantiate a new object using form parameters
+    @pokemon = Pokemon.new(pokemon_params)
+    # Save the object
+    if @pokemon.save
+      # If save succeeds, redirect to the index action
+      flash[:notice] = "Pokemon created successfully."
+      redirect_to(pokemons_path)
+    else
+      # If save fails, redisplay the form so user can fix problems
+      render('new')
+    end
   end
 
   def edit
@@ -34,6 +38,7 @@ class PokemonsController < ApplicationController
     # Update the object
     if @pokemon.update(pokemon_params)
       # If save succeeds, redirect to the show action
+      flash[:notice] = "Pokemon '#{@pokemon.name}' updated successfully."
       redirect_to(pokemon_path(@pokemon))
     else
       # If save fails, redisplay the form so user can fix problems
@@ -48,6 +53,7 @@ class PokemonsController < ApplicationController
   def destroy
     @pokemon = Pokemon.find(params[:id])
     @pokemon.destroy
+    flash[:notice] = "Pokemon '#{@pokemon.name}' destroyed successfully."
     redirect_to(pokemons_path)
   end
 

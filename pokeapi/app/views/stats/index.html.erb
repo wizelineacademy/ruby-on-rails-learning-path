@@ -1,0 +1,30 @@
+
+
+
+<div class="stats index">
+  <h2>stats</h2>
+
+  <%= link_to("Add New Stat", new_stat_path, :class => 'action new') %>
+
+  <table class="listing" summary="stat list">
+    <tr class="header">
+      <th>#</th>
+      <th>StatID ID</th>
+      <th>Name</th>
+      <th>PokemonID</th>
+    </tr>
+    <% @stats.each do |stat| %>
+    <tr>
+      <td><%= stat.id %></td>
+      <td><%= stat.stat_id %></td>
+      <td><%= stat.name %></td>
+      <td><%= stat.pokemon_id %></td>
+      <td class="actions">
+        <%= link_to("Show", stat_path(stat), :class => 'action show') %>
+        <%= link_to("Edit", edit_stat_path(stat), :class => 'action edit') %>
+        <%= link_to("Delete", delete_stat_path(stat), :class => 'action delete') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>

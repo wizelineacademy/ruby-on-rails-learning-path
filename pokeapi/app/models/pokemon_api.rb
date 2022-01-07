@@ -1,7 +1,6 @@
 class PokemonApi
     def self.to_json
-      pokemons = []
-  
+        pokemons = []
         response = HTTParty.get("https://pokeapi.co/api/v2/pokemon?limit=20&offset=0")
         response = JSON.parse(response.body)
         response.each do |k, value|

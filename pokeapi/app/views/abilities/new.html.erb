@@ -1,0 +1,28 @@
+<%= link_to("<< Back to List", stats_path, :class => 'back-link') %>
+
+<div class="abilities new">
+  <h2>Create Ability</h2>
+
+  <%= form_for(@ability) do |f| %>
+
+    <table summary="ability form fields">
+      <tr>
+        <th>Name</th>
+        <td><%= f.text_field(:name) %></td>
+      </tr>
+      <tr>
+        <th>PokemonID</th>
+        <td><%= f.text_field(:pokemon_id) %></td>
+      </tr>
+      <tr>
+        <th>AbilityID</th>
+        <td><%= f.text_field(:ability_id) %></td>
+      </tr>
+    </table>
+
+    <div class="form-buttons">
+      <%= f.submit("Create ability") %>
+    </div>
+
+  <% end %>
+</div>

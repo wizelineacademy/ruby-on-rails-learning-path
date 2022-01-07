@@ -1,0 +1,30 @@
+
+
+<%= link_to("<< Back to List", Abilitys_path, :class => 'back-link') %>
+
+<div class="Abilitys show">
+  <h2>Show Ability</h2>
+
+  <table summary="Ability detail view">
+    <tr>
+      <th>Name</th>
+      <td><%= @ability.name %></td>
+    </tr>
+    <tr>
+      <th>Pokemon ID</th>
+      <td><%= @ability.pokemon_id %></td>
+    </tr>
+    <tr>
+      <th>AbilityID</th>
+      <td><%= @ability.ability_id %></td>
+    </tr>
+    <tr>
+      <th>Created</th>
+      <td><%= @ability.created_at %></td>
+    </tr>
+    <tr>
+      <th>Updated</th>
+      <td><%= @ability.updated_at %></td>
+    </tr>
+  </table>
+</div>

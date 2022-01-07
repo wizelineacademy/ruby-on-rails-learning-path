@@ -1,6 +1,28 @@
 Rails.application.routes.draw do
+  get 'abilities/index'
+  get 'abilities/show'
+  get 'abilities/new'
+  get 'abilities/edit'
+  get 'abilities/delete'
+  get 'stats/index'
+  get 'stats/show'
+  get 'stats/new'
+  get 'stats/edit'
+  get 'stats/delete'
 
   resources :pokemons do
+    member do
+      get :delete
+    end
+  end
+
+  resources :abilities do
+    member do
+      get :delete
+    end
+  end
+
+  resources :stats do
     member do
       get :delete
     end
