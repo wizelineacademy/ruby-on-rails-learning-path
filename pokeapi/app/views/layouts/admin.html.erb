@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple CMS:</title>
+    <title>PokemosApi:</title>
+    <%= stylesheet_link_tag('admin', :media => 'all') %>
   </head>
   <body>
+  <div id="header">
+    <h1>PokemonsAPI</h1>
+  </div>
+    <div id="main">
+      <% if !flash[:notice].blank? %>
+        <div class="notice">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
 
-  <% if !flash[:notice].blank? %>
-    <div class="notice">
-      <%= flash[:notice] %>
+      <div id="content">
+        <%= yield %>
+      </div>
     </div>
-  <% end %>
-
-  <!-- before yield -->
-  <%= yield %>
-  <!-- after yield -->
-
+        <div id="footer">
+      <p id="copyright">&copy; Yohana Tunarrosa. Wizeline</p>
+    </div>
   </body>
 </html>

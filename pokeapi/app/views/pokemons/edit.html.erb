@@ -5,29 +5,7 @@
 
   <%= form_for(@pokemon) do |f| %>
 
-    <table summary="Pokemon form fields">
-              <tr>
-        <th>PokemonID</th>
-        <td><%= f.text_field(:pokemon_id) %></td>
-      </tr>
-      <tr>
-        <th>Name</th>
-        <td><%= f.text_field(:name) %></td>
-      </tr>
-      <tr>
-        <th>Weight</th>
-        <td><%= f.text_field(:weight) %></td>
-      </tr>
-      <tr>
-        <th>Height</th>
-        <td><%= f.text_field(:height) %></td>
-      </tr>
-                  <tr>
-        <th>Base experience</th>
-        <td><%= f.text_field(:base_experience) %></td>
-      </tr>
-    </table>
-
+    <%= render(:partial => 'form', :locals => {:f => f}) %>
     <div class="form-buttons">
       <%= f.submit("Update Pokemon") %>
     </div>
