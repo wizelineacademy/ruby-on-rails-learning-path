@@ -1,14 +1,10 @@
 Rails.application.routes.draw do
-  get 'abilities/index'
-  get 'abilities/show'
-  get 'abilities/new'
-  get 'abilities/edit'
-  get 'abilities/delete'
-  get 'stats/index'
-  get 'stats/show'
-  get 'stats/new'
-  get 'stats/edit'
-  get 'stats/delete'
+
+  get 'admin', :to => 'access#menu'
+  get 'access/menu'
+  get 'access/login'
+  post 'access/attempt_login'
+  get 'access/logout'
 
   resources :pokemons do
     member do
