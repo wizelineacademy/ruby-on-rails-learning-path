@@ -1,0 +1,30 @@
+
+
+
+<div class="abilities index">
+  <h2>Abilities</h2>
+
+  <%= link_to("Add New Ability", new_ability_path, :class => 'action new') %>
+
+  <table class="listing" summary="ability list">
+    <tr class="header">
+      <th>#</th>
+      <th>AbilityID</th>
+      <th>Name</th>
+      <th>PokemonID</th>
+    </tr>
+    <% @abilities.each do |ability| %>
+    <tr>
+      <td><%= ability.id %></td>
+      <td><%= ability.ability_id %></td>
+      <td><%= ability.name %></td>
+      <td><%= ability.pokemon_id %></td>
+      <td class="actions">
+        <%= link_to("Show", ability_path(ability), :class => 'action show') %>
+        <%= link_to("Edit", edit_ability_path(ability), :class => 'action edit') %>
+        <%= link_to("Delete", delete_ability_path(ability), :class => 'action delete') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>

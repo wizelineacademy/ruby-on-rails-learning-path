@@ -1,0 +1,33 @@
+
+
+<div class="pokemons index">
+  <h2>Pokemons List</h2>
+
+  <%= link_to("Add New Pokemon", new_pokemon_path, :class => 'action new') %>
+
+  <table class="listing" summary="Subject list">
+    <tr class="header">
+      <th>PokemonID</th>
+      <th>Pokemon</th>
+      <th>Weight</th>
+      <th>Height</th>
+      <th>Base Experience</th>
+      <th>Image</th>
+    </tr>
+    <% @pokemons.each do |pokemon| %>
+    <tr>
+      <td><%= pokemon.pokemon_id %></td>
+      <td><%= pokemon.name %></td>
+      <td><%= pokemon.weight %></td>
+      <td><%= pokemon.height %></td>
+      <td><%= pokemon.base_experience %></td>
+      <td><%= image_tag("#{pokemon.img}", :size => '100x100', :alt => '+') %></td>
+      <td class="actions">
+        <%= link_to("Show", pokemon_path(pokemon), :class => 'action show') %>
+        <%= link_to("Edit", edit_pokemon_path(pokemon), :class => 'action edit') %>
+        <%= link_to("Delete", delete_pokemon_path(pokemon), :class => 'action delete') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>

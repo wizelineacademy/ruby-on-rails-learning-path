@@ -1,0 +1,27 @@
+<%= link_to("<< Back to List", stats_path, :class => 'back-link') %>
+
+<div class="stats edit">
+  <h2>Update Stat</h2>
+
+  <%= form_for(@stat) do |f| %>
+
+    <table summary="stat form fields">
+      <tr>
+        <th>Name</th>
+        <td><%= f.text_field(:name) %></td>
+      </tr>
+      <tr>
+        <th>PokemonID</th>
+        <td><%= f.text_field(:pokemon_id) %></td>
+      </tr>
+      <tr>
+        <th>StatID</th>
+        <td><%= f.text_field(:stat_id) %></td>
+      </tr>
+    </table>
+    <div class="form-buttons">
+      <%= f.submit("Update stat") %>
+    </div>
+
+  <% end %>
+</div>

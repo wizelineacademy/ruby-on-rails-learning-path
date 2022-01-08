@@ -1,0 +1,13 @@
+<% @page_title = "Admin Menu" %>
+
+<div class="menu">
+  <h2>Admin Menu</h2>
+  <div class="identity">Logged in as:</div>
+  <ul>
+    <li><%= link_to("Manage Pokemons", pokemons_path) %></li>
+    <li><%= link_to("Manage Stats", stats_path) %></li>
+    <li><%= link_to("Manage Abilities", abilities_path) %></li>
+    <li><%= link_to("Manage Admin Users", '#') %></li>
+    <li><%= link_to("Logout", access_logout_path) %></li>
+  </ul>
+</div>

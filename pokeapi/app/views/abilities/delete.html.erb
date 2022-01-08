@@ -1,0 +1,17 @@
+<%= link_to("<< Back to List", stats_path, :class => 'back-link') %>
+
+<div class="stats delete">
+  <h2>Delete Stat</h2>
+
+  <%= form_for(@ability, :method => 'delete') do |f| %>
+
+    <p>Are you sure you want to permanently delete this stat?</p>
+
+    <p class="reference-name"><%= f.object.name %></p>
+
+    <div class="form-buttons">
+      <%= f.submit("Delete stat") %>
+    </div>
+
+  <% end %>
+</div>
