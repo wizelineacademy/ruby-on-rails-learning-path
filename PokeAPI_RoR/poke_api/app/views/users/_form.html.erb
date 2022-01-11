@@ -1,0 +1,10 @@
+
+  <%= error_messages_for(f.object) %> 
+  <div class="form-outline form-white mb-4">
+  <%= f.text_field :username, class: 'form-control form-control-lg' %>
+      <%= f.label :username, class: 'form-label' %>
+      <%= f.text_field :email, class: 'form-control form-control-lg' %>
+      <%= f.label :email, class: 'form-label' %>
+      <%= f.password_field :password, class: 'form-control form-control-lg' %>
+      <%= f.label :password, class: 'form-label' %>
+  </div>
