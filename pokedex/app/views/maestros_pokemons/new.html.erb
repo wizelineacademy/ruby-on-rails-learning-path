@@ -1,0 +1,31 @@
+
+<div class="pokemons">
+  <%= link_to("<< Back to List", pokemons_path, :class => 'back-link') %>
+  
+  <h2>Add Pokemon</h2>
+
+  <%= form_for(@maestro_pokemon, :url => maestros_pokemons_path, :method => 'post') do |f| %>
+
+    <table summary="Pokemon form fields">
+      <tr>
+        <th>Level</th>
+        <td><%= f.number_field(:level) %></td>
+      </tr>
+      <tr>
+        <th>Pokemon</th>
+        <td>
+          <ul class='maestros_ul'>
+              <% list = Pokemon.all
+                list.each {|x| %>
+                  <li><%= f.radio_button :pokemon_id, x.id %> <%= x.name.titleize %></li>
+              <% } %>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th></th>
+        <td><%= f.submit("Add", :class=>"button") %></td>
+      </tr>
+    </table>
+  <% end %>
+</div>

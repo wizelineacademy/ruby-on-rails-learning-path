@@ -1,0 +1,86 @@
+.info{
+    display: table;
+    font-size: 16px;
+    color:rgb(212, 212, 212);
+    float:left;
+    padding: 20px;
+    width: 100%;
+    table-layout: fixed;
+    height: 100%;
+}
+
+.info_content {
+    display:inline;
+    float:left;
+    padding-right: 20px;
+}
+
+.info_content_text {
+    display: inline;
+    float: left;
+    width: 60%;
+    height: 100%;
+    padding: 0px;
+}
+
+.info_content_text p{
+    padding: 10px;
+    background-color: #1161ee;
+    width: 100%;
+}
+
+.picture {
+    background-color: rgb(238, 238, 238);
+    padding:10px;
+}
+
+.pokemons_container {
+    width: 100%;
+    padding:10px;
+    display: flex;
+    flex-wrap: wrap;
+    padding:10px;
+}
+
+.divisor {
+    height: 80%;
+    padding-bottom:80px;
+}
+
+.pokemon {
+    width: 22%;
+    box-sizing: border-box;
+    background-color: rgb(238, 238, 238);
+    text-align: center;
+    margin: 5px;
+}
+
+.pokemon_info {
+    margin-top: -20px;
+    color: rgb(65, 65, 65);
+}
+
+.link{
+    padding: 15px;
+}
+
+.pokemons_sprites{
+    width: 100%;
+    text-align: center;
+}
+
+.sprite_container{
+    display: flex;
+    flex-wrap: wrap;
+    padding:10px;
+    text-align: center;
+}
+
+.sprite_type{
+    width: 50%;
+}
+
+.sprites_header{
+    font-size: 18px;
+    font-weight: bold;
+}
