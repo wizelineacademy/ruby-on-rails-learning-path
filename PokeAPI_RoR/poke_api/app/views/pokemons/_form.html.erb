@@ -1,0 +1,25 @@
+  <%= error_messages_for(f.object) %> 
+  <div class="form-outline form-white mb-4">
+      <%= f.text_field :name, class: 'form-control form-control-lg' %>
+      <%= f.label :name, class: 'form-label' %>
+      <%= f.number_field :base_experience, in: 1..150, class: 'form-control form-control-lg' %>
+      <%= f.label :base_experience, class: 'form-label' %>
+      <%= f.number_field :height, in: 1..1000, class: 'form-control form-control-lg' %>
+      <%= f.label :height, class: 'form-label' %>
+      <%= f.number_field :weight, in: 1..1500, class: 'form-control form-control-lg' %>
+      <%= f.label :weight, class: 'form-label' %>
+      <%= f.number_field :pokedex_id, in: 259..1500, class: 'form-control form-control-lg' %>
+      <%= f.label :pokedex_id, class: 'form-label' %>
+      <%= f.fields_for :abilities do |builder| %>
+      <%= builder.text_field :name, class: 'form-control form-control-lg' %>
+      <%= builder.label :ability_name, class: 'form-label' %>
+      <% end %>
+      <%= f.fields_for :moves do |builder| %>
+      <%= builder.text_field :name, class: 'form-control form-control-lg' %>
+      <%= builder.label :move_name, class: 'form-label' %>
+      <% end %>
+      <%= f.fields_for :types do |builder| %>
+      <%= builder.text_field :name, class: 'form-control form-control-lg' %>
+      <%= builder.label :type_name, class: 'form-label' %>
+      <% end %>
+  </div>

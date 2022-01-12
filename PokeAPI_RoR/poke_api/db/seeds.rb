@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 # Create 10 random custom pokemons.
-user = User.create(username: 'custom', email: 'custom@gmail.com', password: 'password')
+user = User.create(username: 'customuser', email: 'custom@gmail.com', password: 'password')
 10.times do |i|
   pokemon = Pokemon.create(name: "Custom Pokemon #{i}", sprite_link: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png',
                            base_experience: rand(1..120), height: rand(3..20),
@@ -15,5 +15,5 @@ user = User.create(username: 'custom', email: 'custom@gmail.com', password: 'pas
   pokemon.abilities.create(pokemon_id: pokemon.id, name: "Custom ability #{i}")
   pokemon.moves.create(pokemon_id: pokemon.id, name: "Custom move #{i}")
   pokemon.types.create(pokemon_id: pokemon.id, name: "Custom type #{i}")
-  user << pokemon
+  user.pokemons << pokemon
 end

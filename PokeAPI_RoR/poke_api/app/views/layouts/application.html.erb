@@ -9,13 +9,16 @@
     <%= stylesheet_link_tag('styles') %>
     <%= javascript_include_tag('scripts') %>
   </head>
-
-        <% if !flash[:notice].blank? %>
-        <div class="notice">
-          <%= flash[:notice] %>
-        </div>
+  <% if !flash[:notice].blank? %>
+  <div class="alert alert-success" role="alert">
+  <%= flash[:notice] %>
+  </div>
       <% end %>
-
+  <% if !flash[:error].blank? %>
+  <div class="alert alert-error" role="alert">
+  <%= flash[:error] %>
+  </div>
+      <% end %>
   <body>
     <%= yield %>
   </body>

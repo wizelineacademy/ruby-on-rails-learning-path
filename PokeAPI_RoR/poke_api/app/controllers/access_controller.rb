@@ -15,7 +15,7 @@ class AccessController < ApplicationController
       session[:user_id] = authorized_user.id
       session[:username] = authorized_user.username
       flash[:notice] = 'You are now logged in.'
-      redirect_to(pokemons_path(user_id: authorized_user.id))
+      redirect_to(pokemons_path)
     else
       flash.now[:notice] = 'Invalid username/password combination.'
       render('login')

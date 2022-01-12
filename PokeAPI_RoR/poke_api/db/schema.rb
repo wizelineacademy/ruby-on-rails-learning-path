@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_10_223914) do
+ActiveRecord::Schema.define(version: 2022_01_12_185616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2022_01_10_223914) do
 
   create_table "pokemons", force: :cascade do |t|
     t.string "name", limit: 25
-    t.string "sprite_link"
+    t.string "sprite_link", default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png"
     t.integer "base_experience"
     t.integer "height"
     t.integer "weight"
