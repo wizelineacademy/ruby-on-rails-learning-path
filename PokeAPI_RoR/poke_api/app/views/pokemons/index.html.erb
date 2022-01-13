@@ -22,6 +22,7 @@
             </div>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><%= link_to("Edit Profile", user_path(@user), class: 'nav-link py-3 px-0 px-lg-3 rounded') %></li>
                         <li class="nav-item mx-0 mx-lg-1"><%= link_to("Logout", access_logout_path, class: 'nav-link py-3 px-0 px-lg-3 rounded') %></li>
                     </ul>
                 </div>
@@ -51,7 +52,10 @@
                     <% @pokemons.each do |pokemon| %>
                     <div class="col-md-1 col-lg-1 mb-1">
                             <img class="img-fluid" src="<%= pokemon.sprite_link %>" alt="..." />
-                            <p><%= pokemon.name.capitalize %></p> 
+                            <p><%= pokemon.name.capitalize %></p>
+                            <%= link_to("Show", pokemon_path(pokemon)) %>
+                            <%= link_to("Edit", edit_pokemon_path(pokemon)) %>
+                            <%= link_to("Delete", delete_pokemon_path(pokemon)) %>
                     </div>
                     <% end %>
                     <% end %>

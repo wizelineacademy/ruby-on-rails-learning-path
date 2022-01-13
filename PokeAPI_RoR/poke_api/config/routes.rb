@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'access/logout'
   get 'pokemons/set_pokemons' => 'pokemons#set_pokemons', as: :set_pokemons
 
-  resources :users do
+  resources :users, except: [:index] do
     member do
       get :delete
     end

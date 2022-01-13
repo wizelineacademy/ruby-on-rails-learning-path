@@ -1,12 +1,4 @@
 <% @page_title="New Pokemon" %>
-  <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag('styles') %>
-    <%= javascript_include_tag('scripts') %>
-  </head>
 <section class="vh-100 gradient-custom">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -15,15 +7,9 @@
           <div class="card-body p-5 text-center">
    <h2 class="fw-bold mb-2 text-uppercase">New custom pokemon</h2>
     <p class="text-white-50 mb-5">Please fill out the following fields:</p>
-
     <%= form_for(@pokemon) do |f| %>
-    <% @pokemon.abilities.build %>
-    <% @pokemon.moves.build %>
-    <% @pokemon.types.build %>
         <%= render(:partial=> 'form', :locals => {:f => f}) %>
-
-            <%= f.submit('Create Pokemon', class: 'btn btn-outline-light btn-lg px-5' ) %>
-
+        <%= f.submit('Create Pokemon', class: 'btn btn-outline-light btn-lg px-5' ) %>
     <% end %>
             </div>
           </div>

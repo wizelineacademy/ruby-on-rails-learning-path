@@ -6,11 +6,16 @@ class PokemonsController < ApplicationController
   end
 
   def show
-    @pokemon = Pokemon.find(params[:id])
+    @pokemon = Pokemon.find params[:id]
   end
 
   def new
     @pokemon = Pokemon.new
+    # Build each association after creating
+    # the new pokemon object
+    @pokemon.abilities.build
+    @pokemon.moves.build
+    @pokemon.types.build
   end
 
   def create
@@ -20,12 +25,12 @@ class PokemonsController < ApplicationController
     if @pokemon.save
       # Add current instance to user's pokemons.
       @user.pokemons << @pokemon
-      # If save succeeds, redirect to the index action
-      flash[:notice] = 'Pokemon created successfully.'
+      # If save succeeds, redirect to the pokemon's dashboard.
+      flash[:notice] = "Pokemon #{@pokemon.name.capitalize} created successfully."
       redirect_to(pokemons_path)
     else
       # If save fails, redisplay the form so user can fix problems
-      render('new')
+      render(new_pokemon_path)
     end
   end
 
@@ -37,13 +42,13 @@ class PokemonsController < ApplicationController
     # Find a new object using form parameters
     @pokemon = Pokemon.find(params[:id])
     # Update the object
-    if @pokemon.update_attributes(pokemon_params)
+    if @pokemon.update(pokemon_params)
       # If save succeeds, redirect to the show action
       flash[:notice] = 'Pokemon updated successfully.'
-      redirect_to(pokemon_path(@pokemon))
+      redirect_to(pokemons_path)
     else
       # If save fails, redisplay the form so user can fix problems
-      render('edit')
+      render(edit_pokemon_path)
     end
   end
 
@@ -54,7 +59,7 @@ class PokemonsController < ApplicationController
   def destroy
     @pokemon = Pokemon.find(params[:id])
     @pokemon.destroy
-    flash[:notice] = "Pokemon '#{@pokemon.name}' destroyed successfully."
+    flash[:notice] = "Pokemon '#{@pokemon.name.capitalize}' destroyed successfully."
     redirect_to(pokemons_path)
   end
 

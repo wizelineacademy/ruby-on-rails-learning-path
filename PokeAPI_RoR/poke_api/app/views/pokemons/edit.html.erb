@@ -1,1 +1,20 @@
-<h2>Poke API edit</h2>
+<% @page_title="Update Pokemon" %>
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-secondary text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+   <h2 class="fw-bold mb-2 text-uppercase">Update Pokemon</h2>
+    <%= form_for(@pokemon) do |f| %>
+    <img class="img-fluid" src="<%= f.object.sprite_link %>" alt="..." />
+    <%= render(:partial=> 'form', :locals => {:f => f}) %>
+    <%= f.submit('Update Pokemon', class: 'btn btn-outline-light btn-lg px-5' ) %>
+    <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

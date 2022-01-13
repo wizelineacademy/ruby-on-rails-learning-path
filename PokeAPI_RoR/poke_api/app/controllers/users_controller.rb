@@ -1,10 +1,6 @@
 class UsersController < ApplicationController
   before_action :confirm_logged_in, except: %i[new create]
 
-  def index
-    @users = User.sorted
-  end
-
   def show
     @user = User.find(params[:id])
   end
@@ -29,11 +25,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       flash[:notice] = 'User updated successfully.'
-      redirect_to(users_path)
+      redirect_to(access_logout_path)
     else
-      render('edit')
+      render(edit_user_path)
     end
   end
 
@@ -45,7 +41,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     flash[:notice] = 'User destroyed successfully.'
-    redirect_to(users_path)
+    redirect_to(access_logout_path)
   end
 
   private
