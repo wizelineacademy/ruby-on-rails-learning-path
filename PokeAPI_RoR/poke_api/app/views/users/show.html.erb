@@ -1,0 +1,38 @@
+<% @page_title="User info" %>
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-secondary text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+   <h2 class="fw-bold mb-2 text-uppercase">User Information:</h2>
+   <img class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/21/21104.png" width="200" 
+     height="200" alt="..." />
+<table>
+    <tr>
+      <th>Name</th>
+      <td><%= @user.username %></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td><%= @user.email %></td>
+    </tr>
+    <tr>
+      <th>Created</th>
+      <td><%= @user.created_at %></td>
+    </tr>
+    <tr>
+      <th>Updated</th>
+      <td><%= @user.updated_at %></td>
+    </tr>
+  </table>
+  <br>
+  <%= link_to("Edit", edit_user_path(@user), class: 'btn btn-lg btn-outline-light mx-2') %>
+  <%= link_to("Delete", delete_user_path(@user), class: 'btn btn-lg btn-outline-light mx-2') %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

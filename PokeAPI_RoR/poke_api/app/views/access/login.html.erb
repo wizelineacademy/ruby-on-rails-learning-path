@@ -1,0 +1,37 @@
+<% @page_title = "Login" %>
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-secondary text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            <div class="mb-md-5 mt-md-4 pb-5">
+
+              <h2 class="fw-bold mb-2 text-uppercase">PokeAPI Login</h2>
+              <p class="text-white-50 mb-5">Please enter your login and password.</p>
+
+            <%= form_tag(access_attempt_login_path, :method => :post) do %>
+              <div class="form-outline form-white mb-4">
+                <%= text_field_tag :username, params[:username], class: 'form-control form-control-lg' %>
+                <%= label_tag :username, nil, class: 'form-label' %>
+              </div>
+
+              <div class="form-outline form-white mb-4">
+                <%= password_field_tag :password, params[:password], class: 'form-control form-control-lg' %>
+                <%= label_tag :password, nil, class: 'form-label' %>
+              </div>
+              <%= submit_tag 'Login', class: 'btn btn-outline-light btn-lg px-5' %>
+              <% end %>
+            </div>
+
+            <div>
+              <p class="mb-0">Don't have an account? <%= link_to('Sign Up', new_user_path, :class => 'text-white-50 fw-bold') %></p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

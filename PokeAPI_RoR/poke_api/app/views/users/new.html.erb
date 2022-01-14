@@ -1,0 +1,27 @@
+<% @page_title="New User" %>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-secondary text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+              <h2 class="fw-bold mb-2 text-uppercase">Create new Poke user</h2>
+              <p class="text-white-50 mb-5">Please fill out the following form:</p>
+                <%= form_for(@user) do |f| %>
+                <%= render(:partial => 'form', :locals => {:f => f}) %>
+                 <%= f.submit('Create User', class: 'btn btn-outline-light btn-lg px-5') %>
+                <% end %>
+                 </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

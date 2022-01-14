@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PokeApi <%= " - #{@page_title}" unless @page_title.empty? %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag('styles') %>
+    <%= javascript_include_tag('scripts') %>
+  </head>
+  <% unless flash[:notice].blank? %>
+  <div class="alert alert-success" role="alert">
+  <%= flash[:notice] %>
+  </div>
+  <% end %>
+    <% unless flash[:error].blank? %>
+  <div class="alert alert-danger" role="alert">
+  <%= flash[:error] %>
+  </div>
+  <% end %>
+  <body>
+    <%= yield %>
+  </body>
+</html>

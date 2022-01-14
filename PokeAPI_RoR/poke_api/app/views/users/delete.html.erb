@@ -1,0 +1,19 @@
+<% @page_title="Delete User" %>
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-secondary text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+    <%= form_for(@user, method: :delete) do |f| %>
+    <h4>Are you sure you want to permanently delete this user?</h4>
+    <h4><strong><%= f.object.username %></strong></h4><br>
+    <%= f.submit('Delete User', class: 'btn btn-outline-light btn-lg px-5' ) %>
+    <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
