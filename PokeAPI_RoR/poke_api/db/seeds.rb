@@ -9,11 +9,12 @@
 # Create 10 random custom pokemons.
 user = User.create(username: 'customuser', email: 'custom@gmail.com', password: 'password')
 10.times do |i|
-  pokemon = Pokemon.create(name: "Custom Pokemon #{i}", sprite_link: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png',
-                           base_experience: rand(1..120), height: rand(3..20),
-                           weight: rand(20..1000), pokedex_id: 248 + i)
-  pokemon.abilities.create(pokemon_id: pokemon.id, name: "Custom ability #{i}")
-  pokemon.moves.create(pokemon_id: pokemon.id, name: "Custom move #{i}")
-  pokemon.types.create(pokemon_id: pokemon.id, name: "Custom type #{i}")
+  pokemon = Pokemon.new(name: "Custom Pokemon #{i}", sprite_link: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png',
+                        base_experience: rand(1..120), height: rand(3..20),
+                        weight: rand(20..1000), pokedex_id: 248 + i)
+  pokemon.abilities.new(pokemon_id: pokemon.id, name: "Custom ability #{i}")
+  pokemon.moves.new(pokemon_id: pokemon.id, name: "Custom move #{i}")
+  pokemon.types.new(pokemon_id: pokemon.id, name: "Custom type #{i}")
+  pokemon.save
   user.pokemons << pokemon
 end

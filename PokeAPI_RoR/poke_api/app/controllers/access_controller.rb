@@ -25,7 +25,15 @@ class AccessController < ApplicationController
   def logout
     session[:user_id] = nil
     session[:username] = nil
-    flash[:notice] = 'Logged out'
+
+    flash[:notice] = if params[:update] == 'true'
+                       'User updated successfully. Please log in again.'
+                     elsif params[:delete] == 'true'
+                       'User destroyed successfully.'
+                     else
+                       'Logged out'
+                     end
+
     redirect_to(access_login_path)
   end
 end

@@ -26,8 +26,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:notice] = 'User updated successfully.'
-      redirect_to(access_logout_path)
+      redirect_to(access_logout_path(update: true))
     else
       render(edit_user_path)
     end
@@ -40,8 +39,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:notice] = 'User destroyed successfully.'
-    redirect_to(access_logout_path)
+    redirect_to(access_logout_path(delete: true))
   end
 
   private
