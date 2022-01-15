@@ -28,7 +28,7 @@ Nice to have:
 - Responsiveness
 - Way to export all data to a CSV
 - Search feature
-- Application deployed, automated or manuel deployment (Heroku, Digital Ocean, AWS)
+- Application deployed, automated or manual deployment (Heroku, Digital Ocean, AWS)
 
 ## Requirements
 
@@ -50,7 +50,7 @@ To get started, follow these steps:
 3. Have fun!
 
 ## Deliverables
-Please take this challenge seriously and try to make progress constantly, we will be providing feedback so If you are struggling with something, contact the mentors and peers to get help on time. Feel free to use the slack channel available.
+Please take this challenge seriously and try to make progress constantly, we will be providing feedback so if you are struggling with something, contact the mentors and peers to get help on time. Feel free to use the slack channel available.
 
 ## First Deliverable (due end week 2)
 Based on the self-study material and mentorship covered until this deliverable
@@ -75,6 +75,6 @@ Based on the self-study material and mentorship covered until this deliverable
 
 For submitting your work, you should follow these steps:
 
-1. Create a pull request with your code, targeting the master branch of your fork.
+1. Create a pull request with your code, targeting the main branch of your fork, make sure your PRs name follows this name convention "#{your-name}--#{number of deliverable}" ex: "ivanreyes--practice1"
 2. Make sure you are adding Apostat23, hivanreyes, david-ojeda-w, Rikard189 as reviewers
 3. Stay tune for feedback
