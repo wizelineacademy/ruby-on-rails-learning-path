@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-  root :to => 'pokemon#index'
-
-  get 'access/login'
-  post 'access/attempt_login'
-  get 'access/logout'
+  devise_for :users
+  root to: 'pokemon#index'
 
   resources :pokemons, controller: 'pokemon' do
     member do

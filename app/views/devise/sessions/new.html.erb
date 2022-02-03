@@ -1,0 +1,35 @@
+<% @page_title = "Log in" %>
+
+<div class="container text-center mt-5">
+  <h2>Log in</h2>
+  
+  <%= link_to "<< Back to Home", pokemons_path %>
+  
+  <div class="container d-flex justify-content-end">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "m-auto p-3 mw-25"}) do |f| %>
+    <div class="form-floating mb-3">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+      <%= f.label :email %>
+    </div>
+
+    <div class="form-floating mb-3">
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+      <%= f.label :password %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="form-group form-check mb-3">
+        <%= f.check_box :remember_me, class: "form-check-input" %>
+        <%= f.label :remember_me, class: "form-check-label" %>
+      </div>
+    <% end %>
+
+    <div class="actions ms-auto mb-2 mb-lg-0">
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+  
+  </div>
+  <%= render "devise/shared/links" %>
+</div>
+

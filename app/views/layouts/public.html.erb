@@ -4,6 +4,7 @@
     <title>PokeApp<%= " | #{@page_title}" if @page_title %></title>
     <%= stylesheet_link_tag('application', :media => 'all') %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= csrf_meta_tags %>
   </head>
   <body class="d-flex flex-column h-100">
     <header>
@@ -11,11 +12,18 @@
     </header>
 
     <main class="flex-shrink-0">
-      <% if !flash[:notice].blank? %>
-      <div class="container alert alert-success alert-dismissible fade show mt-5 w-50" role="alert">
-        <strong><%= flash[:notice] %></strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
+    <% if notice %>
+        <div class="container alert alert-info alert-dismissible fade show mt-5 w-50 notice">
+          <%= notice %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end %>
+      
+      <% if alert %>
+        <div class="container alert alert-warning alert-dismissible fade show mt-5 w-50">
+          <%= alert %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
       <% end %>
 
       <%= yield %>

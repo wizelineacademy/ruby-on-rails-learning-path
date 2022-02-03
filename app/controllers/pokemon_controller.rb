@@ -1,7 +1,6 @@
 class PokemonController < ApplicationController
   layout 'public'
 
-  before_action :confirm_logged_in, :except => [:index, :show]
   before_action :set_stats, :only => [:show]
   before_action :get_types_and_abilities, :only => [:new, :edit]
 
