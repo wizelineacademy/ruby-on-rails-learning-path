@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html class="h-100">
+  <head>
+    <title>PokeApp<%= " | #{@page_title}" if @page_title %></title>
+    <%= stylesheet_link_tag('application', :media => 'all') %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class="d-flex flex-column h-100">
+    <header>
+      <%= render(:partial => 'layouts/navbar') %> 
+    </header>
+
+    <main class="flex-shrink-0">
+    <% if notice %>
+        <div class="container alert alert-info alert-dismissible fade show mt-5 w-50 notice">
+          <%= notice %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end %>
+      
+      <% if alert %>
+        <div class="container alert alert-warning alert-dismissible fade show mt-5 w-50">
+          <%= alert %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-ligth">
+      <div class="container">
+        <span class="text-muted">PokeApp.</span>
+      </div>
+    </footer>
+  </body>
+</html>

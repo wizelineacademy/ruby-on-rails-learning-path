@@ -1,0 +1,24 @@
+<% @page_title = 'Dashboard' %>
+
+<div class="container mt-5">
+  <div class="d-grip gap-2 d-md-flex justify-content-md-end pt-3">
+    <%= link_to("Create new pokemon", new_pokemon_path, :class => 'btn btn-success me-md-2') %>
+  </div>
+  <div class="row row-cols-md-4 row-cols-sm-2">
+    <% @pokemons.each do |pokemon| %>
+    <div class="col">
+      <div class="card text-dark my-3">
+        <%= render partial: "sprite", locals: { :sprite => pokemon.sprite, :styles => "bg-light card-img-top" } %>
+        <div class="card-body bg-white">
+          <h5 class="card-title text-center"><%= link_to(pokemon.name.capitalize, pokemon_path(pokemon), :class => 'text-decoration-none text-dark stretched-link') %></h5>
+          <div class="d-grip gap-2 text-center">
+            <% pokemon.types.each do |p_type| %>
+            <span class="badge rounded-pill bg-secondary"> <%= p_type.name.capitalize %> </span>
+            <% end %>        
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

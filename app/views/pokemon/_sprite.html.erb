@@ -1,0 +1,5 @@
+<% if sprite.empty? %>
+  <%= image_tag('pokeball_default.png', class: styles, width: '250') %>
+<% else %>
+  <img class=<%= styles %> src=<%= sprite %> style="min-width: 250px" >
+<% end %>

@@ -1,0 +1,14 @@
+<div class="container text-center mt-5">
+  <h1>Create Pokemon</h1>
+
+  <div class="container d-flex justify-content-end">
+  <%= form_for @pokemon, html: { class: "m-auto p-3 mw-25" } do |f| %>
+    <%= render partial: "form", locals: { :f => f } %>
+    
+    <div class="ms-auto mb-2 mb-lg-0">
+      <%= f.submit("Create", :class => "btn btn-primary") %>
+    </div>
+
+  <% end %>
+  </div>
+</div>
